@@ -583,6 +583,7 @@ PACKAGE_URL=''
 
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
+JAGS_INCL
 INSTALLED_WITH_JAGS
 JAGS_CXX
 JAGS_LIBS
@@ -1667,6 +1668,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 INSTALLED_WITH_JAGS="FALSE"
+JAGS_INCL=""
 
 # Extract the first word of "pkg-config", so it can be a program name with args.
 set dummy pkg-config; ac_word=$2
@@ -1715,8 +1717,8 @@ if test  -n "${PKG_CONFIG}"  ; then
          JAGS_LIBS=`${PKG_CONFIG} --libs jags`
          JAGS_CXX=`${PKG_CONFIG} --cflags jags`
          if test  -z "${JAGS_LIBS}" -a -z "${JAGS_CXX}"  ; then
-            { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Cannot get information about jags ${PACKAGE_VERSION} from pkg-config" >&5
-$as_echo "$as_me: WARNING: Cannot get information about jags ${PACKAGE_VERSION} from pkg-config" >&2;}
+            { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Cannot get information about jags from pkg-config" >&5
+$as_echo "$as_me: WARNING: Cannot get information about jags from pkg-config" >&2;}
          else
             { $as_echo "$as_me:${as_lineno-$LINENO}: Setting compile and link flags according to pkg-config" >&5
 $as_echo "$as_me: Setting compile and link flags according to pkg-config" >&6;}
@@ -1725,16 +1727,13 @@ $as_echo "$as_me: Compile flags are $JAGS_CFLAGS" >&6;}
             { $as_echo "$as_me:${as_lineno-$LINENO}: Link flags are $JAGS_LIBS" >&5
 $as_echo "$as_me: Link flags are $JAGS_LIBS" >&6;}
             INSTALLED_WITH_JAGS="TRUE"
+	    JAGS_INCL="#include <covafill/JAGS>"
          fi
    else
       JAGS_LIBS=``
       JAGS_CXX=``
-      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: pkg-config file for jags ${PACKAGE_VERSION} unavailable" >&5
-$as_echo "$as_me: WARNING: pkg-config file for jags ${PACKAGE_VERSION} unavailable" >&2;}
-      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Consider adding the directory containing \`jags.pc\`" >&5
-$as_echo "$as_me: WARNING: Consider adding the directory containing \`jags.pc\`" >&2;}
-      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: to the PKG_CONFIG_PATH environment variable" >&5
-$as_echo "$as_me: WARNING: to the PKG_CONFIG_PATH environment variable" >&2;}
+      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: pkg-config file for jags unavailable" >&5
+$as_echo "$as_me: WARNING: pkg-config file for jags unavailable" >&2;}
    fi
 else
 	JAGS_LIBS=``
@@ -1745,7 +1744,10 @@ fi
 
 
 
+
 ac_config_files="$ac_config_files src/Makevars"
+
+ac_config_files="$ac_config_files src/jags.cpp"
 
 ac_config_files="$ac_config_files R/loadJAGSModule.R"
 
@@ -2455,6 +2457,7 @@ for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
     "src/Makevars") CONFIG_FILES="$CONFIG_FILES src/Makevars" ;;
+    "src/jags.cpp") CONFIG_FILES="$CONFIG_FILES src/jags.cpp" ;;
     "R/loadJAGSModule.R") CONFIG_FILES="$CONFIG_FILES R/loadJAGSModule.R" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
