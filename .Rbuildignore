@@ -1,0 +1,5 @@
+^.gitlab-ci.yml$
+^.travis.yml$
+^appveyor.yml$
+^travis-tool.sh$
+libs/*
