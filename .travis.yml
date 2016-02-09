@@ -9,6 +9,7 @@ compiler:
   - gcc
 
 env:
+  matrix:
   - JAGS=FALSE _R_CHECK_FORCE_SUGGESTS_ = FALSE
   - JAGS=TRUE
   global:
@@ -32,7 +33,7 @@ install:
 
 script: ./travis-tool.sh run_tests
 
-on_failure:
+after_failure:
   - ./travis-tool.sh dump_logs
   - less /Users/travis/build/calbertsen/covafillr/covafillr.Rcheck/00check.log
   - less /Users/travis/build/calbertsen/covafillr/covafillr.Rcheck/00install.out
