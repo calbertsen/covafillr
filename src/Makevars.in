@@ -1,0 +1,4 @@
+
+PKG_CXXFLAGS=-I../inst/include @JAGS_CXX@
+
+PKG_LIBS= @JAGS_LIBS@

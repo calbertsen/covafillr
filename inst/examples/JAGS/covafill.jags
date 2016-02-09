@@ -1,0 +1,8 @@
+model {
+      cf <- covafill(x,obsC,obs,h,2.0)
+      sigma ~ dunif(0,100)
+      tau <- pow(sigma, -2)
+      for(i in 1:N) {
+      	    y[i] ~ dnorm(cf[i],tau)
+	    }    
+}

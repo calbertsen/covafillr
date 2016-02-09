@@ -1,0 +1,19 @@
+##' load JAGS module.
+##'
+##' Calls rjags::load.module with appropriate arguments to load the covafillr module.
+##' @return Nothing
+##' @seealso \code{\link[rjags]{load.module}}
+##' @author Christoffer Moesgaard Albertsen
+##' @examples
+##' if(require("rjags"))
+##'    loadJAGSModule()
+##' @export
+loadJAGSModule <- function(){
+    if(requireNamespace("rjags")){
+        if(!@INSTALLED_WITH_JAGS@)
+            warning("covafillr was not installed using JAGS.")
+        rjags::load.module('covafillr',system.file('libs',package='covafillr'))
+    }else{
+        stop("rjags must be installed to load the JAGS module. Please re-install covafillr using configure.args=  after installing rjags.")
+    }
+}
