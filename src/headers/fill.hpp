@@ -1,5 +1,3 @@
-#include <covafill/Core>
-#include "utils/convert.hpp"
 
 extern "C" {
   SEXP MakeFill(SEXP coord,SEXP obs,SEXP h,SEXP p){

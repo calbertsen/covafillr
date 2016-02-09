@@ -1,5 +1,3 @@
-#include <covafill/Tree>
-#include "utils/convert.hpp"
 
 extern "C" {
   SEXP MakeTree(SEXP coord,SEXP obs,SEXP h,SEXP p, SEXP d){
