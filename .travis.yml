@@ -10,7 +10,8 @@ compiler:
 
 env:
   matrix:
-  - JAGS=FALSE _R_CHECK_FORCE_SUGGESTS_ = FALSE
+  - JAGS=FALSE
+    _R_CHECK_FORCE_SUGGESTS_=FALSE
   - JAGS=TRUE
   global:
     - OS=$(uname -s)
