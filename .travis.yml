@@ -8,11 +8,9 @@ compiler:
   - clang
   - gcc
 
-matrix:
-  - env: JAGS=FALSE
-  - env: JAGS=TRUE
-
 env:
+  - JAGS=FALSE _R_CHECK_FORCE_SUGGESTS_ = FALSE
+  - JAGS=TRUE
   global:
     - OS=$(uname -s)
 
@@ -29,7 +27,7 @@ before_install:
 
 install:
   - ./travis-tool.sh install_deps
-  - ./travis-tool.sh install_r rjags
+  - if test ${JAGS} = TRUE; then ./travis-tool.sh install_r rjags; fi
   - ./travis-tool.sh install_r TMB
 
 script: ./travis-tool.sh run_tests
