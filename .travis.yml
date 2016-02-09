@@ -4,9 +4,13 @@ os:
   - linux
   - osx
 
+compiler:
+  - clang
+  - gcc
+
 matrix:
-  - JAGS=FALSE
-  - JAGS=TRUE
+  - env: JAGS=FALSE
+  - env: JAGS=TRUE
 
 env:
   global:
@@ -25,8 +29,12 @@ before_install:
 
 install:
   - ./travis-tool.sh install_deps
+  - ./travis-tool.sh install_r rjags
+  - ./travis-tool.sh install_r TMB
 
 script: ./travis-tool.sh run_tests
 
 on_failure:
   - ./travis-tool.sh dump_logs
+  - less /Users/travis/build/calbertsen/covafillr/covafillr.Rcheck/00check.log
+  - less /Users/travis/build/calbertsen/covafillr/covafillr.Rcheck/00install.out
