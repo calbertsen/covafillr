@@ -32,12 +32,12 @@
 
 
 // template<typename scalartype_>
-// smoothField<scalartype_>::smoothField(const smoothField<AD<scalartype> > &rhs){
+// covafill<scalartype_>::covafill(const covafill<AD<scalartype> > &rhs){
 //   matrixtype coordinates = toBase(rhs.coordinates);
 //   vectortype observations = toBase(rhs.observations);
 //   int p = rhs.p;
 //   vectortype h = toBase(rhs.h);
-//   smoothField<scalartype>(coordinates,observations,h,p);
+//   covafill<scalartype>(coordinates,observations,h,p);
 // };
 
 

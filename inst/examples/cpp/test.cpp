@@ -1,6 +1,6 @@
-#include <smoothField/Core>
-#include <smoothField/Tree>
-#include <smoothField/Interpolate>
+#include <covafill/Core>
+#include <covafill/Tree>
+#include <covafill/Interpolate>
 #include <iostream>
 
 int main(){
@@ -90,9 +90,9 @@ int main(){
 
   Eigen::Matrix<double,Eigen::Dynamic,1> obs(81);
   obs << -16, -11.375, -9, -8.125, -8, -7.875, -7, -4.625, 0, -11.375, -6.75, -4.375, -3.5, -3.375, -3.25, -2.375, 0, 4.625, -9, -4.375, -2, -1.125, -1, -0.875, 0, 2.375, 7, -8.125, -3.5, -1.125, -0.25, -0.125, 0, 0.875, 3.25, 7.875, -8, -3.375, -1, -0.125, 0, 0.125, 1, 3.375, 8, -7.875, -3.25, -0.875, 0, 0.125, 0.25, 1.125, 3.5, 8.125, -7, -2.375, 0, 0.875, 1, 1.125, 2, 4.375, 9, -4.625, 0, 2.375, 3.25, 3.375, 3.5, 4.375, 6.75, 11.375, 0, 4.625, 7, 7.875, 8, 8.125, 9, 11.375, 16;
-  smoothField<double> test(coord,obs);
+  covafill<double> test(coord,obs);
 
-  smoothTree<double> ttrae(1.5,&test);
+  covatree<double> ttrae(1.5,&test);
 
   Eigen::Matrix<double,Eigen::Dynamic,1> minCoords(2);
   minCoords << -0.5,-0.5;

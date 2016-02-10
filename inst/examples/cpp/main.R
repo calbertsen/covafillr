@@ -1,5 +1,5 @@
 
-library(smoothField)
+library(covafillr)
 require(TMB)
 
 ## From TMB
@@ -8,7 +8,7 @@ require(TMB)
 
 compiler <- c("g++","clang++")
 
-ppflags <- paste(paste0("-I",system.file("include",package="smoothField")),
+ppflags <- paste(cxxFlags(),
                  paste0("-I",system.file("include",package="RcppEigen"))
                  )
 
@@ -17,7 +17,7 @@ d <- list()
 
 for(i in 1:length(compiler)){
 a <- system2(compiler[i],
-        args = c(paste0("-I",system.file("include",package="smoothField")),
+        args = c(cxxFlags(),
                  paste0("-I",system.file("include",package="RcppEigen")),
                  'test.cpp'),
         stdout=TRUE,stderr=TRUE

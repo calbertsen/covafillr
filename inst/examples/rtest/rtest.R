@@ -4,7 +4,7 @@ coord <- as.matrix(expand.grid(seq(-10,10,0.2),seq(-10,10,0.2)))
 ftrue <- function(x)sum(x^3) + prod(x)
 covObs <- apply(coord,1,function(x)ftrue(x) + rnorm(1,0,0.01))
 
-## Test smoothField
+## Test covafill
 cf <- covafill(coord=coord,obs=covObs,h=c(1,1),p=2L)
 cf2 <- covafill(coord=coord,obs=covObs)
 
@@ -16,7 +16,7 @@ val1 <- cf$predict(matrix(c(0,0),1,2))
 xx <- matrix(runif(200,-10,10),100,2)
 val2 <- cf$predict(xx)
 
-## Test smoothTree
+## Test covatree
 
 ct <- covatree(coord=coord,obs=covObs,h=c(1,1),p=2L, minLeft = 100)
 val3 <- ct$predict(xx)
