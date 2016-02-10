@@ -14,7 +14,7 @@ Get CXXFLAGS to compile with covafill
 }
 \examples{
 if(require("TMB")){
-   f <- system.file("examples","tmbtest","tmbtest.cpp")
+   f <- system.file("examples","tmbtest","tmbtest.cpp", package='covafillr')
    TMB::compile(f,CXXFLAGS = cxxFlags())
 }
 }
