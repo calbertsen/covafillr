@@ -33,7 +33,7 @@
 
 template<typename scalartype_>
 covafill<scalartype_>::covafill(matrixtype coordinates_,
-				      vectortype observations_) : coordinates(coordinates_), observations(observations_), dim(coordinates.cols()), p(2), nobs(coordinates.rows()), Hinv(coordinates.cols(),coordinates.cols()), detHinv(0){
+				vectortype observations_) : coordinates(coordinates_), observations(observations_), p(2), Hinv(coordinates.cols(),coordinates.cols()), detHinv(0), dim(coordinates.cols()), nobs(coordinates.rows()) {
   setH(scalartype(1.0));  
 };
 
@@ -42,7 +42,7 @@ template<typename scalartype_>
 covafill<scalartype_>::covafill(matrixtype coordinates_,
 				      vectortype observations_,
 				      scalartype h_,
-				      int p_) : coordinates(coordinates_), observations(observations_), dim(coordinates.cols()), p(p_), nobs(coordinates.rows()), Hinv(dim,dim), detHinv(0){
+				      int p_) : coordinates(coordinates_), observations(observations_), p(p_), Hinv(dim,dim), detHinv(0), dim(coordinates.cols()), nobs(coordinates.rows()){
   setH(h_);
 };
 
@@ -51,7 +51,7 @@ template<typename scalartype_>
 covafill<scalartype_>::covafill(matrixtype coordinates_,
 				      vectortype observations_,
 				      vectortype h_,
-				      int p_) : coordinates(coordinates_), observations(observations_), p(p_), dim(coordinates.cols()), nobs(coordinates.rows()), Hinv(coordinates.cols(),coordinates.cols()), detHinv(0){
+				int p_) : coordinates(coordinates_), observations(observations_), p(p_), Hinv(coordinates.cols(),coordinates.cols()), detHinv(0), dim(coordinates.cols()), nobs(coordinates.rows()) {
   setH(h_);
 };
 

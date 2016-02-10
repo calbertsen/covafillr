@@ -61,37 +61,28 @@ private:
 template<typename scalartype_>
 ncubicInterpolation<scalartype_>::ncubicInterpolation(vectortype minCoord_,
 						      vectortype maxCoord_)
-  : minCoord(minCoord_),
-    maxCoord(maxCoord_),
-    dim(minCoord_.size())
-{};
+  : dim(minCoord_.size()),
+    minCoord(minCoord_),
+    maxCoord(maxCoord_)
+{
+  minChild = NULL;
+  maxChild = NULL;
+};
 
   template<typename scalartype_>
 ncubicInterpolation<scalartype_>::ncubicInterpolation(covafill<scalartype>* sf,
 						      vectortype minCoord_,
 						      vectortype maxCoord_)
-  : minCoord(minCoord_),
-    maxCoord(maxCoord_),
-    dim(minCoord_.size())
+  : dim(minCoord_.size()),
+    minCoord(minCoord_),
+    maxCoord(maxCoord_)
+    
 {
-  if(minCoord_.size() == 3){
-    // minChild = new bicubicInterpolation<scalartype_>(sf,
-    // 						     minCoord_.head(dim-1),
-    // 						     maxCoord_.head(dim-1));
-  }else{
-
-  }
-
-
+  minChild = NULL;
+  maxChild = NULL;
 };
 
 
 
-// template<typename scalartype_>
-// typename ncubicInterpolation<scalartype_>::vectortype ncubicInterpolation<scalartype_>::operator()(vectortype newcoord) {
-
-
-
-// }
 
 #endif
