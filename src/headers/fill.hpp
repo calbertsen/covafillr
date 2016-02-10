@@ -81,7 +81,6 @@ extern "C" {
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
 
     double er = asDouble(excludeRadius);
-    int dim = ptr->getDim();
     MatrixXd x0 = ptr->coordinates;
     vector y0 = ptr->observations;
     vector res(y0.size());
