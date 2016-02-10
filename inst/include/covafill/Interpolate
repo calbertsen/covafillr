@@ -37,12 +37,8 @@
 
 // Internal
 
-template<typename scalartype_>
-class smoothNode;
-template<typename scalartype_>
-class smoothTree;
-
 #include "src/Interpolate/ncubicInterpolation.hpp"
+#include "src/Interpolate/tricubicInterpolation.hpp"
 #include "src/Interpolate/bicubicInterpolation.hpp"
 #include "src/Interpolate/unicubicInterpolation.hpp"
 #include "src/Interpolate/cubicInterpolation.hpp"

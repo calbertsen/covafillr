@@ -35,6 +35,7 @@
 #define DEFINE_TYPES(scalartype_) \
   typedef scalartype_ scalartype; \
   typedef tmbutils::vector<scalartype_> vectortype; \
+  typedef tmbutils::vector<matrix<scalartype_> > vecmattype;	\
   typedef tmbutils::matrix<scalartype_> matrixtype;		\
   typedef tmbutils::SparseMatrix<scalartype_> sparsematrixtype;
 
@@ -46,6 +47,7 @@
 #define DEFINE_TYPES(scalartype_)					\
   typedef scalartype_ scalartype;					\
   typedef Eigen::Array<scalartype_,Eigen::Dynamic,1> vectortype;	\
+  typedef Eigen::Array<Eigen::Matrix<scalartype_,Eigen::Dynamic,Eigen::Dynamic>,Eigen::Dynamic,1> vecmattype; \
   typedef Eigen::Matrix<scalartype_,Eigen::Dynamic,Eigen::Dynamic> matrixtype; \
   typedef Eigen::SparseMatrix<scalartype_> sparsematrixtype;
 

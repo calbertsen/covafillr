@@ -110,11 +110,12 @@ typename bicubicInterpolation<scalartype_>::matrixtype bicubicInterpolation<scal
     tmp(0) = coords(indxs[i][0],0);
     tmp(1) = coords(indxs[i][1],1);
     vectortype vals = cf->operator()(tmp, true);
+    int nv = vals.size();
     vectortype tmp2(4);
     x(i) = vals(0)*mult(0); 	// f(x,y)
-    x(i+4) = vals(1)*mult(1);	// f_x(x,y)
-    x(i+8) = vals(2)*mult(2);	// f_y(x,y)
-    x(i+12) = vals(5)*mult(3);	// f_{x,y}(x,y)
+    x(i+4) = (nv > 1) ? vals(1)*mult(1) : 0.0;	// f_x(x,y)
+    x(i+8) = (nv > 2) ? vals(2)*mult(2) : 0.0;	// f_y(x,y)
+    x(i+12) = (nv > 5) ? vals(5)*mult(3) : 0.0;	// f_{x,y}(x,y)
   }
      
 

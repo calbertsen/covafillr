@@ -61,6 +61,8 @@ cubicInterpolation<scalartype_>::cubicInterpolation(covafill<scalartype>* cf,
     nci = new unicubicInterpolation<scalartype>(cf,minCoord,maxCoord);
   }else if(d == 2){
     nci = new bicubicInterpolation<scalartype>(cf,minCoord,maxCoord);
+  }else if(d == 3){
+    nci = new tricubicInterpolation<scalartype>(cf,minCoord,maxCoord);
   }else{
     nci = NULL;
   }

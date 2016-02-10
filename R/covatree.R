@@ -47,7 +47,8 @@ covatree <- setRefClass("covatree",
                                     coord <- matrix(coord,ncol=1)
                                 if(length(h) > dim(coord)[2])
                                     warning("Additional bandwiths are ignored.")
-
+                                if(dim(coord)[2] > 3)
+                                    stop("coord must have between 1 and 3 columns.")
                                 h <- rep(h,len = dim(coord)[2])
 
                                 if(!is.numsca(p) & !is.numint(p))

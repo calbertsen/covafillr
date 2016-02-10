@@ -4,8 +4,9 @@ Version: 0.0.1.0001
 Date: 2016-02-09
 Authors@R: person(c("Christoffer","Moesgaard"), "Albertsen",
 	   email = "cmoe@aqua.dtu.dk", role = c("aut", "cre"))
+Maintainer: Christoffer Moesgaard Albertsen <cmoe@aqua.dtu.dk>
 Description: covafillr facilitates local polynomial regression for state dependent covariates in state-space models. The functionality can be used from R or from C++ based model builder tools such as, Rcpp, TMB, or JAGS.
-Depends: R (>= 3.2.2),
+Depends: R (>= 3.0.0),
 	 methods,
 LinkingTo: RcppEigen,
 Suggests: TMB,
