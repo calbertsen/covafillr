@@ -14,6 +14,6 @@ loadJAGSModule <- function(){
             warning("covafillr was not installed using JAGS.")
         rjags::load.module('covafillr',system.file('libs',package='covafillr'))
     }else{
-        stop("rjags must be installed to load the JAGS module. Please re-install covafillr using configure.args=  after installing rjags.")
+        stop("rjags must be installed to load the JAGS module. Please re-install covafillr after installing rjags.")
     }
 }
