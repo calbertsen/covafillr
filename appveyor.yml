@@ -21,7 +21,8 @@ install:
 
 
 build_script:
-  # - travis-tool.sh install_github kaskr/adcomp/TMB
+  - travis-tool.sh install_r TMB
+  - travis-tool.sh install_r rjags
   - travis-tool.sh install_deps
 
 test_script:
