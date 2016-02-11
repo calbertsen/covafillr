@@ -35,5 +35,7 @@ OLD="@INSTALLED_WITH_JAGS@"
 sed "s/$OLD/$WITH_JAGS/g" "R/loadJAGSModule.R.in" > "R/loadJAGSModule.R"
 OLD="@JAGS_INCL@"
 sed "s/$OLD/$JAGS_INCL/g" "src/jags.cpp.in" > "src/jags.cpp"
+OLD="@JAGS_ROOT@"
+sed "s/$OLD/$JAGS_ROOT/g" "src/Makevars.win.in" > "src/Makevars.win"
 
  
