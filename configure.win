@@ -8,6 +8,6 @@ fi
 
 OLD="@INSTALLED_WITH_JAGS@"
 
-sed "s/$OLD/$WITH_JAGS/g" "R/loadJAGSModule.R.in" < "R/loadJAGSModule.R"
+sed "s/$OLD/$WITH_JAGS/g" "R/loadJAGSModule.R.in" > "R/loadJAGSModule.R"
 
  
