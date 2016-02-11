@@ -2,12 +2,17 @@
 
 if [ -z "$JAGS_ROOT" ]; then
   WITH_JAGS="FALSE"
+  JAGS_INCL=""
+  echo "Building covafillr without JAGS"
 else
   WITH_JAGS="TRUE"
+  JAGS_INCL="#include <covafill/JAGS>"
+  echo "Building covafillr with JAGS"
 fi
 
 OLD="@INSTALLED_WITH_JAGS@"
-
 sed "s/$OLD/$WITH_JAGS/g" "R/loadJAGSModule.R.in" > "R/loadJAGSModule.R"
+OLD="@JAGS_INCL@"
+sed "s/$OLD/$JAGS_INCL/g" "src/jags.cpp.in" > "src/jags.cpp"
 
  
