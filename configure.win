@@ -1,11 +1,11 @@
 #!/bin/sh
 
 if [ -z "$JAGS_ROOT" ]; then
-  WITH_JAGS="FALSE";
+  WITH_JAGS="FALSE"
 else
-  WITH_JAGS="TRUE";
+  WITH_JAGS="TRUE"
 fi
 
-  (Get-Content R/loadJAGSModule.R.in) | ForEach-Object { $_ -replace "@INSTALLED_WITH_JAGS@", ${WITH_JAGS} } | Set-Content R/loadJAGSModule.R
+  (Get-Content "R/loadJAGSModule.R.in") | ForEach-Object { $_ -replace "@INSTALLED_WITH_JAGS@", ${WITH_JAGS} } | Set-Content "R/loadJAGSModule.R"
 
  
