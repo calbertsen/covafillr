@@ -6,14 +6,17 @@ if [ -z "$JAGS_ROOT" ]; then
     R_SCRIPT="${R_HOME}/bin${R_ARCH_BIN}/Rscript"
     echo "Seeing if rjags is installed"
     RJAGS=`"${R_SCRIPT}" -e "cat(require(rjags,quietly=TRUE))"`
-    if [ "$RJAGS"=="TRUE" ]; then
+    if [ "${RJAGS}"=="TRUE" ]; then
 	echo "rjags is installed. Looking for the path to JAGS"
 	JAGMOD="${R_ARCH_BIN}/modules"
 	JAGINC="include"
 	JAGS_TMP=`"${R_SCRIPT}" -e "library(rjags);a<-getOption('jags.moddir');cat(sub('$JAGMOD','$JAGINC',a))"`
+	echo "Trying ${JAGS_TMP}"
 	if [ -d "$JAGS_TMP" ]; then
 	    echo "Setting JAGS_ROOT=${JAGS_TMP}"
 	    JAGS_ROOT=JAGS_TMP
+	else
+	    echo "The folder does not exist."
 	fi
     fi
 fi
