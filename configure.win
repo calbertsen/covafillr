@@ -13,7 +13,7 @@ if [ -z "$JAGS_ROOT" ]; then
 	JAGS_TMP=`"${R_SCRIPT}" -e "library(rjags);a<-getOption('jags.moddir');cat(sub('$JAGMOD','$JAGINC',a))"`
 	echo "Trying ${JAGS_TMP}"
 	if [ -d "$JAGS_TMP" ]; then
-	    JAGS_TMPN=`"${R_SCRIPT}" -e "cat(gsub('\\\\','\\/',$JAGS_TMP))"`
+	    JAGS_TMPN=`"${R_SCRIPT}" -e "cat(gsub('\\\\','\\\\/','${JAGS_TMP}'))"`
 	    echo "Setting JAGS_ROOT=${JAGS_TMPN}"
 	    JAGS_ROOT=${JAGS_TMPN}
 	else
@@ -33,10 +33,10 @@ else
 fi
 
 OLD="@INSTALLED_WITH_JAGS@"
-sed "s/$OLD/$WITH_JAGS/g" "R/loadJAGSModule.R.in" > "R/loadJAGSModule.R"
+sed "s/$OLD/${WITH_JAGS}/g" "R/loadJAGSModule.R.in" > "R/loadJAGSModule.R"
 OLD="@JAGS_INCL@"
-sed "s/$OLD/$JAGS_INCL/g" "src/jags.cpp.in" > "src/jags.cpp"
+sed "s/$OLD/${JAGS_INCL}/g" "src/jags.cpp.in" > "src/jags.cpp"
 OLD="@JAGS_ROOT@"
-sed "s/$OLD/$JAGS_ROOT/g" "src/Makevars.win.in" > "src/Makevars.win"
+sed "s/$OLD/${JAGS_ROOT}/g" "src/Makevars.win.in" > "src/Makevars.win"
 
  
