@@ -10,6 +10,7 @@ if [ -z "$JAGS_ROOT" ]; then
 	JAGINC="include"
 	JAGS_TMP=`"${R_SCRIPT}" -e "library(rjags);a<-getOption('jags.moddir');sub($JAGMOD,$JAGINC,a)"`
 	if [ -d "$JAGS_TMP" ]; then
+	    echo "Setting JAGS_ROOT=${JAGS_TMP}"
 	    JAGS_ROOT=JAGS_TMP
 	fi
     fi
