@@ -20,7 +20,6 @@ namespace jags {
       // Create X
       unsigned int nrowX = dims[0][0];
       unsigned int ncolX = dims[0].size() == 2 ? dims[0][1] : 1;
-      unsigned int lengthX = nrowX * ncolX;
       cMatrix X(nrowX,ncolX);
       unsigned int indx;
       indx = 0;
@@ -34,7 +33,6 @@ namespace jags {
 	// Create coordinates
 	unsigned int nrowC = dims[1][0];
 	unsigned int ncolC = dims[1].size() == 2 ? dims[1][1] : 1;
-	unsigned int lengthC = nrowC * ncolC;
 	cMatrix coord(nrowC,ncolC);
 	indx = 0;
 	// JAGS uses column-major
