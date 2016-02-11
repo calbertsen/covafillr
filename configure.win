@@ -1,10 +1,11 @@
 #!/bin/sh
 
 # Try to guess JAGS_ROOT if not set
-R_SCRIPT="${R_HOME}/bin${R_ARCH_BIN}/Rscript"
-RJAGS=`"${R_SCRIPT}" -e "cat(as.numeric(require(rjags,quietly=TRUE)))"`
 if [ -z "$JAGS_ROOT" ]; then
     echo "Trying to guess installation path of JAGS"
+    R_SCRIPT="${R_HOME}/bin${R_ARCH_BIN}/Rscript"
+    echo "Seeing if rjags is installed"
+    RJAGS=`"${R_SCRIPT}" -e "cat(as.numeric(require(rjags,quietly=TRUE)))"`
     if [ $RJAGS ]; then
 	JAGMOD="${R_ARCH_BIN}/modules"
 	JAGINC="include"
