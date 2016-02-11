@@ -6,7 +6,7 @@ if [ -z "$JAGS_ROOT" ]; then
   echo "Building covafillr without JAGS"
 else
   WITH_JAGS="TRUE"
-  JAGS_INCL="#include <covafill/JAGS>"
+  JAGS_INCL="#include <covafill\/JAGS>"
   echo "Building covafillr with JAGS"
 fi
 
