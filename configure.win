@@ -10,7 +10,7 @@ if [ -z "$JAGS_ROOT" ]; then
 	echo "rjags is installed. Looking for the path to JAGS"
 	JAGMOD="${R_ARCH_BIN}/modules"
 	JAGINC=""
-	JAGS_TMP=`"${R_SCRIPT}" -e "library(rjags);a<-getOption('jags.moddir');cat(sub('$JAGMOD','$JAGINC',gsub('\\\\','/',a)))"`
+	JAGS_TMP=`"${R_SCRIPT}" -e "library(rjags);a<-getOption('jags.moddir');cat(sub('$JAGMOD','$JAGINC',gsub('\\\\','\/',a)))"`
 	echo "Trying ${JAGS_TMP}"
 	if [ -d "$JAGS_TMP" ]; then
 	    echo "Setting JAGS_ROOT=${JAGS_TMP}"
