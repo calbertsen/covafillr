@@ -14,7 +14,7 @@ if [ -z "$JAGS_ROOT" ]; then
 	echo "Trying ${JAGS_TMP}"
 	if [ -d "$JAGS_TMP" ]; then
 	    echo "Setting JAGS_ROOT=${JAGS_TMP}"
-	    JAGS_ROOT=JAGS_TMP
+	    JAGS_ROOT=$JAGS_TMP
 	else
 	    echo "The folder does not exist."
 	fi
