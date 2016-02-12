@@ -1,5 +1,8 @@
 ^.gitlab-ci.yml$
 ^.travis.yml$
 ^appveyor.yml$
+^gitignore$
 ^travis-tool.sh$
 libs/*
+^README.Rmd$
+README_files
