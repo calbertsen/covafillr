@@ -1,0 +1,6 @@
+R/loadJAGSModule.R
+src/Makevars.win
+src/jags.cpp
+/**/*.so
+/**/*.o
+libs
