@@ -33,7 +33,7 @@ else
 	echo "Building covafillr with JAGS"
 	echo "JAGS_ROOT: $JAGS_ROOT"
 	R_SCRIPT="${R_HOME}/bin${R_ARCH_BIN}/Rscript"
-	JAGS_TMP=`"${R_SCRIPT}" -e "b<-gsub('\\\\\\\\\\\\\\\\','/',shortPathName(${JAGS_ROOT}));cat(b)"`
+	JAGS_TMP=`"${R_SCRIPT}" -e "b<-gsub('\\\\\\\\\\\\\\\\','/',shortPathName('${JAGS_ROOT}'));cat(b)"`
 	JAGS_TMPN=`"${R_SCRIPT}" -e "cat(gsub('/','\\\\\\\\\\\\\\\\/','${JAGS_TMP}'))"`
 	JAGS_ROOT=${JAGS_TMPN}
 	echo "ESCAPED JAGS_ROOT: $JAGS_ROOT"
