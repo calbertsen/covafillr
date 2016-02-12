@@ -28,7 +28,7 @@ On Windows, the `R` package `rjags` is used to find the paths. `covafillr` can b
 
 ``` r
 Sys.setenv(JAGS_ROOT=gsub('\\\\',
-                          '\\\\/',
+                          '/',
                           shortPathName('C:/Program Files/JAGS/JAGS-4.1.0')
                           )
            )
@@ -232,7 +232,7 @@ fun <- cxxfunction(signature(x='numeric',
 fun(c(0),matrix(x,ncol=1),y,2,1.0)
 ```
 
-    ## [1] -0.05182941 -0.02677185
+    ## [1] -0.06664425 -0.01869434
 
 ### Using with TMB
 
@@ -291,28 +291,28 @@ obj <- MakeADFun(data = dat,
 obj$fn(c(3.2))
 ```
 
-    ## [1] 94.7069
+    ## [1] 94.34425
 
 ``` r
 obj$fn(c(0))
 ```
 
-    ## [1] -0.05182941
+    ## [1] -0.06664425
 
 ``` r
 obj$fn(c(-1))
 ```
 
-    ## [1] -0.1751374
+    ## [1] -0.1118479
 
 ``` r
 obj$gr()
 ```
 
-    ## outer mgc:  4.085797
+    ## outer mgc:  3.985586
 
     ##           [,1]
-    ## [1,] -4.085797
+    ## [1,] -3.985586
 
 ### Using with rjags
 

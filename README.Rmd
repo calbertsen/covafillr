@@ -26,7 +26,7 @@ On Windows, the `R` package `rjags` is used to find the paths. `covafillr` can b
 ```{r, eval=FALSE}
 
 Sys.setenv(JAGS_ROOT=gsub('\\\\',
-                          '\\\\/',
+                          '/',
                           shortPathName('C:/Program Files/JAGS/JAGS-4.1.0')
                           )
            )
