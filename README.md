@@ -14,7 +14,17 @@ devtools::install_github("calbertsen/covafillr")
 
 To use `covafillr` with [`JAGS`](http::mcmc-jags.sourceforge.net/), JAGS must be installed before the `covafillr` package.
 
-On Unix(-like) systems, `pkg-config` is used to find the relevant paths to compile `covafillr` against `JAGS`. On Windows, the `R` package `rjags` is used to find the paths. `covafillr` can be installed without using `rjags` by setting a system variable `JAGS_ROOT` to the folder where `JAGS` is installed, e.g., by running
+On Unix(-like) systems, `pkg-config` is used to find the relevant paths to compile `covafillr` against `JAGS`, such as
+
+``` sh
+pkg-config --cflags jags
+pkg-config --libs jags
+```
+
+    ## -I/usr/local/include/JAGS 
+    ## -L/usr/local/lib -ljags
+
+On Windows, the `R` package `rjags` is used to find the paths. `covafillr` can be installed without using `rjags` by setting a system variable `JAGS_ROOT` to the folder where `JAGS` is installed, e.g., by running
 
 ``` r
 Sys.setenv(JAGS_ROOT=gsub('\\\\',
@@ -28,6 +38,8 @@ before installation.
 
 Simple examples
 ---------------
+
+Note that more examples are available in the inst/examples folder.
 
 ### Using from R
 
@@ -131,7 +143,7 @@ plot(x0, y0[,3], main = "Second derivative")
 lines(x0, 3 * 4 * x0 ^ 2 - 2)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-10-1.png)<!-- -->
 
 #### Search tree approximation
 
@@ -180,7 +192,7 @@ plot(x0, y1[,2], main = "First derivative")
 lines(x0, 4 * x0 ^ 3 - 2 * x0)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-12-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-13-1.png)<!-- -->
 
 ### Using with Rcpp/inline
 
@@ -220,7 +232,7 @@ fun <- cxxfunction(signature(x='numeric',
 fun(c(0),matrix(x,ncol=1),y,2,1.0)
 ```
 
-    ## [1] -0.05121175 -0.01576663
+    ## [1] -0.05182941 -0.02677185
 
 ### Using with TMB
 
@@ -279,30 +291,28 @@ obj <- MakeADFun(data = dat,
 obj$fn(c(3.2))
 ```
 
-    ## [1] 94.47191
+    ## [1] 94.7069
 
 ``` r
 obj$fn(c(0))
 ```
 
-    ## [1] -0.05121175
+    ## [1] -0.05182941
 
 ``` r
 obj$fn(c(-1))
 ```
 
-    ## [1] -0.07805266
+    ## [1] -0.1751374
 
 ``` r
 obj$gr()
 ```
 
-    ## outer mgc:  3.996026
+    ## outer mgc:  4.085797
 
     ##           [,1]
-    ## [1,] -3.996026
-
-    ## [1] TRUE TRUE TRUE
+    ## [1,] -4.085797
 
 ### Using with rjags
 
@@ -386,6 +396,4 @@ plot(x,samp$cf[,1,1])
 hist(samp$sigma)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-27-1.png)<!-- -->
-
-    ## [1] TRUE
+![](README_files/figure-markdown_github/unnamed-chunk-28-1.png)<!-- -->

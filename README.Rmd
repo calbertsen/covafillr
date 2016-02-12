@@ -37,6 +37,8 @@ before installation.
 
 ## Simple examples
 
+Note that more examples are available in the inst/examples folder.
+
 ### Using from R
 
 ```{r}
