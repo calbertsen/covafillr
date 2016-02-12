@@ -2,5 +2,5 @@ ifeq "@JAGS_ROOT@" ""
 PKG_CXXFLAGS=-I"../inst/include"
 else
 PKG_CXXFLAGS=-I"../inst/include" -I"@JAGS_ROOT@/include"
-PKG_LIBS= -L"@JAGS_ROOT@/${R_ARCH}/bin" -ljags-4
+PKG_LIBS=-L"@JAGS_ROOT@${R_ARCH}/bin" -ljags-4
 endif
