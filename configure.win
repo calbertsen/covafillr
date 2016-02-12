@@ -12,8 +12,9 @@ if [ -z "$JAGS_ROOT" ]; then
 	JAGS_TMP=`"${R_SCRIPT}" -e "library(rjags);a<-getOption('jags.moddir');b<-gsub('\\\\\\\\\\\\\\\\','/',a);cat(sub('${JAGMOD}','',b))"`
 	echo "Trying ${JAGS_TMP}"
 	if [ -d "$JAGS_TMP" ]; then
-	    echo "Setting JAGS_ROOT=${JAGS_TMP}"
-	    JAGS_ROOT=${JAGS_TMP}
+	    JAGS_TMPN=`"${R_SCRIPT}" -e "cat(gsub('/','\\\\\\\\\\\\\\\\/','${JAGS_TMP}'))"`
+	    echo "Setting JAGS_ROOT=${JAGS_TMPN}"
+	    JAGS_ROOT=${JAGS_TMPN}
 	else
 	    echo "The folder does not exist."
 	fi
