@@ -3,4 +3,8 @@ src/Makevars.win
 src/jags.cpp
 /**/*.so
 /**/*.o
+/**/*.Rhistory
+/**/.Rhistory
+/**/*.status
+/**/*.log
 libs

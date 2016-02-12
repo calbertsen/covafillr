@@ -1,6 +1,8 @@
 library(rjags)
 library(covafillr)
 
+loadJAGSModule()
+
 fun <- function(x) x ^ 2
 n <- 100
 x <- runif(n,-2,2)
@@ -11,8 +13,6 @@ obs <- fun(obsC) + rnorm(length(obsC),0,0.1)
 
 plot(obsC,obs)
 
-
-load.module('covafillr',system.file('libs',package='covafillr'))
 
 jags <- jags.model('covafill.jags',
                    data = list(N = n,

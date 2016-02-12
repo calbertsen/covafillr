@@ -13,9 +13,11 @@ Returns a string with the CXXFLAGS needed to compile C++ code using covafill.
 Get CXXFLAGS to compile with covafill
 }
 \examples{
+\dontrun{
 if(require("TMB")){
    f <- system.file("examples","tmbtest","tmbtest.cpp", package='covafillr')
    TMB::compile(f,CXXFLAGS = cxxFlags())
+}
 }
 }
 \author{

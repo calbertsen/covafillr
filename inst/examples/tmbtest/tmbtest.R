@@ -2,7 +2,7 @@ library(TMB)
 library(covafillr)
 system("touch tmbtest.cpp")
 
-TMB::compile("tmbtest.cpp",list(CXXFLAGS=paste0("-I",system.file("include",package="covafillr"))))
+TMB::compile("tmbtest.cpp",CXXFLAGS=cxxFlags())
 
 dyn.load(dynlib("tmbtest"))
 

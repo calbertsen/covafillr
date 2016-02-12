@@ -5,9 +5,11 @@
 ##' @author Christoffer Moesgaard Albertsen
 ##' @seealso \code{\link[TMB]{compile}}
 ##' @examples
+##' \dontrun{
 ##' if(require("TMB")){
 ##'    f <- system.file("examples","tmbtest","tmbtest.cpp", package='covafillr')
 ##'    TMB::compile(f,CXXFLAGS = cxxFlags())
+##' }
 ##' }
 ##' @export
 cxxFlags <- function(){

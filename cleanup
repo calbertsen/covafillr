@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm src/Makevars
+rm src/jags.cpp
+rm R/loadJAGSModule.R
