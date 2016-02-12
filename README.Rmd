@@ -14,7 +14,14 @@ devtools::install_github("calbertsen/covafillr")
 
 To use `covafillr` with [`JAGS`](http::mcmc-jags.sourceforge.net/), JAGS must be installed before the `covafillr` package.
 
-On Unix(-like) systems, `pkg-config` is used to find the relevant paths to compile `covafillr` against `JAGS`. On Windows, the `R` package `rjags` is used to find the paths. `covafillr` can be installed without using `rjags` by setting a system variable `JAGS_ROOT` to the folder where `JAGS` is installed, e.g., by running
+On Unix(-like) systems, `pkg-config` is used to find the relevant paths to compile `covafillr` against `JAGS`, such as
+
+```{r, engine='sh'}
+pkg-config --cflags jags
+pkg-config --libs jags
+```
+
+On Windows, the `R` package `rjags` is used to find the paths. `covafillr` can be installed without using `rjags` by setting a system variable `JAGS_ROOT` to the folder where `JAGS` is installed, e.g., by running
 
 ```{r, eval=FALSE}
 
@@ -268,7 +275,7 @@ obj$gr()
 
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, results = 'hide'}
 
 file.remove('tmb_covafill.cpp','tmb_covafill.so','tmb_covafill.o')
 
@@ -362,7 +369,7 @@ hist(samp$sigma)
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, results = 'hide'}
 
 file.remove('covafill.jags')
 
