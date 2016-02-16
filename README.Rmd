@@ -12,7 +12,7 @@ devtools::install_github("calbertsen/covafillr")
 
 ### Installing with JAGS
 
-To use `covafillr` with [`JAGS`](http:://mcmc-jags.sourceforge.net/), JAGS must be installed before the `covafillr` package.
+To use `covafillr` with [`JAGS`](http://mcmc-jags.sourceforge.net/), JAGS must be installed before the `covafillr` package.
 
 On Unix(-like) systems, `pkg-config` is used to find the relevant paths to compile `covafillr` against `JAGS`, such as
 

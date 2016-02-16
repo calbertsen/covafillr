@@ -12,7 +12,7 @@ devtools::install_github("calbertsen/covafillr")
 
 ### Installing with JAGS
 
-To use `covafillr` with [`JAGS`](http:://mcmc-jags.sourceforge.net/), JAGS must be installed before the `covafillr` package.
+To use `covafillr` with [`JAGS`](http://mcmc-jags.sourceforge.net/), JAGS must be installed before the `covafillr` package.
 
 On Unix(-like) systems, `pkg-config` is used to find the relevant paths to compile `covafillr` against `JAGS`, such as
 
@@ -228,7 +228,7 @@ fun <- cxxfunction(signature(x='numeric',
 fun(c(0),matrix(x,ncol=1),y,2,1.0)
 ```
 
-    ## [1] -0.04647810 -0.02302803
+    ## [1] -0.06145929  0.01303353
 
 ### Using with TMB
 
@@ -287,28 +287,28 @@ obj <- MakeADFun(data = dat,
 obj$fn(c(3.2))
 ```
 
-    ## [1] 94.21079
+    ## [1] 94.44116
 
 ``` r
 obj$fn(c(0))
 ```
 
-    ## [1] -0.0464781
+    ## [1] -0.06145929
 
 ``` r
 obj$fn(c(-1))
 ```
 
-    ## [1] 0.009320465
+    ## [1] -0.08598952
 
 ``` r
 obj$gr()
 ```
 
-    ## outer mgc:  4.074044
+    ## outer mgc:  3.851352
 
     ##           [,1]
-    ## [1,] -4.074044
+    ## [1,] -3.851352
 
 ### Using with rjags
 
