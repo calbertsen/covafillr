@@ -3,3 +3,4 @@
 rm src/Makevars
 rm src/jags.cpp
 rm R/loadJAGSModule.R
+rm -f R/loadJAGSModule.R.tmp

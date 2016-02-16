@@ -1,0 +1,24 @@
+
+.installed_with_jags <- @INSTALLED_WITH_JAGS@
+.jags_root <- @JAGS_ROOT@
+
+.onLoad <- function(libname,pkgname){
+
+    ## If covafillr is installed with JAGS on windows, we need JAGS in the path
+    if(.Platform$OS.type == "windows" & .installed_with_jags){
+        jags_bin <- file.path(.jags_root, .Platform$r_arch, "bin")
+        path <- Sys.getenv("PATH")
+        spp <- strsplit(path, .Platform$path.sep)[[1]]
+        if(!any(spp == jags_bin))
+            path <- paste(jags_bin,
+                          path,
+                          sep = .Platform$path.sep)
+        Sys.setenv("PATH"=path)
+    }
+    
+    library.dynam("covafillr", pkgname, libname)
+}
+
+.onUnload <- function(libpath){
+    library.dynam.unload("covafillr", libpath)
+}

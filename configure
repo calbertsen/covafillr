@@ -583,6 +583,7 @@ PACKAGE_URL=''
 
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
+JAGS_ROOT
 JAGS_INCL
 INSTALLED_WITH_JAGS
 JAGS_CXX
@@ -1668,6 +1669,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 INSTALLED_WITH_JAGS="FALSE"
+JAGS_ROOT=""
 JAGS_INCL=""
 
 # Extract the first word of "pkg-config", so it can be a program name with args.
@@ -1745,11 +1747,12 @@ fi
 
 
 
+
 ac_config_files="$ac_config_files src/Makevars"
 
 ac_config_files="$ac_config_files src/jags.cpp"
 
-ac_config_files="$ac_config_files R/loadJAGSModule.R"
+ac_config_files="$ac_config_files R/zzz.R"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -2458,7 +2461,7 @@ do
   case $ac_config_target in
     "src/Makevars") CONFIG_FILES="$CONFIG_FILES src/Makevars" ;;
     "src/jags.cpp") CONFIG_FILES="$CONFIG_FILES src/jags.cpp" ;;
-    "R/loadJAGSModule.R") CONFIG_FILES="$CONFIG_FILES R/loadJAGSModule.R" ;;
+    "R/zzz.R") CONFIG_FILES="$CONFIG_FILES R/zzz.R" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
