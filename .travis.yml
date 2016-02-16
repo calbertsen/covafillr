@@ -26,9 +26,10 @@ before_install:
   - if [ ${OS} = Darwin ] && [ ${JAGS} = TRUE ]; then brew install jags; fi
   - if [ ${OS} != Darwin ] && [ ${JAGS} = TRUE ]; then sudo add-apt-repository -y ppa:marutter/rrutter; fi
   - if [ ${OS} != Darwin ] && [ ${JAGS} = TRUE ]; then sudo apt-get update; fi
-  - if [ ${OS} != Darwin ] && [ ${JAGS} = TRUE ]; then sudo apt-get install jags; fi
+  - if [ ${OS} != Darwin ] && [ ${JAGS} = TRUE ]; then sudo apt-get install --force-yes jags; fi
   - if test ${OS} = Darwin; then curl -O http://r.research.att.com/libs/gfortran-4.8.2-darwin13.tar.bz2; fi
   - if test ${OS} = Darwin; then sudo tar fvxz gfortran-4.8.2-darwin13.tar.bz2 -C /; fi
+  - if test ${OS} = Darwin; then sudo rm gfortran-4.8.2-darwin13.tar.bz2; fi
 
   - chmod 755 ./travis-tool.sh
   - ./travis-tool.sh bootstrap
