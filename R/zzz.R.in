@@ -1,6 +1,6 @@
 
 .installed_with_jags <- @INSTALLED_WITH_JAGS@
-.jags_root <- @JAGS_ROOT@
+.jags_root <- "@JAGS_ROOT@"
 
 .onLoad <- function(libname,pkgname){
 
