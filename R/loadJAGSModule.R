@@ -19,6 +19,10 @@ loadJAGSModule <- function(){
                                        package='covafillr'))
         
     }else{
-        stop("rjags must be installed to load the JAGS module. Please re-install covafillr after installing rjags.")
+        if(.installed_with_jags){
+            stop("rjags must be installed to load the JAGS module.")
+        }else{
+            stop("rjags must be installed to load the JAGS module. Please re-install covafillr after installing rjags.")
+        }
     }
 }
