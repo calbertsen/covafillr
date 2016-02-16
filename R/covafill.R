@@ -5,8 +5,8 @@
 #' @examples
 #' getRefClass('covafill')
 #' fn <- function(x) x ^ 4 - x ^ 2
-#' x <- runif(100,-3,3)
-#' y <- fn(x) + rnorm(100,0,0.1)
+#' x <- runif(1000,-3,3)
+#' y <- fn(x) + rnorm(1000,0,0.1)
 #' cf <- covafill(coord = x,obs = y,h = 1.0,p = 5L)
 #' cf$getDim()
 #' cf$getDegree()

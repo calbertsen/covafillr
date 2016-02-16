@@ -5,9 +5,9 @@
 #' @examples
 #' getRefClass('covatree')
 #' fn <- function(x) x ^ 4 - x ^ 2
-#' x <- runif(100,-3,3)
-#' y <- fn(x) + rnorm(100,0,0.1)
-#' ct <- covatree(coord = x,obs = y,h = 1.0,p = 5L, minLeft = 10)
+#' x <- runif(1000,-3,3)
+#' y <- fn(x) + rnorm(1000,0,0.1)
+#' ct <- covatree(coord = x,obs = y,h = 1.0,p = 5L, minLeft = 50)
 #' ct$getDim()
 #' x0 <- seq(-1,1,0.1)
 #' y0 <- ct$predict(x0)
