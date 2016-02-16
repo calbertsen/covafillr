@@ -1,4 +1,4 @@
-R/loadJAGSModule.R
+R/zzz.R
 src/Makevars.win
 src/jags.cpp
 /**/*.so
