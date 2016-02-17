@@ -8,3 +8,5 @@ src/jags.cpp
 /**/*.status
 /**/*.log
 libs
+inst/include/covafill/dox/latex
+inst/include/covafill/dox/html

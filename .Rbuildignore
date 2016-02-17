@@ -3,6 +3,7 @@
 ^appveyor.yml$
 ^gitignore$
 ^travis-tool.sh$
-libs/*
+libs
 ^README.Rmd$
 README_files
+inst/include/covafill/dox
