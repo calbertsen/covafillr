@@ -31,9 +31,6 @@
 // https://github.com/kaskr/adcomp/blob/f152ccae08b6720d86e43fe659a4a4067322368d/TMB/inst/include/atomic_macro.hpp
 
 
-// If TMB is used
-#ifdef TMB_EXTERN
-
 #ifndef _COVAFILL_ATOMIC_
 #define _COVAFILL_ATOMIC_
 
@@ -129,5 +126,4 @@ CppAD::vector<AD<Type > > evalFill(CppAD::vector<AD<Type > > tx,covafill<AD<Type
 }
 
 
-#endif
 #endif
