@@ -7,3 +7,6 @@ libs
 ^README.Rmd$
 README_files
 inst/include/covafill/dox
+.*\.so
+.*\.o
+.*\.Rhistory

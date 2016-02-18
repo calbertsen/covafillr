@@ -30,50 +30,79 @@
 #ifndef _COVAFILL_BASE_CLASS_
 #define _COVAFILL_BASE_CLASS_
 
+/** \defgroup core Core module
+*
+* The Core module of covafill provides a class for local polynomial regression.
+* \verbatim
+#include <covafill/Core>
+\endverbatim
+*/
+
+/*! \brief Class to do local polynomial regression. 
+ *  \ingroup core
+*/
 template<typename scalartype_>
 class covafill {
   
 public:
   DEFINE_TYPES(scalartype_);
-  matrixtype coordinates;
-  vectortype observations;
-  int p;			// Degree
-  vectortype h;
+  matrixtype coordinates;  /**< Coordinates/covariates of input. */
+  vectortype observations; /**< Input observations. */
+  int p;                   /**< Polynomial degree. */
+  vectortype h;            /**< Vector of (positive) bandwiths - one for each covariate.*/
 
   
   // Constructors
+
+  /** \brief Constructs a covafill class from another covafill class \a x. 
+   */
   covafill(const covafill<scalartype_>& x);
   #ifdef TMB_EXTERN
   covafill(const covafill<AD<scalartype_> >& x);
   #endif
+
+  /** \brief Constructs a covafill class with coordinates matrix \a coordinates_, observation vector \a obervations, bandwiths 1, and polynomial degree 2. 
+   */
   covafill(matrixtype coordinates_,
 	      vectortype observations_);
+
+  /** \brief Constructs a covafill class with coordinates matrix \a coordinates_, observation vector \a obervations, bandwiths \a h_, and polynomial degree \a p_. 
+   */
   covafill(matrixtype coordinates_,
 	      vectortype observations_,
 	      scalartype h_,
 	      int p_);
+
+  /** \brief Constructs a covafill class with coordinates matrix \a coordinates_, observation vector \a obervations, bandwiths \a h_, and polynomial degree \a p_. 
+   */
   covafill(matrixtype coordinates_,
 	      vectortype observations_,
 	      vectortype h_,
 	      int p_);
 
   // Public functions
-  int getDim() const;
-  void setH(scalartype h_);
-  void setH(vectortype h_);
+  int getDim() const;          /*!< Returns the covariate dimension. */
+  void setH(scalartype h_);    /*!< Sets all bandwiths to h_. */
+  void setH(vectortype h_);    /*!< Sets the bandwiths from a vector. The length of h_ must match the covariate dimension. */
 
 
   // Operators
+
+  /** \brief Calculates the local polynomial regression estimate at \a x0. If \a returnAll is false, then only the function and first derivative estimates are returned. Otherwise all estimates are returned. */
   vectortype operator()(vectortype x0, bool returnAll = false) const;
+  
+  /** \brief Calculates the local polynomial regression estimate at \a x0. All observations with coordinates \f$ x \f$ such that \f$ \|x-x_0\| > r \f$, where \a r is \exludeRadius. If \a returnAll is false, then only the function and first derivative estimates are returned. Otherwise all estimates are returned. */
   vectortype operator()(vectortype x0, scalartype excludeRadius, bool returnAll = false) const;
+
+  /** \brief Assignment operator for covafill.*/
   covafill<scalartype> & operator= (const covafill<scalartype>& rhs);
 
 private:
 
-  sparsematrixtype Hinv;	// Bandwiths
-  scalartype detHinv;
-  int dim;			// Dimension of coordinates (1, 2 or 3)
-  int nobs;
+  sparsematrixtype Hinv;	/**< Matrix of inverse bandwiths. */
+  scalartype detHinv;           /**< Determinant of Hinv. */
+  int dim;			/**< Number of columns of \a coordinates. */
+  int nobs;                     /**< Number of observations, i.e., length og \a observations. */
 
   scalartype calcNorm(vectortype x0,
 		      vectortype x1) const;

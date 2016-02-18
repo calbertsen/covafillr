@@ -55,6 +55,7 @@ covafill<scalartype_>::covafill(matrixtype coordinates_,
   setH(h_);
 };
 
+
 template<typename scalartype_>
 covafill<scalartype_>::covafill(const covafill<scalartype_>& x){
   operator=(x);

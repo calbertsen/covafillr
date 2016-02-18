@@ -1,4 +1,10 @@
-
+/** \defgroup jags JAGS module
+*
+* The JAGS module of covafill provides the implementation of a JAGS user module with the function covafill for local polynomial regression in a JAGS model.
+* \verbatim
+#include <covafill/JAGS>
+\endverbatim
+*/
 
 namespace jags {
   namespace covafillJAGS {

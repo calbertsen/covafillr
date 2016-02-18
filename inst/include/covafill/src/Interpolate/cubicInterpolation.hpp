@@ -30,6 +30,14 @@
 #ifndef _COVAFILL_CUBIC_CLASS_
 #define _COVAFILL_CUBIC_CLASS_
 
+/** \defgroup interpolate Interpolation module
+*
+* The Interpolate module of covafill provides classes for cubic interpolation in 1-3 dimensions.
+* \verbatim
+#include <covafill/Interpolate>
+\endverbatim
+*/
+
 
 template<typename scalartype_>
 class cubicInterpolation {

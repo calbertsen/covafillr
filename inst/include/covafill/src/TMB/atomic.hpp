@@ -34,6 +34,15 @@
 #ifndef _COVAFILL_ATOMIC_
 #define _COVAFILL_ATOMIC_
 
+
+/** \defgroup tmb TMB module
+*
+* The TMB module of covafill provides functions to evaluate a covafill or covatree object from a TMB model such that the estimated gradients are used in the automatic differentiation.
+* \verbatim
+#include <covafill/TMB>
+\endverbatim
+*/
+
 CppAD::vector<double> evalFill(CppAD::vector<double> tx, const covafill<double> &sf)CSKIP({
     CppAD::vector<double> ty(1);
     // The first index from the operator is the function value

@@ -30,8 +30,6 @@
 #ifndef _COVAFILL_OPERATORS_
 #define _COVAFILL_OPERATORS_
 
-#include<iostream>
-
 template<typename scalartype_>
 covafill<scalartype_> & covafill<scalartype_>::operator= (const covafill<scalartype_>& rhs){
   coordinates = rhs.coordinates;
@@ -44,7 +42,6 @@ covafill<scalartype_> & covafill<scalartype_>::operator= (const covafill<scalart
   nobs = rhs.nobs;
   return *this;
 }
-
 
 
 template<typename scalartype_>
@@ -95,10 +92,20 @@ typename covafill<scalartype_>::vectortype covafill<scalartype_>::operator()(vec
 
   // Calculate weighted least squares estimates
   matrixtype XTW = X.transpose() * W;
-  matrixtype XWX = XTW * X;
-  matrixtype tmp = XWX.inverse() * XTW;
+  matrixtype XWXinv = (XTW * X).inverse();
+  matrixtype tmp = XWXinv * XTW;
   vectortype beta = tmp * observations.matrix();
   // Return the vector (f(x0), \partial/\partial x_1 f(x0), ..., \partial/\partial x_dim)
+
+  /*
+    vectortype pred = X * beta.matrix();
+    vectortype resid = observations - pred;
+    scalartype sigma = resid.matrix().transpose() * W * resid.matrix();
+    sigma /= W.nonZeros() - beta.size(); //needs correction for 0 weights
+    matrixtype sigmahat = XWXinv * sigma;
+
+
+   */
 
   if(returnAll)
     return beta;

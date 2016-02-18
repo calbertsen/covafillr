@@ -30,6 +30,13 @@
 #ifndef _COVATREE_BASE_CLASS_
 #define _COVATREE_BASE_CLASS_
 
+/** \defgroup tree Tree module
+*
+* The Tree module of covafill provides a class for search tree approximated local polynomial regression.
+* \verbatim
+#include <covafill/Interpolate>
+\endverbatim
+*/
 
 template<typename scalartype_>
 class covatree {
