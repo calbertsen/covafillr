@@ -30,19 +30,26 @@
 #ifndef _COVAFILL_BICUBIC_CLASS_
 #define _COVAFILL_BICUBIC_CLASS_
 
+/*! \brief Class for bi-cubic interpolation of local polynomial regression on a square. 
+ *  \ingroup interpolate
+*/
 template<typename scalartype_>
 class bicubicInterpolation : public ncubicInterpolation<scalartype_> {
-public:
-
   DEFINE_TYPES(scalartype_);
 
+public:
+
+  /** \brief Constructs a bicubicInterpolation class from a covafill class \a cf, an boundaries of the interpolation square defined by the minimum coordinates, \a minCoord, and maximum coordinates, \a maxCoord, in each dimension, e.g., minCoord = (0,0) and maxCoord = (1,1). 
+   */
   bicubicInterpolation(covafill<scalartype>* cf,
 		      vectortype minCoord,
 		      vectortype maxCoord);
 
+  /** \brief Calculates the interpolation prediction at \a newcoord.
+   */
   virtual vectortype operator()(vectortype newcoord);
 
-private:
+  private:
 
   /*
     From ncubicInterpolation:
@@ -50,12 +57,16 @@ private:
     vectortype minCoord;
     vectortype maxCoord;
   */
-  matrixtype alpha;
+  matrixtype alpha; /**< Matrix of interpolation coordinates. */
 
+  /** Returns \f$ M^{-1} \f$ (See Lekien & Marsden  2005) */
   matrixtype getMinv();
+
+  /** Calculates interpolation coefficients (See Lekien & Marsden  2005) */
   matrixtype makeAlpha(covafill<scalartype>* cf,
 		      vectortype minCoord,
 		      vectortype maxCoord);
+
 };
 
 

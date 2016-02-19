@@ -32,28 +32,40 @@
 
 /** \defgroup interpolate Interpolation module
 *
-* The Interpolate module of covafill provides classes for cubic interpolation in 1-3 dimensions.
+* The Interpolate module of covafill provides classes for cubic interpolation in 1-3 dimensions. The class serves as a common wrapper for the dimension specific interpolation classes.
 * \verbatim
 #include <covafill/Interpolate>
 \endverbatim
 */
 
-
+/*! \brief Class for cubic interpolation in dimension 1-3 of local polynomial regression on a square. 
+ *  \ingroup interpolate
+*/
 template<typename scalartype_>
 class cubicInterpolation {
-public:
 
   DEFINE_TYPES(scalartype_);
-  
+
+
+public:
+
+
+  /** \brief Constructs a bicubicInterpolation class from a covafill class \a cf, an boundaries of the interpolation square defined by the minimum coordinates, \a minCoord, and maximum coordinates, \a maxCoord, in each dimension, e.g., minCoord = (0,0) and maxCoord = (1,1). 
+   */
   cubicInterpolation(covafill<scalartype>* cf,
 		     vectortype minCoords,
 		     vectortype maxCoords);
 
+  /** \brief Returns the interpolation prediction at \a newcoord.
+   */
+  
   vectortype operator()(vectortype newcoord);
 
 private:
 
-  ncubicInterpolation<scalartype>* nci;
+
+  ncubicInterpolation<scalartype>* nci; /**< Pointer to the n-cubic interpolation class which does all the work. */
+
 
 };
 

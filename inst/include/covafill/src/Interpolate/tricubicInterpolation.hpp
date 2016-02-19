@@ -30,32 +30,48 @@
 #ifndef _COVAFILL_TRICUBIC_CLASS_
 #define _COVAFILL_TRICUBIC_CLASS_
 
+/*! \brief Class for tri-cubic interpolation of local polynomial regression on a square. 
+ *  \ingroup interpolate
+*/
 template<typename scalartype_>
 class tricubicInterpolation : public ncubicInterpolation<scalartype_> {
-public:
 
   DEFINE_TYPES(scalartype_);
 
+
+public:
+
+
+  /** \brief Constructs a tricubicInterpolation class from a covafill class \a cf, an boundaries of the interpolation square defined by the minimum coordinates, \a minCoord, and maximum coordinates, \a maxCoord, in each dimension, e.g., minCoord = (0,0,0) and maxCoord = (1,1,1). 
+   */
   tricubicInterpolation(covafill<scalartype>* cf,
 			vectortype minCoord,
 			vectortype maxCoord);
 
+  /** \brief Calculates the interpolation prediction at \a newcoord.
+   */
   virtual vectortype operator()(vectortype newcoord);
 
+  
 private:
-
+ 
   /*
     From ncubicInterpolation:
     int dim;
     vectortype minCoord;
     vectortype maxCoord;
   */
-  vecmattype alpha;
+  vecmattype alpha; /**< Matrix of interpolation coordinates. */
 
+  /** Returns \f$ M^{-1} \f$ (See Lekien & Marsden  2005) */
   matrixtype getMinv();
+
+  /** Calculates interpolation coefficients (See Lekien & Marsden  2005) */
   vecmattype makeAlpha(covafill<scalartype>* cf,
 		      vectortype minCoord,
 		      vectortype maxCoord);
+
+  
 };
 
 

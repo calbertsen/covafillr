@@ -6,7 +6,8 @@
 libs
 ^README.Rmd$
 README_files
-inst/include/covafill/dox
+inst/include/covafill/dox/html
+inst/include/covafill/dox/latex
 .*\.so
 .*\.o
 .*\.Rhistory

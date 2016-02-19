@@ -35,33 +35,45 @@
 #ifndef _COVAFILL_ATOMIC_TREE_
 #define _COVAFILL_ATOMIC_TREE_
 
-CppAD::vector<double> evalTree(CppAD::vector<double> tx, const covatree<double> &st)CSKIP({
+/** \brief Evaluates a covatree object, \a ct, at the coordinates \a tx.
+ * \ingroup tmb
+ */
+CppAD::vector<double> evalTree(CppAD::vector<double> tx, const covatree<double> &ct)CSKIP({
     CppAD::vector<double> ty(1);
     // The first index from the operator is the function value
-    ty[0] = st.operator()(tx)[0];
+    ty[0] = ct.operator()(tx)[0];
     return ty;								
   });
 
+/*! 
+ * \overload
+ * \ingroup tmb
+ */
 template <class Type>
-CppAD::vector<Type> evalTree(CppAD::vector<Type> tx,const covatree<AD<Type> > &st){
+CppAD::vector<Type> evalTree(CppAD::vector<Type> tx,const covatree<AD<Type> > &ct){
     CppAD::vector<Type> ty(1);
     // The first index from the operator is the function value
-    ty[0] = CppAD::Value(st.operator()(tx)[0]);
+    ty[0] = CppAD::Value(ct.operator()(tx)[0]);
      return ty;								
   };
- 
 
+
+
+/** \brief CppAD atomic class to use estimated derivatives in automatic differentiation. See CppAD::atomic_base for further documentation.
+ * \ingroup tmb
+ */
 template <class Type>							
 class atomicEvalTree : public CppAD::atomic_base<Type> {		
 public:
-  atomicEvalTree(const char* name,covatree<AD<Type> > st_) : CppAD::atomic_base<Type>(name), st(st_){
+  /** \brief Constructs class to evaluate atomic function.*/
+  atomicEvalTree(const char* name,covatree<AD<Type> > ct_) : CppAD::atomic_base<Type>(name), ct(ct_){
     atomic::atomicFunctionGenerated = true;				
     if(config.trace.atomic)						
     	std::cout << "Constructing atomic " << "evalTree" << "\n" ;	
     this->option(CppAD::atomic_base<Type>::bool_sparsity_enum);		
   }									
 private:
-  covatree<AD<Type> > st;
+  covatree<AD<Type> > ct;
 
   // Changed to use specific function value instead of using macro input
   virtual bool forward(size_t p,					
@@ -78,7 +90,7 @@ private:
       for(size_t i=0;i<vx.size();i++)anyvx |= vx[i];			
       for(size_t i=0;i<vy.size();i++)vy[i] = anyvx;			
     }									
-    ty = evalTree(tx, st);	       					
+    ty = evalTree(tx, ct);	       					
     return true;							
   }
 
@@ -91,8 +103,8 @@ private:
 		       )						
   {									
     if(q>0)error("Atomic 'evalTree' order not implemented.\n");	
-    CppAD::vector<AD<Type> > val = st(tx);
-    for(int i = 0; i < st.getDim(); ++i)
+    CppAD::vector<AD<Type> > val = ct(tx);
+    for(int i = 0; i < ct.getDim(); ++i)
       px[i] = CppAD::Value(val[i+1]) * py[0];
     return true;							
   }
@@ -118,9 +130,13 @@ private:
 };
 
 
+/*! 
+ * \overload
+ * \ingroup tmb
+ */
 template<class Type> 							
-CppAD::vector<AD<Type > > evalTree(CppAD::vector<AD<Type > > tx, covatree<AD<Type> > st){
-  static class atomicEvalTree<Type> afunEvalField("atomicEvalTree",st); 
+CppAD::vector<AD<Type > > evalTree(CppAD::vector<AD<Type > > tx, covatree<AD<Type> > ct){
+  static class atomicEvalTree<Type> afunEvalField("atomicEvalTree",ct); 
   CppAD::vector<AD<Type > > ty(1);				
   afunEvalField(tx,ty);						
   return ty;								

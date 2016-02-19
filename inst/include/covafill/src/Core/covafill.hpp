@@ -43,9 +43,8 @@
 */
 template<typename scalartype_>
 class covafill {
-  
-public:
   DEFINE_TYPES(scalartype_);
+public:
   matrixtype coordinates;  /**< Coordinates/covariates of input. */
   vectortype observations; /**< Input observations. */
   int p;                   /**< Polynomial degree. */
@@ -91,21 +90,23 @@ public:
   /** \brief Calculates the local polynomial regression estimate at \a x0. If \a returnAll is false, then only the function and first derivative estimates are returned. Otherwise all estimates are returned. */
   vectortype operator()(vectortype x0, bool returnAll = false) const;
   
-  /** \brief Calculates the local polynomial regression estimate at \a x0. All observations with coordinates \f$ x \f$ such that \f$ \|x-x_0\| > r \f$, where \a r is \exludeRadius. If \a returnAll is false, then only the function and first derivative estimates are returned. Otherwise all estimates are returned. */
+  /** \brief Calculates the local polynomial regression estimate at \a x0. All observations with coordinates \f$ x \f$ such that \f$ \|x-x_0\| > r \f$, where \a r is \a exludeRadius. If \a returnAll is false, then only the function and first derivative estimates are returned. Otherwise all estimates are returned. */
   vectortype operator()(vectortype x0, scalartype excludeRadius, bool returnAll = false) const;
 
   /** \brief Assignment operator for covafill.*/
   covafill<scalartype> & operator= (const covafill<scalartype>& rhs);
 
 private:
-
   sparsematrixtype Hinv;	/**< Matrix of inverse bandwiths. */
   scalartype detHinv;           /**< Determinant of Hinv. */
   int dim;			/**< Number of columns of \a coordinates. */
   int nobs;                     /**< Number of observations, i.e., length og \a observations. */
 
+  /** \brief Calculates \f$ \|x_0-x_1\|_2 \f$. */
   scalartype calcNorm(vectortype x0,
 		      vectortype x1) const;
+  /** \brief Calculates the multivariate epanechnikov kernel between \a x0 and \a x1.
+   */
   scalartype getWeight(vectortype x0,
 		       vectortype x1) const;
 

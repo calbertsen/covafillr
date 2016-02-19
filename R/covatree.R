@@ -5,9 +5,9 @@
 #' @examples
 #' getRefClass('covatree')
 #' fn <- function(x) x ^ 4 - x ^ 2
-#' x <- runif(1000,-3,3)
-#' y <- fn(x) + rnorm(1000,0,0.1)
-#' ct <- covatree(coord = x,obs = y,h = 1.0,p = 5L, minLeft = 50)
+#' x <- runif(2000,-3,3)
+#' y <- fn(x) + rnorm(2000,0,0.1)
+#' ct <- covatree(coord = x,obs = y,h = 0.5,p = 3L, minLeft = 50)
 #' ct$getDim()
 #' x0 <- seq(-1,1,0.1)
 #' y0 <- ct$predict(x0)
@@ -87,8 +87,27 @@ covatree <- setRefClass("covatree",
                                 if(dim(coord)[2] != d)
                                     stop(paste("coord must have",d,"columns."))
 
-                                return(.Call("predictTree",.self$ptr,coord,
-                                              PACKAGE="covafillr"))
+                                val <- .Call("predictTree",.self$ptr,coord,
+                                             PACKAGE="covafillr")
+
+                                if(is.null(colnames(coord))){
+                                    cnam <- 1:d
+                                }else{
+                                    cnam <- colnames(coord)
+                                }
+
+                                if(is.null(rownames(coord))){
+                                    rnam <- 1:dim(coord)[1]
+                                }else{
+                                    rnam <- rownames(coord)
+                                }
+                                
+                                colnames(val) <- c('fn',
+                                                   paste('gr',cnam,sep='_'))
+                                rownames(val) <- rnam
+
+                                
+                                return(val)
                             }                            
                         )
                         )

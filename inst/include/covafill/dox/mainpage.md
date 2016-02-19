@@ -4,7 +4,7 @@ covafill is a C++ template library for local polynomial regression of covariates
 
 - The [Core module](@ref core) which provides the base functionality for local polynomial regression
 - The [Tree module](@ref tree) which provides a search tree approximation to local polynomial regression
-- The [Interpolate module](@ref interpolate) which provides classes for cubic interpolation in 1-3 dimensions
+- The [Interpolate module](@ref interpolate) which provides classes for cubic interpolation in 1-3 dimensions. This module is only inteded for internal use.
 - The [JAGS module](@ref jags), which provides a module for using covafill with [JAGS](http://http://mcmc-jags.sourceforge.net/)
 - The [TMB module](@ref tmb) which provides functionality to use covafill with [TMB](http://tmb-project.org).
 
@@ -21,7 +21,7 @@ y_i = g(x_i) + \epsilon_i
 \f]
 
 where \f$g:\mathbb{R}\mapsto\mathbb{R}\f$ is a smooth function and \f$ \epsilon_i\sim N(0,\sigma^2)\f$.
-To do local polynomial regression of \f$g\f$ at \f$x_0\f$, we do a taylor expansion of order \f$p\f$,
+To do local polynomial regression of \f$g\f$ at \f$x_0\f$, we do a Taylor expansion of order \f$p\f$,
 
 \f[
 g(x) \approx g(x_0) + g^{(1)}(x_0)(x-x_0)  + \frac{1}{2!} g^{(2)}(x_0)(x-x_0)^2 + \cdots + \frac{1}{p!} g^{(p)}(x_0)(x-x_0)^p
@@ -51,20 +51,19 @@ Now the estimates are obtained by
 giving both the estimated function value at \f$ x_0 \f$ and estimates of the first \f$ p \f$ derivatives.
 
 
-## The Interpolate module
-
-### Cubic interpolation
-
 ## The Tree module
 
-### Search Tree
-
-### Approximation to local polynomial regression
+The Tree module contains the covatree class for a search tree approximation to local polynomial regression.
+The covatree class builds a simple search tree by splitting the data in the coordinate with the highest variance.
+The split is performed at the mean of the coordinates. 
+At terminal notes, the class does local polynomial regression at the corners of the bounding box of the coordinates related to the note and calculates the necessary coefficients to do cubic interpolation between the corners.
 
 
 ## The JAGS and TMB modules
 
-The JAGS and TMB modules...
+The JAGS and TMB modules provide functionality to use covafill within these tools.
+The JAGS module provides a JAGS Module including a function, covafill, to call in a JAGS model (See example below).
+The TMB module include functions to evaluate a covafill or covatree object from a TMB model such that the estimated derivatives are used in the automatic differentiation (See example below).
 
 
 ### JAGS example

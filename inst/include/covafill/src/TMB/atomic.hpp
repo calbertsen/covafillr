@@ -43,33 +43,46 @@
 \endverbatim
 */
 
-CppAD::vector<double> evalFill(CppAD::vector<double> tx, const covafill<double> &sf)CSKIP({
+
+/** \brief Evaluates a covafill object, \a cf, at the coordinates \a tx.
+ * \ingroup tmb
+ */
+CppAD::vector<double> evalFill(CppAD::vector<double> tx, const covafill<double> &cf)CSKIP({
     CppAD::vector<double> ty(1);
     // The first index from the operator is the function value
-    ty[0] = sf.operator()(tx)[0];
+    ty[0] = cf.operator()(tx)[0];
     return ty;								
   });
 
+/*! 
+ * \overload
+ * \ingroup tmb
+ */
 template <class Type>
-CppAD::vector<Type> evalFill(CppAD::vector<Type> tx,const covafill<AD<Type> > &sf){
+CppAD::vector<Type> evalFill(CppAD::vector<Type> tx,const covafill<AD<Type> > &cf){
     CppAD::vector<Type> ty(1);
     // The first index from the operator is the function value
-    ty[0] = CppAD::Value(sf.operator()(tx)[0]);
+    ty[0] = CppAD::Value(cf.operator()(tx)[0]);
      return ty;								
   };
  
 
+/** \brief CppAD atomic class to use estimated derivatives in automatic differentiation. See CppAD::atomic_base for further documentation.
+ * \ingroup tmb
+ */
 template <class Type>							
 class atomicEvalFill : public CppAD::atomic_base<Type> {		
 public:
-  atomicEvalFill(const char* name,covafill<AD<Type> > sf_) : CppAD::atomic_base<Type>(name), sf(sf_){
+
+  /** \brief Constructs class to evaluate atomic function.*/
+  atomicEvalFill(const char* name,covafill<AD<Type> > cf_) : CppAD::atomic_base<Type>(name), cf(cf_){
     atomic::atomicFunctionGenerated = true;				
     if(config.trace.atomic)						
     	std::cout << "Constructing atomic " << "evalFill" << "\n" ;	
     this->option(CppAD::atomic_base<Type>::bool_sparsity_enum);		
   }									
 private:
-  covafill<AD<Type> > sf;
+  covafill<AD<Type> > cf;
 
   // Changed to use specific function value instead of using macro input
   virtual bool forward(size_t p,					
@@ -86,7 +99,7 @@ private:
       for(size_t i=0;i<vx.size();i++)anyvx |= vx[i];			
       for(size_t i=0;i<vy.size();i++)vy[i] = anyvx;			
     }									
-    ty = evalFill(tx, sf);	       					
+    ty = evalFill(tx, cf);	       					
     return true;							
   }
 
@@ -99,8 +112,8 @@ private:
 		       )						
   {									
     if(q>0)error("Atomic 'evalFill' order not implemented.\n");	
-    CppAD::vector<AD<Type> > val = sf(tx);
-    for(int i = 0; i < sf.getDim(); ++i)
+    CppAD::vector<AD<Type> > val = cf(tx);
+    for(int i = 0; i < cf.getDim(); ++i)
       px[i] = CppAD::Value(val[i+1]) * py[0];
     return true;							
   }
@@ -125,10 +138,13 @@ private:
   }									
 };
 
-
+/*! 
+ * \overload
+ * \ingroup tmb
+ */
 template<class Type> 							
-CppAD::vector<AD<Type > > evalFill(CppAD::vector<AD<Type > > tx,covafill<AD<Type> > sf){
-  static class atomicEvalFill<Type> afunEvalFill("atomicEvalFill",sf); 
+CppAD::vector<AD<Type > > evalFill(CppAD::vector<AD<Type > > tx,covafill<AD<Type> > cf){
+  static class atomicEvalFill<Type> afunEvalFill("atomicEvalFill",cf); 
   CppAD::vector<AD<Type > > ty(1);				
   afunEvalFill(tx,ty);						
   return ty;								

@@ -30,25 +30,37 @@
 #ifndef _COVANODE_BASE_CLASS_
 #define _COVANODE_BASE_CLASS_
 
+/*! \brief Class that defines nodes of a covatree. 
+ *  \ingroup tree
+*/
 template<typename scalartype_>
 class covanode {
+  DEFINE_TYPES(scalartype_);
+
 public:
 
-  DEFINE_TYPES(scalartype_);
   
-  // Constructors from covafill pointer
+  /** \brief Constructs a node in a covatree.
+      \param coordSplit The remaining coordinates in the split at which we are now creating a note
+      \param minSplitSize_ The minimum number of coordinates at which the node will create a subtree.
+      \param cf A covafill object for local polynomial regression at the corners of the boundary box.
+      \param minCoords Minimum coordinates of the boundary box corners, e.g., (0,0) in two dimensions.
+      \param maxCoords Maximum coordinates of the boundary box corners, e.g., (1,1)  in two dimensions.
+   */
   covanode(matrixtype coordSplit,
 	     scalartype minSplitSize_,
 	     covafill<scalartype>* cf,
 	     vectortype minCoords,
 	     vectortype maxCoords);
 
-  // getBoundingBox
+  /** \brief Get coordinate dimension.  */
   int getDim();
   // Operator
+  /** \brief Returns the interpolated value at \a newcoord of the local polynomial regressions at the corners of the boundary box.  */
   vectortype operator()(vectortype newcoord);
-  
+
 private:
+
   // Split variables
   int splitDim;
   scalartype minSplitSize;
@@ -60,6 +72,7 @@ private:
   // Boundign box
   int dim;
   cubicInterpolation<scalartype>* cubic;
+
     
 };
 

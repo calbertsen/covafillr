@@ -38,13 +38,17 @@
 \endverbatim
 */
 
+/*! \brief Class that defines a covatree for search tree approximated local polynomial regression. 
+ *  \ingroup tree
+*/
 template<typename scalartype_>
 class covatree {
 
+  DEFINE_TYPES(scalartype_);
+  
 public:
 
-  DEFINE_TYPES(scalartype_);
-
+ 
   // Constructors
   
   // Copy constructors
@@ -70,19 +74,22 @@ public:
   // 	     scalartype minSplitSize_);
 
   // Constructors from covafill pointer
+  /** \brief Constructs a tree from a covafill object \a cf with minimum number of coordinates at which a sub tree will be created \a minSplitSize_. */
   covatree(scalartype minSplitSize_,
 	     covafill<scalartype>* cf);
 
   
   // Public functions
+  /** \brief Get coordinate dimension.  */
   int getDim();
   // getTree
   // getBoundingBoxes
 
   // Operators
+  /** \brief Returns the interpolated value at \a newcoord of the local polynomial regressions at the corners of the boundary box.  */
   vectortype operator()(vectortype newcoord) const;
   // covatree<scalartype> & operator= (const covatree<scalartype>& rhs);
-  
+
 private:
 
   covanode<scalartype>* root;

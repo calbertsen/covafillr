@@ -30,30 +30,42 @@
 #ifndef _COVAFILL_NCUBIC_CLASS_
 #define _COVAFILL_NCUBIC_CLASS_
 
-
+/*! \brief Class for n-cubic interpolation (n = 1,2,3) of local polynomial regression on a square. The class should not be used as anything but a common parent for the dimension specific interpolation classes.
+ *  \ingroup interpolate
+*/
 template<typename scalartype_>
 class ncubicInterpolation {
-public:
-
   DEFINE_TYPES(scalartype_);
 
+
+public:
+
+  
+  /** \brief Constructs a n-cubicInterpolation class from a covafill class \a cf, an boundaries of the interpolation square defined by the minimum coordinates, \a minCoord, and maximum coordinates, \a maxCoord, in each dimension, e.g., minCoord = (0,0) and maxCoord = (1,1). 
+   */
   ncubicInterpolation(covafill<scalartype>* cf,
 		      vectortype minCoord_,
 		      vectortype maxCoord_);
 
+  /** \brief Calculates the interpolation prediction at \a newcoord.
+   */
   virtual vectortype operator()(vectortype newcoord) = 0;
 
 protected:
+  /** \brief Constructor from coordinates. Should in general not be called. */
   ncubicInterpolation(vectortype minCoord_,
 		      vectortype maxCoord_);
 
-  int dim;
-  vectortype minCoord;
-  vectortype maxCoord;
+  int dim; /**< Dimension of coordinates, i.e., the n in n-cubic. */
+  vectortype minCoord; /**< Minimum coordinates of boundary box. */
+  vectortype maxCoord; /**< maximum coordinates of boundary box. */
 
 private:
+
   ncubicInterpolation<scalartype>* minChild;
   ncubicInterpolation<scalartype>* maxChild;
+
+
 
 };
 

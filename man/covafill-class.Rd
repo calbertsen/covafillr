@@ -33,9 +33,9 @@ A Reference Class for Local Polynomial Regression with covafill.
 \examples{
 getRefClass('covafill')
 fn <- function(x) x ^ 4 - x ^ 2
-x <- runif(100,-3,3)
-y <- fn(x) + rnorm(100,0,0.1)
-cf <- covafill(coord = x,obs = y,h = 1.0,p = 5L)
+x <- runif(2000,-3,3)
+y <- fn(x) + rnorm(2000,0,0.1)
+cf <- covafill(coord = x,obs = y,h = 0.5,p = 3L)
 cf$getDim()
 cf$getDegree()
 cf$getBandwith()

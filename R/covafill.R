@@ -5,9 +5,9 @@
 #' @examples
 #' getRefClass('covafill')
 #' fn <- function(x) x ^ 4 - x ^ 2
-#' x <- runif(1000,-3,3)
-#' y <- fn(x) + rnorm(1000,0,0.1)
-#' cf <- covafill(coord = x,obs = y,h = 1.0,p = 5L)
+#' x <- runif(2000,-3,3)
+#' y <- fn(x) + rnorm(2000,0,0.1)
+#' cf <- covafill(coord = x,obs = y,h = 0.5,p = 3L)
 #' cf$getDim()
 #' cf$getDegree()
 #' cf$getBandwith()
@@ -48,8 +48,9 @@ covafill <- setRefClass("covafill",
                                 
                                 if(!is.samelength(coord,obs))
                                     stop("obs and coord must have matching dimensions.")
-                                if(is.numvec(coord))
+                                if(is.numvec(coord)){
                                     coord <- matrix(coord,ncol=1)
+                                }
                                 if(length(h) > dim(coord)[2])
                                     warning("Additional bandwiths are ignored.")
 
@@ -76,6 +77,8 @@ covafill <- setRefClass("covafill",
                             predict = function(coord){
                                 "Predict function value and derivatives with local polynomial regression at coord."
                                 d <- .self$getDim()
+                                p <- .self$getDegree()
+                                
                                 if(!is.numvec(coord) & !is.nummat(coord))
                                     stop("coord must be a numeric vector or matrix.")
                                 if(is.numvec(coord))
@@ -83,8 +86,49 @@ covafill <- setRefClass("covafill",
                                 if(dim(coord)[2] != d)
                                     stop(paste("coord must have",d,"columns."))
 
-                                return(.Call("predictFill",.self$ptr,coord,
-                                              PACKAGE="covafillr"))
+                                val <- .Call("predictFill",.self$ptr,coord,
+                                             PACKAGE="covafillr")
+
+                                if(is.null(colnames(coord))){
+                                    cnam <- 1:d
+                                }else{
+                                    cnam <- colnames(coord)
+                                }
+
+                                cnamfin <- character(dim(val)[2])
+                                cnamfin[1] <- 'fn'
+                                cnamfin[2:(1+d)] <- paste('gr',cnam,sep='_')
+
+                                if(p >= 2){
+                                    cn2 <- unlist(sapply(1:d,function(i)
+                                        paste(cnam[i],cnam[i:d],sep='_')))
+                                    cnamfin[(2+d):(2+d+length(cn2))] <- paste('gr',
+                                                                              cn2,
+                                                                              sep='_')
+                                }
+                                if(p > 2){
+                                    cnK <- as.vector(sapply(3:p,
+                                                  function(k)
+                                                      unlist(sapply(1:d,
+                                                             function(j)
+                                                                 paste(rep(cnam[j],k),collapse='_')
+                                                             ))
+                                                  ))
+                                    cnamfin[tail(1:length(cnamfin),
+                                                 length(cnK))] <- paste('gr',cnK,sep='_')
+                                }
+
+
+                                if(is.null(rownames(coord))){
+                                    rnam <- 1:dim(coord)[1]
+                                }else{
+                                    rnam <- rownames(coord)
+                                }
+
+                                colnames(val) <- cnamfin
+                                rownames(val) <- rnam
+                                
+                                return(val)
                             },
                             residuals = function(excludeRadius){
                                 "Get 'leave-neighborhood-out' residuals, i.e. local polynomial regression predictions excluding points within excludeRadius subtracted from the observation." 

@@ -34,7 +34,9 @@
 
 #define DEFINE_TYPES(scalartype_) \
   typedef scalartype_ scalartype; \
+  typedef AD<scalartype_> ADscalartype;		    \
   typedef tmbutils::vector<scalartype_> vectortype; \
+  typedef tmbutils::vector<AD<scalartype_> > ADvectortype;	\
   typedef tmbutils::vector<matrix<scalartype_> > vecmattype;	\
   typedef tmbutils::matrix<scalartype_> matrixtype;		\
   typedef tmbutils::SparseMatrix<scalartype_> sparsematrixtype;
