@@ -24,7 +24,7 @@
 #' lines(x0, 3 * 4 * x0 ^ 2 - 2)
 #' 
 #' @export covafill
-#' @importFrom methods setRefClass
+#' @importFrom methods setRefClass new 
 #' @exportClass covafill
 covafill <- setRefClass("covafill",
                         fields = list(ptr = "externalptr"),

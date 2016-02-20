@@ -8,7 +8,7 @@ Maintainer: Christoffer Moesgaard Albertsen <cmoe@aqua.dtu.dk>
 Description: Facilitates local polynomial regression for state dependent covariates in state-space models. The functionality can also be used from 'C++' based model builder tools such as 'Rcpp'/'inline', 'TMB', or 'JAGS'.
 BugReports: https://github.com/calbertsen/covafillr/issues
 Depends: R (>= 3.0.0),
-	 methods,
+Imports: methods
 LinkingTo: RcppEigen,
 Suggests: TMB,
 	  rjags,

@@ -18,7 +18,7 @@
 #' lines(x0, 4 * x0 ^ 3 - 2 * x0)
 #' 
 #' @export covatree
-#' @importFrom methods setRefClass
+#' @importFrom methods setRefClass new
 #' @exportClass covatree
 covatree <- setRefClass("covatree",
                         fields = list(ptr = "externalptr"),
