@@ -3,4 +3,4 @@
 rm src/Makevars
 rm src/jags.cpp
 rm R/zzz.R
-rm -f R/zzz.R.tmp
+rm R/zzz.R.tmp
