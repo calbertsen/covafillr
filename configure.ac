@@ -8,8 +8,8 @@ AC_PATH_PROG([PKG_CONFIG], [pkg-config], [], [$PATH:/usr/local/bin])
 
 if test [ -n "${PKG_CONFIG}" ] ; then
    if `${PKG_CONFIG} --exists jags`; then
-         JAGS_LIBS=`${PKG_CONFIG} --libs-only-L jags`
-         JAGS_CXX=`${PKG_CONFIG} --cflags-only-I jags`
+         JAGS_LIBS=`${PKG_CONFIG} --libs jags`
+         JAGS_CXX=`${PKG_CONFIG} --cflags jags`
          if test [ -z "${JAGS_LIBS}" -a -z "${JAGS_CXX}" ] ; then
             AC_MSG_WARN([Cannot get information about jags from pkg-config])
          else
