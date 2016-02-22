@@ -48,6 +48,7 @@ OLD="@INSTALLED_WITH_JAGS@"
 sed "s/$OLD/${WITH_JAGS}/g" "R/zzz.R.in" > "R/zzz.R.tmp"
 OLD="@JAGS_ROOT@"
 sed "s/$OLD/${JAGS_ROOT}/g" "R/zzz.R.tmp" > "R/zzz.R"
+rm R/zzz.R.tmp
 OLD="@JAGS_INCL@"
 sed "s/$OLD/${JAGS_INCL}/g" "src/jags.cpp.in" > "src/jags.cpp"
 OLD="@JAGS_ROOT@"

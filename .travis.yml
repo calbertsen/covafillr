@@ -48,3 +48,9 @@ after_failure:
   - if [ ${OS} != Darwin ]; then less /home/travis/build/calbertsen/covafillr/covafillr.Rcheck/00check.log; fi
   - if [ ${OS} != Darwin ]; then less /home/travis/build/calbertsen/covafillr/covafillr.Rcheck/00install.out; fi
   - ./travis-tool.sh dump_logs
+
+after_success:
+  - if [ ${OS} = Darwin ]; then cat /Users/travis/build/calbertsen/covafillr/covafillr.Rcheck/00check.log; fi
+  - if [ ${OS} = Darwin ]; then cat /Users/travis/build/calbertsen/covafillr/covafillr.Rcheck/00install.out; fi
+  - if [ ${OS} != Darwin ]; then less /home/travis/build/calbertsen/covafillr/covafillr.Rcheck/00check.log; fi
+  - if [ ${OS} != Darwin ]; then less /home/travis/build/calbertsen/covafillr/covafillr.Rcheck/00install.out; fi
