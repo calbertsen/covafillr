@@ -2,6 +2,22 @@
 
 ## Installing
 
+```{r, echo = FALSE, results='hide'}
+
+a<-available.packages("https://cran.rstudio.com/contrib/main")
+
+```
+
+
+covafillr version `r a["covafillr","Version"]` can be installed from R with
+```{r, eval=FALSE}
+
+install.packages("covafillr", type = "source")
+
+```
+
+Note that the package needs to be compiled on Windows if JAGS 4.1.0 is not installed on the system in the default folder.
+
 The `R` package can be installed with
 
 ```{r, eval=FALSE}
@@ -12,7 +28,7 @@ devtools::install_github("calbertsen/covafillr")
 
 ### Installing with JAGS
 
-To use `covafillr` with [`JAGS`](http://mcmc-jags.sourceforge.net/), JAGS must be installed before the `covafillr` package.
+To use `covafillr` with [`JAGS`](http://mcmc-jags.sourceforge.net/), JAGS must be installed before the `covafillr` package, and the package must be installed using the same compiler as JAGS is installed with.
 
 On Unix(-like) systems, `pkg-config` is used to find the relevant paths to compile `covafillr` against `JAGS`, such as
 
