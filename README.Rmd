@@ -9,7 +9,7 @@ a<-available.packages("https://cran.rstudio.com/contrib/main")
 ```
 
 
-covafillr version `r a["covafillr","Version"]` can be installed from R with
+covafillr version `r a["covafillr","Version"]` can be installed from CRAN with
 ```{r, eval=FALSE}
 
 install.packages("covafillr",
@@ -19,7 +19,7 @@ install.packages("covafillr",
 
 Note that the package needs to be compiled on Windows if JAGS 4.1.0 is not installed on the system in the default folder.
 
-The `R` package can be installed with
+The development version of covafillr can be installed with
 
 ```{r, eval=FALSE}
 

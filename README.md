@@ -4,7 +4,7 @@ covafillr: Local Polynomial Regression of State Dependent Covariates in State-Sp
 Installing
 ----------
 
-covafillr version 0.2.1 can be installed from R with
+covafillr version 0.2.1 can be installed from CRAN with
 
 ``` r
 install.packages("covafillr",
@@ -13,7 +13,7 @@ install.packages("covafillr",
 
 Note that the package needs to be compiled on Windows if JAGS 4.1.0 is not installed on the system in the default folder.
 
-The `R` package can be installed with
+The development version of covafillr can be installed with
 
 ``` r
 devtools::install_github("calbertsen/covafillr")
@@ -236,7 +236,7 @@ fun <- cxxfunction(signature(x='numeric',
 fun(c(0),matrix(x,ncol=1),y,2,1.0)
 ```
 
-    ## [1] -0.04773316 -0.02285520
+    ## [1] -0.077244782 -0.002698988
 
 ### Using with TMB
 
@@ -295,28 +295,28 @@ obj <- MakeADFun(data = dat,
 obj$fn(c(3.2))
 ```
 
-    ## [1] 94.60639
+    ## [1] 95.02286
 
 ``` r
 obj$fn(c(0))
 ```
 
-    ## [1] -0.04773316
+    ## [1] -0.07724478
 
 ``` r
 obj$fn(c(-1))
 ```
 
-    ## [1] -0.1211411
+    ## [1] -0.07694138
 
 ``` r
 obj$gr()
 ```
 
-    ## outer mgc:  4.096273
+    ## outer mgc:  3.998493
 
     ##           [,1]
-    ## [1,] -4.096273
+    ## [1,] -3.998493
 
 ### Using with rjags
 
