@@ -49,8 +49,8 @@ Note that more examples are available in the inst/examples folder.
 ### Using from R
 
 ``` r
-library(covafillr)
 library(methods)
+library(covafillr)
 ```
 
 The package can be used from `R` to do local polynomial regression and a search tree approximation of local polynomial regression. Both are implemented with reference classes.
@@ -60,7 +60,7 @@ The package can be used from `R` to do local polynomial regression and a search 
 The reference class for local polynomial regression is called `covafill`.
 
 ``` r
-getRefClass('covafill')
+methods::getRefClass('covafill')
 ```
 
     ## Generator for class "covafill":
@@ -154,7 +154,7 @@ lines(x0, 3 * 4 * x0 ^ 2 - 2)
 The reference class for search tree approximation to local polynomial regression is `covatree`
 
 ``` r
-getRefClass('covatree')
+methods::getRefClass('covatree')
 ```
 
     ## Generator for class "covatree":
@@ -236,7 +236,7 @@ fun <- cxxfunction(signature(x='numeric',
 fun(c(0),matrix(x,ncol=1),y,2,1.0)
 ```
 
-    ## [1] -0.0634203162  0.0005587825
+    ## [1] -0.04773316 -0.02285520
 
 ### Using with TMB
 
@@ -295,28 +295,28 @@ obj <- MakeADFun(data = dat,
 obj$fn(c(3.2))
 ```
 
-    ## [1] 94.57644
+    ## [1] 94.60639
 
 ``` r
 obj$fn(c(0))
 ```
 
-    ## [1] -0.06342032
+    ## [1] -0.04773316
 
 ``` r
 obj$fn(c(-1))
 ```
 
-    ## [1] -0.02639694
+    ## [1] -0.1211411
 
 ``` r
 obj$gr()
 ```
 
-    ## outer mgc:  3.816531
+    ## outer mgc:  4.096273
 
     ##           [,1]
-    ## [1,] -3.816531
+    ## [1,] -4.096273
 
 ### Using with rjags
 
