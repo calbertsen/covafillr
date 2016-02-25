@@ -12,7 +12,8 @@ a<-available.packages("https://cran.rstudio.com/contrib/main")
 covafillr version `r a["covafillr","Version"]` can be installed from R with
 ```{r, eval=FALSE}
 
-install.packages("covafillr", type = "source")
+install.packages("covafillr",
+                 type = "source")
 
 ```
 
