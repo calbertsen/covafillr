@@ -11,23 +11,25 @@ os:
 
 env:
   matrix:
-  - JAGS=FALSE
+  - JAGS="libx11-6"
+    RJAGS="TMB"
     _R_CHECK_FORCE_SUGGESTS_=FALSE
-  - JAGS=TRUE
+  - JAGS="jags"
+    RJAGS="rjags"
   global:
     - OS=$(uname -s)
 
 
 apt_packages:
-  - if [[ ${JAGS} = TRUE ]; then echo "jags"; fi
+  - ${JAGS}
 
 brew_packages:
-  - if [[ ${JAGS} = TRUE ]; then echo "jags"; fi
+  - ${JAGS}
 
 r_packages:
   - RcppEigen
   - TMB
-  -   - if [[ ${JAGS} = TRUE ]; then echo "rjags"; fi
+  - ${RJAGS}
   - inline
 
 
