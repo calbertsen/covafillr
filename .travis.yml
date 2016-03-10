@@ -22,9 +22,7 @@ env:
 
 apt_packages:
   - ${JAGS}
-
-r_binary_packages:
-  - ${RJAGS}
+  - r-cran-$RJAGS
 
 brew_packages:
   - ${JAGS}
