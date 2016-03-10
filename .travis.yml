@@ -12,7 +12,7 @@ os:
 env:
   matrix:
   - JAGS="libx11-6"
-    RJAGS="TMB"
+    RJAGS="abc"
     _R_CHECK_FORCE_SUGGESTS_=FALSE
   - JAGS="jags"
     RJAGS="rjags"
@@ -23,13 +23,15 @@ env:
 apt_packages:
   - ${JAGS}
 
+r_binary_packages:
+  - ${RJAGS}
+
 brew_packages:
   - ${JAGS}
 
 r_packages:
   - RcppEigen
   - TMB
-  - ${RJAGS}
   - inline
 
 
