@@ -1,0 +1,10 @@
+Covafillr News
+
+
+CHANGES IN VERSION 0.2.2
+
+	BUG FIXES:
+	    - covafill$predict now set colnames correctly for p=2.
+
+VERSION 0.2.1:
+	First publicly available version

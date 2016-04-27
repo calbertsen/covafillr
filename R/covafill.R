@@ -102,7 +102,7 @@ covafill <- setRefClass("covafill",
                                 if(p >= 2){
                                     cn2 <- unlist(sapply(1:d,function(i)
                                         paste(cnam[i],cnam[i:d],sep='_')))
-                                    cnamfin[(2+d):(2+d+length(cn2))] <- paste('gr',
+                                    cnamfin[(2+d):(2+d+length(cn2)-1)] <- paste('gr',
                                                                               cn2,
                                                                               sep='_')
                                 }
