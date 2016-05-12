@@ -78,11 +78,11 @@ template<typename scalartype_>
 typename unicubicInterpolation<scalartype_>::matrixtype unicubicInterpolation<scalartype_>::getMinv(){
 
   // Dim == 1
-  matrixtype Minv(4,4);
-  Minv << 1, 0, 0, 0,
-    0, 1, 0, 0,
-    -3, -2, 3, -1,
-    2, 1, -2, 1;
+  // matrixtype Minv(4,4);
+  // Minv << 1, 0, 0, 0,
+  //   0, 1, 0, 0,
+  //   -3, -2, 3, -1,
+  //   2, 1, -2, 1;
 
   scalartype Minv[4][4] =
     {{ 1, 0, 0, 0},
