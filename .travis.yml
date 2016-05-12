@@ -12,7 +12,7 @@ os:
 env:
   matrix:
   - JAGS="--with-jags"
-  - JAGS="--without-jags"
+  - JAGS=""
   global:
     - OS=$(uname -s)
 
