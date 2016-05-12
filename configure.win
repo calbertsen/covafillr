@@ -1,33 +1,37 @@
 #!/bin/sh
 
 # Try to guess JAGS_ROOT if not set
-if [ -z "$JAGS_ROOT" ]; then
-    echo "Trying to guess installation path of JAGS"
-    R_SCRIPT="${R_HOME}/bin${R_ARCH_BIN}/Rscript"
-    echo "Seeing if rjags is installed"
-    RJAGS=`"${R_SCRIPT}" -e "cat(require(rjags,quietly=TRUE))"`
-    if [ "${RJAGS}"=="TRUE" ]; then
-	echo "rjags is installed. Looking for the path to JAGS"
-	JAGMOD="${R_ARCH_BIN}/modules"
-	JAGS_TMP=`"${R_SCRIPT}" -e "library(rjags);a<-getOption('jags.moddir');b<-gsub('\\\\\\\\\\\\\\\\','/',shortPathName(a));cat(sub('${JAGMOD}','',b))"`
-	echo "Trying ${JAGS_TMP}"
-	if [ -d "$JAGS_TMP" ]; then
+if [ -z ${USE_JAGS} ]; then
+    echo "USE_JAGS not used."
+else
+    if [ -z ${JAGS_ROOT} ]; then
+	echo "Trying to guess installation path of JAGS"
+	R_SCRIPT="${R_HOME}/bin${R_ARCH_BIN}/Rscript"
+	echo "Seeing if rjags is installed"
+	RJAGS=`"${R_SCRIPT}" -e "cat(require(rjags,quietly=TRUE))"`
+	if [ ${RJAGS}=="TRUE" ]; then
+	    echo "rjags is installed. Looking for the path to JAGS"
+	    JAGMOD="${R_ARCH_BIN}/modules"
+	    JAGS_TMP=`"${R_SCRIPT}" -e "library(rjags);a<-getOption('jags.moddir');b<-gsub('\\\\\\\\\\\\\\\\','/',shortPathName(a));cat(sub('${JAGMOD}','',b))"`
+	    echo "Trying ${JAGS_TMP}"
+	    if [ -d ${JAGS_TMP} ]; then
 	    
-	    # JAGS_TMPN=`"${R_SCRIPT}" -e "cat(gsub('/','\\\\\\\\\\\\\\\\/','${JAGS_TMP}'))"` 
-	    echo "Setting JAGS_ROOT=${JAGS_TMP}"
-	    JAGS_ROOT=${JAGS_TMP}
-	else
-	    echo "The folder does not exist."
+		# JAGS_TMPN=`"${R_SCRIPT}" -e "cat(gsub('/','\\\\\\\\\\\\\\\\/','${JAGS_TMP}'))"` 
+		echo "Setting JAGS_ROOT=${JAGS_TMP}"
+		JAGS_ROOT=${JAGS_TMP}
+	    else
+		echo "The folder does not exist."
+	    fi
 	fi
     fi
 fi
 
-if [ -z "$JAGS_ROOT" ]; then
+if [ -z ${JAGS_ROOT} ]; then
   WITH_JAGS="FALSE"
   JAGS_INCL=""
   echo "Building covafillr without JAGS"
 else
-    if [ -d "$JAGS_ROOT" ]; then
+    if [ -d ${JAGS_ROOT} ]; then
 	WITH_JAGS="TRUE"
 	JAGS_INCL="#include <covafill\/JAGS>"
 	echo "Building covafillr with JAGS"

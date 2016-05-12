@@ -12,12 +12,9 @@ a<-available.packages("https://cran.rstudio.com/contrib/main")
 covafillr version `r a["covafillr","Version"]` can be installed from CRAN with
 ```{r, eval=FALSE}
 
-install.packages("covafillr",
-                 type = "source")
+install.packages("covafillr")
 
 ```
-
-Note that the package needs to be compiled on Windows if JAGS 4.1.0 is not installed on the system in the default folder.
 
 The development version of covafillr can be installed with
 
@@ -38,6 +35,9 @@ pkg-config --cflags jags
 pkg-config --libs jags
 ```
 
+The package will only be installed with the JAGS module if the configure argument `--with-jags` is given.
+
+
 On Windows, the `R` package `rjags` is used to find the paths. `covafillr` can be installed without using `rjags` by setting a system variable `JAGS_ROOT` to the folder where `JAGS` is installed, e.g., by running
 
 ```{r, eval=FALSE}
@@ -46,7 +46,13 @@ Sys.setenv(JAGS_ROOT='C:/Program Files/JAGS/JAGS-4.1.0')
 
 ```
 
-before installation.
+before installation. Similar to Unix(-like) systems, the package is only installed with the JAGS module if the system variable `USE_JAGS` is set, e.g., by running
+
+```{r, eval=FALSE}
+
+Sys.setenv(USE_JAGS='yes')
+
+```
 
 ## Simple examples
 

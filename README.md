@@ -7,11 +7,8 @@ Installing
 covafillr version 0.2.1 can be installed from CRAN with
 
 ``` r
-install.packages("covafillr",
-                 type = "source")
+install.packages("covafillr")
 ```
-
-Note that the package needs to be compiled on Windows if JAGS 4.1.0 is not installed on the system in the default folder.
 
 The development version of covafillr can be installed with
 
@@ -33,13 +30,19 @@ pkg-config --libs jags
     ## -I/usr/local/include/JAGS 
     ## -L/usr/local/lib -ljags
 
+The package will only be installed with the JAGS module if the configure argument `--with-jags` is given.
+
 On Windows, the `R` package `rjags` is used to find the paths. `covafillr` can be installed without using `rjags` by setting a system variable `JAGS_ROOT` to the folder where `JAGS` is installed, e.g., by running
 
 ``` r
 Sys.setenv(JAGS_ROOT='C:/Program Files/JAGS/JAGS-4.1.0')
 ```
 
-before installation.
+before installation. Similar to Unix(-like) systems, the package is only installed with the JAGS module if the system variable `USE_JAGS` is set, e.g., by running
+
+``` r
+Sys.setenv(USE_JAGS='yes')
+```
 
 Simple examples
 ---------------
@@ -147,7 +150,7 @@ plot(x0, y0[,3], main = "Second derivative")
 lines(x0, 3 * 4 * x0 ^ 2 - 2)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-12-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-13-1.png)<!-- -->
 
 #### Search tree approximation
 
@@ -196,7 +199,7 @@ plot(x0, y1[,2], main = "First derivative")
 lines(x0, 4 * x0 ^ 3 - 2 * x0)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-15-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-16-1.png)<!-- -->
 
 ### Using with Rcpp/inline
 
@@ -236,7 +239,7 @@ fun <- cxxfunction(signature(x='numeric',
 fun(c(0),matrix(x,ncol=1),y,2,1.0)
 ```
 
-    ## [1] -0.077244782 -0.002698988
+    ## [1] -0.047290776 -0.005694892
 
 ### Using with TMB
 
@@ -295,28 +298,28 @@ obj <- MakeADFun(data = dat,
 obj$fn(c(3.2))
 ```
 
-    ## [1] 95.02286
+    ## [1] 94.57834
 
 ``` r
 obj$fn(c(0))
 ```
 
-    ## [1] -0.07724478
+    ## [1] -0.04729078
 
 ``` r
 obj$fn(c(-1))
 ```
 
-    ## [1] -0.07694138
+    ## [1] -0.03738759
 
 ``` r
 obj$gr()
 ```
 
-    ## outer mgc:  3.998493
+    ## outer mgc:  3.747299
 
     ##           [,1]
-    ## [1,] -3.998493
+    ## [1,] -3.747299
 
 ### Using with rjags
 
@@ -325,13 +328,6 @@ library(rjags)
 ```
 
     ## Loading required package: coda
-
-    ## 
-    ## Attaching package: 'coda'
-
-    ## Det følgende objekt er maskeret fra 'package:TMB':
-    ## 
-    ##     mcmc
 
     ## Linked to JAGS 4.0.0
 
@@ -400,4 +396,4 @@ plot(x,samp$cf[,1,1])
 hist(samp$sigma)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-30-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-31-1.png)<!-- -->
