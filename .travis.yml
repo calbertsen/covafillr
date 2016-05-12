@@ -1,5 +1,8 @@
 language: r
 
+sudo: required
+cache: packages
+
 r:
   - oldrel
   - release
@@ -29,9 +32,6 @@ r_packages:
   - TMB
   - inline
   - rjags
-
-
-sudo: required
 
 
 after_failure:
