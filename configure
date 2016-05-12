@@ -583,12 +583,12 @@ PACKAGE_URL=''
 
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
-JAGS_ROOT
-JAGS_INCL
-INSTALLED_WITH_JAGS
+PKG_CONFIG
 JAGS_CXX
 JAGS_LIBS
-PKG_CONFIG
+JAGS_INCL
+JAGS_ROOT
+INSTALLED_WITH_JAGS
 target_alias
 host_alias
 build_alias
@@ -630,6 +630,7 @@ SHELL'
 ac_subst_files=''
 ac_user_opts='
 enable_option_checking
+with_jags
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1239,6 +1240,12 @@ if test -n "$ac_init_help"; then
    esac
   cat <<\_ACEOF
 
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-jags             Will install covafillr with links to JAGS. This will
+                          enable the covafill JAGS module to be used from R.
+
 Report bugs to the package provider.
 _ACEOF
 ac_status=$?
@@ -1669,8 +1676,15 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 INSTALLED_WITH_JAGS="FALSE"
+
 JAGS_ROOT=""
+
 JAGS_INCL=""
+
+JAGS_LIBS=""
+
+JAGS_CXX=""
+
 
 # Extract the first word of "pkg-config", so it can be a program name with args.
 set dummy pkg-config; ac_word=$2
@@ -1714,37 +1728,49 @@ fi
 
 
 
-if test  -n "${PKG_CONFIG}"  ; then
-   if `${PKG_CONFIG} --exists jags`; then
-         JAGS_LIBS=`${PKG_CONFIG} --libs jags`
-         JAGS_CXX=`${PKG_CONFIG} --cflags jags`
-         if test  -z "${JAGS_LIBS}" -a -z "${JAGS_CXX}"  ; then
-            { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Cannot get information about jags from pkg-config" >&5
-$as_echo "$as_me: WARNING: Cannot get information about jags from pkg-config" >&2;}
-         else
-            { $as_echo "$as_me:${as_lineno-$LINENO}: Setting compile and link flags according to pkg-config" >&5
-$as_echo "$as_me: Setting compile and link flags according to pkg-config" >&6;}
-            { $as_echo "$as_me:${as_lineno-$LINENO}: Compile flags are $JAGS_CFLAGS" >&5
-$as_echo "$as_me: Compile flags are $JAGS_CFLAGS" >&6;}
-            { $as_echo "$as_me:${as_lineno-$LINENO}: Link flags are $JAGS_LIBS" >&5
+
+# Check whether --with-jags was given.
+if test "${with_jags+set}" = set; then :
+  withval=$with_jags; if test  -n "${PKG_CONFIG}" ; then :
+  if ${PKG_CONFIG} --exists jags; then :
+  JAGS_LIBS=`${PKG_CONFIG} --libs jags`
+
+	      JAGS_CXX=`${PKG_CONFIG} --cflags jags`
+
+	      { $as_echo "$as_me:${as_lineno-$LINENO}: Link flags are $JAGS_LIBS" >&5
 $as_echo "$as_me: Link flags are $JAGS_LIBS" >&6;}
-            INSTALLED_WITH_JAGS="TRUE"
-	    JAGS_INCL="#include <covafill/JAGS>"
-         fi
-   else
-      JAGS_LIBS=``
-      JAGS_CXX=``
-      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: pkg-config file for jags unavailable" >&5
-$as_echo "$as_me: WARNING: pkg-config file for jags unavailable" >&2;}
-   fi
+	      if test  -z "${JAGS_LIBS}" -a -z "${JAGS_CXX}" ; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Cannot get information about jags from pkg-config" >&5
+$as_echo "$as_me: WARNING: Cannot get information about jags from pkg-config" >&2;}
 else
-	JAGS_LIBS=``
-	JAGS_CXX=``
+  { $as_echo "$as_me:${as_lineno-$LINENO}: Setting compile and link flags according to pkg-config" >&5
+$as_echo "$as_me: Setting compile and link flags according to pkg-config" >&6;}
+                 { $as_echo "$as_me:${as_lineno-$LINENO}: Compile flags are $JAGS_CXX" >&5
+$as_echo "$as_me: Compile flags are $JAGS_CXX" >&6;}
+                 { $as_echo "$as_me:${as_lineno-$LINENO}: Link flags are $JAGS_LIBS" >&5
+$as_echo "$as_me: Link flags are $JAGS_LIBS" >&6;}
+		 INSTALLED_WITH_JAGS="TRUE"
+
+ 		 JAGS_INCL="#include <covafill/JAGS>"
+
+
+
 fi
 
+else
+
+	      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: pkg-config file for jags unavailable" >&5
+$as_echo "$as_me: WARNING: pkg-config file for jags unavailable" >&2;}
 
 
+fi
+fi
 
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: Installing without JAGS" >&5
+$as_echo "$as_me: Installing without JAGS" >&6;}
+
+fi
 
 
 
