@@ -11,26 +11,24 @@ os:
 
 env:
   matrix:
-  - JAGS="libx11-6"
-    RJAGS="abc"
-    _R_CHECK_FORCE_SUGGESTS_=FALSE
-  - JAGS="jags"
-    RJAGS="rjags"
+  - JAGS="--with-jags"
+  - JAGS="--without-jags"
   global:
     - OS=$(uname -s)
 
+r_check_args: --as-cran --install-args="$JAGS"
 
 apt_packages:
-  - ${JAGS}
-  - r-cran-$RJAGS
+  - jags
 
 brew_packages:
-  - ${JAGS}
+  - jags
 
 r_packages:
   - RcppEigen
   - TMB
   - inline
+  - rjags
 
 
 sudo: required
