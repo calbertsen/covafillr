@@ -24,8 +24,7 @@ covatree <- setRefClass("covatree",
                         fields = list(ptr = "externalptr"),
                         methods = list(
 
-                            initialize = function(.Object,
-                                                  coord,
+                            initialize = function(coord,
                                                   obs,
                                                   h = 1.0, 
                                                   p = 2L,
