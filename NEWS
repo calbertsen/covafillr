@@ -1,7 +1,7 @@
 Covafillr News
 
 
-CHANGES IN VERSION 0.x.y
+CHANGES IN VERSION a.x.y
 
 	NEW FEATURES:
 	    - It is now possible to get standard deviations for estimates with covafill.
@@ -9,6 +9,11 @@ CHANGES IN VERSION 0.x.y
 	BUG FIXES:
 	    - covafill$predict now set colnames correctly for p=2.
 	    - Weight matrix in covafill used sqrt of kernel weights.
+
+	OTHER CHANGES:
+	    - Installation with JAGS must now be explicitly invoked
+	    - $copy has been disabled for covafill and covatree reference classes.
+	    - .Object has been removed from argument list in $initialize  for covafill and covatree reference classes.
 
 VERSION 0.2.1:
 	First publicly available version

@@ -73,6 +73,9 @@ covafill <- setRefClass("covafill",
                                 initFields(ptr = ptr0)
 
                             },
+                            copy = function(shallow=FALSE){
+                                stop("A covafill object can not be copied.")
+                            },
                             predict = function(coord, se.fit=FALSE){
                                 "Predict function value and derivatives with local polynomial regression at coord. If se.fit=TRUE a list is returned with estimates and their standard deviations."
                                 d <- .self$getDim()

@@ -71,6 +71,9 @@ covatree <- setRefClass("covatree",
                                 initFields(ptr = ptr0)
 
                             },
+                            copy = function(shallow=FALSE){
+                                stop("A covatree object can not be copied.")
+                            },
                             getDim = function(){
                                 "Get the dimension of the coordinates."
                                 return(.Call("getTreeDim",.self$ptr,
