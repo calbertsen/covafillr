@@ -89,6 +89,9 @@ public:
 
   /** \brief Calculates the local polynomial regression estimate at \a x0. If \a returnAll is false, then only the function and first derivative estimates are returned. Otherwise all estimates are returned. */
   vectortype operator()(vectortype x0, bool returnAll = false) const;
+
+  /** \brief Calculates the local polynomial regression estimate and covariance of estimates at \a x0. If \a returnAll is false, then only the function and first derivative estimates are returned. Otherwise all estimates are returned. For cov = 0, only the variance of the estimates are returned, for cov = 1 the covariance matrix is returned. If returnAll is false, cov is ignored and asumed to be 0.*/
+  vecvectype operator()(vectortype x0, int cov, bool returnAll = false) const;
   
   /** \brief Calculates the local polynomial regression estimate at \a x0. All observations with coordinates \f$ x \f$ such that \f$ \|x-x_0\| > r \f$, where \a r is \a exludeRadius. If \a returnAll is false, then only the function and first derivative estimates are returned. Otherwise all estimates are returned. */
   vectortype operator()(vectortype x0, scalartype excludeRadius, bool returnAll = false) const;

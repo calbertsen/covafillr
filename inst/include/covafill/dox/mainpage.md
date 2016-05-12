@@ -5,7 +5,7 @@ covafill is a C++ template library for local polynomial regression of covariates
 - The [Core module](@ref core) which provides the base functionality for local polynomial regression
 - The [Tree module](@ref tree) which provides a search tree approximation to local polynomial regression
 - The [Interpolate module](@ref interpolate) which provides classes for cubic interpolation in 1-3 dimensions. This module is only inteded for internal use.
-- The [JAGS module](@ref jags), which provides a module for using covafill with [JAGS](http://http://mcmc-jags.sourceforge.net/)
+- The [JAGS module](@ref jags), which provides a module for using covafill with [JAGS](http://mcmc-jags.sourceforge.net/)
 - The [TMB module](@ref tmb) which provides functionality to use covafill with [TMB](http://tmb-project.org).
 
 ## The Core module
@@ -49,6 +49,21 @@ Now the estimates are obtained by
 \hat{\mathbf{\theta}} = (\mathbf{X}^T\mathbf{W}\mathbf{X})^{-1} \mathbf{X}^T\mathbf{W}\mathbf{Y}
 \f]
 giving both the estimated function value at \f$ x_0 \f$ and estimates of the first \f$ p \f$ derivatives.
+
+A covariance matrix for the estimates can be calculated by
+
+\f[
+V(\hat{\mathbf{\theta}}) = (\mathbf{X}^T\mathbf{W}\mathbf{X})^{-1} (\mathbf{R}^T \mathbf{W} \mathbf{R}) (N-q)^{-1}
+\f]
+
+where \f$ N \f$ is the number of observations with non-negative weights, \f$ q \f$ is the number of regressors, and
+
+\f[
+\mathbf{R} = \mathbf{Y}-\mathbf{X}\hat{\mathbf{\theta}}
+\f] 
+
+
+Note that it is not necessary to have a properly normalized kernel function as the normalizing constant vanishes in the calculation of both the estimates and covariance matrix.
 
 
 ## The Tree module

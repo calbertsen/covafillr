@@ -39,7 +39,8 @@
   typedef tmbutils::vector<AD<scalartype_> > ADvectortype;	\
   typedef tmbutils::vector<matrix<scalartype_> > vecmattype;	\
   typedef tmbutils::matrix<scalartype_> matrixtype;		\
-  typedef tmbutils::SparseMatrix<scalartype_> sparsematrixtype;
+  typedef tmbutils::SparseMatrix<scalartype_> sparsematrixtype; \
+  typedef tmbutils::vector<vector<scalartype_> > vecvectype;
 
 // #elseif SOMETHING_WITH_STAN
 
@@ -51,7 +52,8 @@
   typedef Eigen::Array<scalartype_,Eigen::Dynamic,1> vectortype;	\
   typedef Eigen::Array<Eigen::Matrix<scalartype_,Eigen::Dynamic,Eigen::Dynamic>,Eigen::Dynamic,1> vecmattype; \
   typedef Eigen::Matrix<scalartype_,Eigen::Dynamic,Eigen::Dynamic> matrixtype; \
-  typedef Eigen::SparseMatrix<scalartype_> sparsematrixtype;
+  typedef Eigen::SparseMatrix<scalartype_> sparsematrixtype; \
+  typedef Eigen::Array<Eigen::Array<scalartype_,Eigen::Dynamic,1>,Eigen::Dynamic,1> vecvectype;
 
 #endif
 

@@ -73,6 +73,49 @@ extern "C" {
   }
 
 
+  SEXP predictFillSE(SEXP sp, SEXP x){
+    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
+      Rf_error("The pointer must be to a covafill object");   
+    covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
+
+ 
+    
+    if(isMatrix(x)){
+      MatrixXd x0 = asMatrix(x);
+      
+      int lsdim = 1 + ptr->getDim();
+      if(ptr->p >= 2)
+	lsdim += 0.5 * ptr->getDim() * (ptr->getDim() + 1);
+      if(ptr->p >= 3)
+	lsdim += (ptr->p - 2) * ptr->getDim();
+
+      MatrixXd res(nrows(x),lsdim);
+      MatrixXd resSE(nrows(x),lsdim);
+      
+      Array<Array<double,Dynamic,1>, Dynamic,1> tmp(2);
+      for(int i = 0; i < nrows(x); ++i){
+	tmp = ptr->operator()((vector)x0.row(i),0, true);
+	res.row(i) = tmp(0);
+	resSE.row(i) = tmp(1);
+      }
+
+      SEXP vecOut = PROTECT(allocVector(VECSXP, 2));
+      SEXP sr1 = PROTECT(asSEXP(res));
+      SEXP sr2 = PROTECT(asSEXP(resSE));
+      SET_VECTOR_ELT(vecOut,0,sr1);
+      SET_VECTOR_ELT(vecOut,1,sr2);
+
+      UNPROTECT(3);
+      return vecOut;
+      
+    }else{
+      error("Element must be a matrix or numeric vector");
+    }
+    return R_NilValue;
+  }
+
+
+
   SEXP lnoResiduals(SEXP sp, SEXP excludeRadius){
     if(!(isNumeric(excludeRadius) && LENGTH(excludeRadius) == 1))
       Rf_error("Exclude radius must be a scalar");

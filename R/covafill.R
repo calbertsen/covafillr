@@ -74,8 +74,8 @@ covafill <- setRefClass("covafill",
                                 initFields(ptr = ptr0)
 
                             },
-                            predict = function(coord){
-                                "Predict function value and derivatives with local polynomial regression at coord."
+                            predict = function(coord, se.fit=FALSE){
+                                "Predict function value and derivatives with local polynomial regression at coord. If se.fit=TRUE a list is returned with estimates and their standard deviations."
                                 d <- .self$getDim()
                                 p <- .self$getDegree()
                                 
@@ -86,16 +86,24 @@ covafill <- setRefClass("covafill",
                                 if(dim(coord)[2] != d)
                                     stop(paste("coord must have",d,"columns."))
 
-                                val <- .Call("predictFill",.self$ptr,coord,
-                                             PACKAGE="covafillr")
+                                if(se.fit){
+                                    val <- .Call("predictFillSE",.self$ptr,coord,
+                                                 PACKAGE="covafillr")
+                                    val[[2]] <- sqrt(val[[2]])
+                                }else{
+                                    val <- .Call("predictFill",.self$ptr,coord,
+                                                 PACKAGE="covafillr")
+                                }
 
+                                nest <- ifelse(se.fit,dim(val[[1]])[2],dim(val)[2])
+                                
                                 if(is.null(colnames(coord))){
                                     cnam <- 1:d
                                 }else{
                                     cnam <- colnames(coord)
                                 }
 
-                                cnamfin <- character(dim(val)[2])
+                                cnamfin <- character(nest)
                                 cnamfin[1] <- 'fn'
                                 cnamfin[2:(1+d)] <- paste('gr',cnam,sep='_')
 
@@ -125,8 +133,15 @@ covafill <- setRefClass("covafill",
                                     rnam <- rownames(coord)
                                 }
 
-                                colnames(val) <- cnamfin
-                                rownames(val) <- rnam
+                                if(se.fit){
+                                    names(val) <- c("fit","se.fit")
+                                    colnames(val[[1]]) <- colnames(val[[2]]) <- cnamfin
+                                    rownames(val[[1]]) <- rownames(val[[2]]) <- rnam
+
+                                }else{
+                                    colnames(val) <- cnamfin
+                                    rownames(val) <- rnam
+                                }
                                 
                                 return(val)
                             },

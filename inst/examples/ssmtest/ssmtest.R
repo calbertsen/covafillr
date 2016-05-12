@@ -11,7 +11,7 @@ covObs <- apply(coord,1,function(x)0.1 * sum(x^2) + rnorm(1,0,0.1))
 
 set.seed(123)
 ## Simulate track
-n <- 30
+n <- 100
 x <- array(0,dim=c(2,n))
 for(i in 2:n)
     x[,i] <- x[,i-1] + rnorm(2,0,0.1)
