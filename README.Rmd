@@ -9,7 +9,7 @@ a<-available.packages("https://cran.rstudio.com/contrib/main")
 ```
 
 
-covafillr version `r a["covafillr","Version"]` can be installed from CRAN with
+covafillr version can be installed from CRAN with
 ```{r, eval=FALSE}
 
 install.packages("covafillr")

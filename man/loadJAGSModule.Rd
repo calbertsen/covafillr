@@ -13,7 +13,7 @@ Nothing
 Calls rjags::load.module with appropriate arguments to load the covafillr module.
 }
 \examples{
-if(require("rjags"))
+if(require("rjags") & covafillr:::.installed_with_jags)
    loadJAGSModule()
 }
 \author{

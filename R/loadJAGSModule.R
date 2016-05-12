@@ -5,7 +5,7 @@
 ##' @seealso \code{\link[rjags]{load.module}}
 ##' @author Christoffer Moesgaard Albertsen
 ##' @examples
-##' if(require("rjags"))
+##' if(require("rjags") & covafillr:::.installed_with_jags)
 ##'    loadJAGSModule()
 ##' @export
 loadJAGSModule <- function(){

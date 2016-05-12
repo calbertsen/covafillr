@@ -22,9 +22,9 @@ A Reference Class for Local Polynomial Regression with covafill.
 
 \item{\code{getDim()}}{Get the dimension of the coordinates.}
 
-\item{\code{initialize(.Object, coord, obs, h = 1, p = 2L, ...)}}{Method to initialize the covafill. coord is a matrix of coordinates, obs is a vector of corresponding observations, h is a vector of bandwiths, and p is the polynomial degree.}
+\item{\code{initialize(coord, obs, h = 1, p = 2L, ...)}}{Method to initialize the covafill. coord is a matrix of coordinates, obs is a vector of corresponding observations, h is a vector of bandwiths, and p is the polynomial degree.}
 
-\item{\code{predict(coord)}}{Predict function value and derivatives with local polynomial regression at coord.}
+\item{\code{predict(coord, se.fit = FALSE)}}{Predict function value and derivatives with local polynomial regression at coord. If se.fit=TRUE a list is returned with estimates and their standard deviations.}
 
 \item{\code{residuals(excludeRadius)}}{Get 'leave-neighborhood-out' residuals, i.e. local polynomial regression predictions excluding points within excludeRadius subtracted from the observation.}
 

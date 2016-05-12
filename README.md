@@ -4,7 +4,7 @@ covafillr: Local Polynomial Regression of State Dependent Covariates in State-Sp
 Installing
 ----------
 
-covafillr version 0.2.1 can be installed from CRAN with
+covafillr version can be installed from CRAN with
 
 ``` r
 install.packages("covafillr")
@@ -78,9 +78,9 @@ methods::getRefClass('covafill')
     ## Class Methods: 
     ##      "import", "getDegree", ".objectParent", "setBandwith", "residuals", 
     ##      "usingMethods", "show", "getClass", "untrace", "export", 
-    ##      "initialize", ".objectPackage", "callSuper", "getDim", "copy", 
-    ##      "getBandwith", "predict", "initFields", "getRefClass", "trace", 
-    ##      "field"
+    ##      "copy#envRefClass", "initialize", ".objectPackage", "callSuper", 
+    ##      "getDim", "copy", "getBandwith", "predict", "initFields", 
+    ##      "getRefClass", "trace", "field"
     ## 
     ## Reference Superclasses: 
     ##      "envRefClass"
@@ -171,9 +171,9 @@ methods::getRefClass('covatree')
     ## 
     ## Class Methods: 
     ##      "import", ".objectParent", "usingMethods", "show", "getClass", 
-    ##      "untrace", "export", "initialize", ".objectPackage", "callSuper", 
-    ##      "getDim", "copy", "predict", "initFields", "getRefClass", "trace", 
-    ##      "field"
+    ##      "untrace", "export", "copy#envRefClass", "initialize", 
+    ##      ".objectPackage", "callSuper", "getDim", "copy", "predict", 
+    ##      "initFields", "getRefClass", "trace", "field"
     ## 
     ## Reference Superclasses: 
     ##      "envRefClass"
@@ -239,7 +239,7 @@ fun <- cxxfunction(signature(x='numeric',
 fun(c(0),matrix(x,ncol=1),y,2,1.0)
 ```
 
-    ## [1] -0.047290776 -0.005694892
+    ## [1] -0.04614941  0.01605094
 
 ### Using with TMB
 
@@ -298,28 +298,28 @@ obj <- MakeADFun(data = dat,
 obj$fn(c(3.2))
 ```
 
-    ## [1] 94.57834
+    ## [1] 94.7055
 
 ``` r
 obj$fn(c(0))
 ```
 
-    ## [1] -0.04729078
+    ## [1] -0.04614941
 
 ``` r
 obj$fn(c(-1))
 ```
 
-    ## [1] -0.03738759
+    ## [1] -0.04697095
 
 ``` r
 obj$gr()
 ```
 
-    ## outer mgc:  3.747299
+    ## outer mgc:  3.593036
 
     ##           [,1]
-    ## [1,] -3.747299
+    ## [1,] -3.593036
 
 ### Using with rjags
 

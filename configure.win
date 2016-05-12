@@ -3,6 +3,11 @@
 # Try to guess JAGS_ROOT if not set
 if [ -z ${USE_JAGS} ]; then
     echo "USE_JAGS not used."
+    JAGS_ROOT=""
+    WITH_JAGS="FALSE"
+    JAGS_INCL=""
+    echo "Building covafillr without JAGS"
+
 else
     if [ -z ${JAGS_ROOT} ]; then
 	echo "Trying to guess installation path of JAGS"
@@ -15,38 +20,45 @@ else
 	    JAGS_TMP=`"${R_SCRIPT}" -e "library(rjags);a<-getOption('jags.moddir');b<-gsub('\\\\\\\\\\\\\\\\','/',shortPathName(a));cat(sub('${JAGMOD}','',b))"`
 	    echo "Trying ${JAGS_TMP}"
 	    if [ -d ${JAGS_TMP} ]; then
-	    
+		
 		# JAGS_TMPN=`"${R_SCRIPT}" -e "cat(gsub('/','\\\\\\\\\\\\\\\\/','${JAGS_TMP}'))"` 
 		echo "Setting JAGS_ROOT=${JAGS_TMP}"
-		JAGS_ROOT=${JAGS_TMP}
+		JAGS_ROOT="${JAGS_TMP}"
 	    else
 		echo "The folder does not exist."
 	    fi
 	fi
     fi
-fi
 
-if [ -z ${JAGS_ROOT} ]; then
-  WITH_JAGS="FALSE"
-  JAGS_INCL=""
-  echo "Building covafillr without JAGS"
-else
-    if [ -d ${JAGS_ROOT} ]; then
-	WITH_JAGS="TRUE"
-	JAGS_INCL="#include <covafill\/JAGS>"
-	echo "Building covafillr with JAGS"
-	echo "JAGS_ROOT: $JAGS_ROOT"
-	R_SCRIPT="${R_HOME}/bin${R_ARCH_BIN}/Rscript"
-	JAGS_TMP=`"${R_SCRIPT}" -e "b<-gsub('\\\\\\\\\\\\\\\\','/',shortPathName('${JAGS_ROOT}'));cat(b)"`
-	JAGS_TMPN=`"${R_SCRIPT}" -e "cat(gsub('/','\\\\\\\\\\\\\\\\/','${JAGS_TMP}'))"`
-	JAGS_ROOT=${JAGS_TMPN}
-	echo "ESCAPED JAGS_ROOT: $JAGS_ROOT"
-    else
+    if [ -z ${JAGS_ROOT} ]; then
+	echo "JAGS_ROOT not set or found"
+	JAGS_ROOT=""
 	WITH_JAGS="FALSE"
 	JAGS_INCL=""
 	echo "Building covafillr without JAGS"
-    fi	
+
+    else
+	if [ -d ${JAGS_ROOT} ]; then
+	    WITH_JAGS="TRUE"
+	    JAGS_INCL="#include <covafill\/JAGS>"
+	    echo "Building covafillr with JAGS"
+	    echo "JAGS_ROOT: $JAGS_ROOT"
+	    R_SCRIPT="${R_HOME}/bin${R_ARCH_BIN}/Rscript"
+	    JAGS_TMP=`"${R_SCRIPT}" -e "b<-gsub('\\\\\\\\\\\\\\\\','/',shortPathName('${JAGS_ROOT}'));cat(b)"`
+	    JAGS_TMPN=`"${R_SCRIPT}" -e "cat(gsub('/','\\\\\\\\\\\\\\\\/','${JAGS_TMP}'))"`
+	    JAGS_ROOT="${JAGS_TMPN}"
+	    echo "ESCAPED JAGS_ROOT: $JAGS_ROOT"
+	else
+	    WITH_JAGS="FALSE"
+	    JAGS_INCL=""
+	    echo "Building covafillr without JAGS"
+	fi	
+    fi
+
+
+    
 fi
+
 
 OLD="@INSTALLED_WITH_JAGS@"
 sed "s/$OLD/${WITH_JAGS}/g" "R/zzz.R.in" > "R/zzz.R.tmp"
