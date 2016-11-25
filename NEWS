@@ -1,5 +1,12 @@
 Covafillr News
 
+CHANGES IN VERSION 0.x.y
+
+	NEW FEATURES:
+	    - added stat_covafill to be used with the ggplot2 package
+
+	OTHER CHANGES:
+	    - Updated calculations of standard deviations to follow Fan and Gijbels (1995)
 
 CHANGES IN VERSION 0.3.0
 

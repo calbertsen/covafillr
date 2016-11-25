@@ -53,7 +53,7 @@ giving both the estimated function value at \f$ x_0 \f$ and estimates of the fir
 A covariance matrix for the estimates can be calculated by
 
 \f[
-V(\hat{\mathbf{\theta}}) = (\mathbf{X}^T\mathbf{W}\mathbf{X})^{-1} (\mathbf{R}^T \mathbf{W} \mathbf{R}) (N-q)^{-1}
+V(\hat{\mathbf{\theta}} \mid \mathbf{X}) = (\mathbf{X}^T\mathbf{W}\mathbf{X})^{-1} (\mathbf{R}^T \mathbf{W} \mathbf{R}) (N-q)^{-1}
 \f]
 
 where \f$ N \f$ is the number of observations with non-negative weights, \f$ q \f$ is the number of regressors, and

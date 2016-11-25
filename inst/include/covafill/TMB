@@ -35,6 +35,8 @@
    #include <TMB.hpp>
 #endif
 
+#include <ctime>
+#include <cstring>
 #include <covafill/Core>
 #include <covafill/Tree>
 

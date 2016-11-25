@@ -78,7 +78,7 @@ public:
   atomicEvalFill(const char* name,covafill<AD<Type> > cf_) : CppAD::atomic_base<Type>(name), cf(cf_){
     atomic::atomicFunctionGenerated = true;				
     if(config.trace.atomic)						
-    	std::cout << "Constructing atomic " << "evalFill" << "\n" ;	
+      std::cout << "Constructing atomic " << "evalFill" << "\n" ;	
     this->option(CppAD::atomic_base<Type>::bool_sparsity_enum);		
   }									
 private:

@@ -2,3 +2,5 @@
 PKG_CXXFLAGS=-I../inst/include @JAGS_CXX@
 
 PKG_LIBS= @JAGS_LIBS@
+
+#PKG_CXXLD= $(CXX) -Wl,-s 

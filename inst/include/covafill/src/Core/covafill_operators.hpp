@@ -177,9 +177,9 @@ typename covafill<scalartype_>::vecvectype covafill<scalartype_>::operator()(vec
   // Calculate covariance of estimates
   matrixtype R = observations.matrix() - X * beta.matrix();
   matrixtype shat = (matrixtype)(R.transpose() * W) * R;
-  shat /= NnotZero-lsdim;
-
-  matrixtype cova = XWXinv * shat(0,0);
+  scalartype tr = ((matrixtype)W).trace() - (tmp * W * X).trace();
+  shat /= tr;
+  matrixtype cova = shat(0,0) * XWXinv * (X.transpose() * (W * W) * X) * XWXinv;
   vectortype covvec(Eigen::Map<vectortype>(cova.data(), cova.cols()*cova.rows())); 
 
   vecvectype res(2);
