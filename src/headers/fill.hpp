@@ -54,7 +54,9 @@ extern "C" {
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
 
     if(isMatrix(x)){
-      int lsdim = 1 + ptr->getDim();
+      int lsdim = 1;
+      if(ptr->p >= 1)
+	lsdim += ptr->getDim();
       if(ptr->p >= 2)
 	lsdim += 0.5 * ptr->getDim() * (ptr->getDim() + 1);
       if(ptr->p >= 3)
@@ -83,7 +85,9 @@ extern "C" {
     if(isMatrix(x)){
       MatrixXd x0 = asMatrix(x);
       
-      int lsdim = 1 + ptr->getDim();
+      int lsdim = 1;
+      if(ptr->p >= 1)
+	lsdim += ptr->getDim();
       if(ptr->p >= 2)
 	lsdim += 0.5 * ptr->getDim() * (ptr->getDim() + 1);
       if(ptr->p >= 3)
@@ -94,7 +98,7 @@ extern "C" {
       
       Array<Array<double,Dynamic,1>, Dynamic,1> tmp(2);
       for(int i = 0; i < nrows(x); ++i){
-	tmp = ptr->operator()((vector)x0.row(i),0, true);
+	tmp = ptr->operator()((vector)x0.row(i),int(0), true);
 	res.row(i) = tmp(0);
 	resSE.row(i) = tmp(1);
       }

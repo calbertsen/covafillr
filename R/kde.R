@@ -19,10 +19,9 @@ suggestBandwith <- function(X, p){
     return(bw)
 }
 
-##' .. content for \description{} (no empty lines) ..
+##' Kernel Density Estimation
 ##'
-##' .. content for \details{} ..
-##' @title 
+##' Wrapper for the covafill reference class to do kernel density estimation.
 ##' @param X A numeric matrix or vector of data coordinates
 ##' @param bw Bandwith used
 ##' @param npred Number of coordinate wise equally spaced points at which the density is to be estimated. The numbers are repeated if the length is less than the dimension of the coordinates.

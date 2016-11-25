@@ -55,7 +55,6 @@ typename covafill<scalartype_>::scalartype covafill<scalartype_>::getWeight(vect
   }else{
     res = 0;
   }
-  
   return res * detHinv;
 };
 

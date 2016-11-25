@@ -12,7 +12,7 @@ StatCovafill <- ggplot2::ggproto("StatCovafill", ggplot2::Stat,
                                                  se){
 
                             if(is.null(bandwith))
-                                bandwith <- diff(range(data$x)) / 10.0
+                                bandwith <- suggestBandwith(data$x,polyDegree)
 
                             cf <- covafill(coord = data$x,
                                            obs = data$y,
@@ -50,7 +50,7 @@ StatCovafill <- ggplot2::ggproto("StatCovafill", ggplot2::Stat,
 ##' @param show.legend Should this legend be displayed? The same as \code{ggplot2::stat_smooth}.
 ##' @param inherit.aes The same as \code{ggplot2::stat_smooth}.
 ##' @param n Number of points to do prediction on.
-##' @param bandwith Bandwith used in covafill. Defaults to \code{diff(range(x))/10}.
+##' @param bandwith Bandwith used in covafill. Uses \code{suggestBandwith} by default.
 ##' @param polyDegree Polynomial degree to use in covafill.
 ##' @param level Level of confidence interval to use.
 ##' @param se Should confidence intervals be displayed?

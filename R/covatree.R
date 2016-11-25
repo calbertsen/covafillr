@@ -26,8 +26,8 @@ covatree <- setRefClass("covatree",
 
                             initialize = function(coord,
                                                   obs,
-                                                  h = 1.0, 
-                                                  p = 2L,
+                                                  h = suggestBandwith(coord,p), 
+                                                  p = 3L,
                                                   minLeft = length(obs)/10,
                                                   ...){
                                 "Method to initialize the covafill. coord is a matrix of coordinates, obs is a vector of corresponding observations, h is a vector of bandwiths, p is the polynomial degree, and minLeft is the minimum number of observations that will create a sub tree."

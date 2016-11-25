@@ -4,9 +4,13 @@ CHANGES IN VERSION 0.x.y
 
 	NEW FEATURES:
 	    - added stat_covafill to be used with the ggplot2 package
+	    - added kde function for kernel density estimates
+	    - added suggestBandwith function
 
 	OTHER CHANGES:
 	    - Updated calculations of standard deviations to follow Fan and Gijbels (1995)
+	    - Now possible to have polynomial degree < 1
+	    - Changed default polynomial degree to 3
 
 CHANGES IN VERSION 0.3.0
 
