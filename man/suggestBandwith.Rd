@@ -8,6 +8,8 @@ suggestBandwith(X, p)
 }
 \arguments{
 \item{X}{A numeric matrix or vector of data coordinates}
+
+\item{p}{Polynomial degree to base the suggestion on}
 }
 \value{
 a vector or scalar of suggested bandwiths

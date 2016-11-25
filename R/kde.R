@@ -5,6 +5,7 @@
 ##' \deqn{0.9 \sqrt{5} \min\left(sd(x),\frac{IQR(x)}{1.349}\right) n ^{-0.2}} (p+1)
 ##' where p is the polynomial degree used and n is the number of coordinate points.
 ##' @param X A numeric matrix or vector of data coordinates
+##' @param p Polynomial degree to base the suggestion on
 ##' @return a vector or scalar of suggested bandwiths
 ##' @author Christoffer Moesgaard Albertsen
 ##' @export
