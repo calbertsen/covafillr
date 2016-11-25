@@ -53,6 +53,8 @@ public:
 	     vectortype minCoords,
 	     vectortype maxCoords);
 
+  ~covanode();
+
   /** \brief Get coordinate dimension.  */
   int getDim();
   // Operator

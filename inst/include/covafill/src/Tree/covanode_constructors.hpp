@@ -102,4 +102,10 @@ covanode<scalartype_>::covanode(matrixtype coordSplit,
 };
 
 
+template<typename scalartype_>
+covanode<scalartype_>::~covanode(){
+  delete left;
+  delete right;  
+};
+
 #endif
