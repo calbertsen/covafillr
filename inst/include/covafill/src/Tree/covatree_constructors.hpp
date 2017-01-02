@@ -74,7 +74,10 @@ covatree<scalartype_>::covatree(scalartype minSplitSize_,
 
 
 
-
+template<typename scalartype_>
+covatree<scalartype_>::~covatree(){
+  delete root;
+}
 
 
 

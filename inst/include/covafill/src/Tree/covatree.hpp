@@ -78,6 +78,8 @@ public:
   covatree(scalartype minSplitSize_,
 	     covafill<scalartype>* cf);
 
+  /** \brief Destructor */
+  ~covatree();
   
   // Public functions
   /** \brief Get coordinate dimension.  */

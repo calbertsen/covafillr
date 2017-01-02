@@ -80,7 +80,8 @@ public:
     if(config.trace.atomic)						
       std::cout << "Constructing atomic " << "evalFill" << "\n" ;	
     this->option(CppAD::atomic_base<Type>::bool_sparsity_enum);		
-  }									
+  }
+ 
 private:
   covafill<AD<Type> > cf;
 

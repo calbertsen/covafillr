@@ -8,9 +8,10 @@ CHANGES IN VERSION 0.x.y
 	    - added suggestBandwith function
 
 	OTHER CHANGES:
-	    - Updated calculations of standard deviations to follow Fan and Gijbels (1995)
+	    - Changed calculations of standard deviations to follow Fan and Gijbels (1995)
 	    - Now possible to have polynomial degree < 1
 	    - Changed default polynomial degree to 3
+	    - Small changes to C++: Added destructors to tree methods
 
 CHANGES IN VERSION 0.3.0
 
