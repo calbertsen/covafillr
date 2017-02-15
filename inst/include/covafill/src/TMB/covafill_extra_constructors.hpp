@@ -41,7 +41,7 @@ covafill<scalartype_>::covafill(const covafill<AD<scalartype_> >& x){
   detHinv = toBase(x.detHinv);
   dim = x.dim;			// Dimension of coordinates (1, 2 or 3)
   nobs = x.nobs;
-};
+}
 #endif
 
 #endif

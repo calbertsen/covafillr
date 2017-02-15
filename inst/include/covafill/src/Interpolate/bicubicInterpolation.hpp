@@ -35,7 +35,7 @@
 */
 template<typename scalartype_>
 class bicubicInterpolation : public ncubicInterpolation<scalartype_> {
-  DEFINE_TYPES(scalartype_);
+  DEFINE_TYPES(scalartype_)
 
 public:
 
@@ -100,7 +100,7 @@ typename bicubicInterpolation<scalartype_>::matrixtype bicubicInterpolation<scal
 			      
   return MinvEigen;
   
-};
+}
 
 template<typename scalartype_>
 typename bicubicInterpolation<scalartype_>::matrixtype bicubicInterpolation<scalartype_>::makeAlpha(covafill<scalartype>* cf,vectortype minCoord,vectortype maxCoord) {
@@ -147,7 +147,7 @@ typename bicubicInterpolation<scalartype_>::matrixtype bicubicInterpolation<scal
       coefs(i,j) = alphaCoef(indx++);
 
   return coefs;
-};
+}
   
 
 
@@ -157,7 +157,7 @@ bicubicInterpolation<scalartype_>::bicubicInterpolation(covafill<scalartype>* cf
 						 vectortype maxCoord)
   : ncubicInterpolation<scalartype_>(minCoord,maxCoord),
     alpha(makeAlpha(cf,minCoord,maxCoord))
-{};
+{}
 
 
 
@@ -189,7 +189,7 @@ typename bicubicInterpolation<scalartype_>::vectortype bicubicInterpolation<scal
 	newval(2) += scalartype(j) * alpha(i,j) * pow(t,i) * pow(u,j-1) / d(1);     
     }
   return newval;
-};
+}
 
 
 

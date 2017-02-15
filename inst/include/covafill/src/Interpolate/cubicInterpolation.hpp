@@ -44,7 +44,7 @@
 template<typename scalartype_>
 class cubicInterpolation {
 
-  DEFINE_TYPES(scalartype_);
+  DEFINE_TYPES(scalartype_)
 
 
 public:
@@ -87,7 +87,7 @@ cubicInterpolation<scalartype_>::cubicInterpolation(covafill<scalartype>* cf,
     nci = NULL;
   }
 
-};
+}
 
 template<typename scalartype_>
 typename cubicInterpolation<scalartype_>::vectortype cubicInterpolation<scalartype_>::operator()(vectortype newcoord) {

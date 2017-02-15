@@ -34,6 +34,7 @@
 #include <Eigen/Core>
 #include <Eigen/LU>
 #include <Eigen/Sparse>
+#include <cmath>
 
 #include "src/macros.hpp"
 

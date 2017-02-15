@@ -36,7 +36,7 @@
 template<typename scalartype_>
 class unicubicInterpolation : public ncubicInterpolation<scalartype_> {
 
-  DEFINE_TYPES(scalartype_);
+  DEFINE_TYPES(scalartype_)
 
 public:
 
@@ -96,7 +96,7 @@ typename unicubicInterpolation<scalartype_>::matrixtype unicubicInterpolation<sc
       MinvEigen(i,j) = Minv[i][j];
 			      
   return MinvEigen;
-};
+}
 
 template<typename scalartype_>
 typename unicubicInterpolation<scalartype_>::matrixtype unicubicInterpolation<scalartype_>::makeAlpha(covafill<scalartype>* cf,vectortype minCoord,vectortype maxCoord) {
@@ -134,7 +134,7 @@ typename unicubicInterpolation<scalartype_>::matrixtype unicubicInterpolation<sc
       coefs(i,j) = alphaCoef(indx++);
 
   return coefs;
-};
+}
   
 
 
@@ -144,7 +144,7 @@ unicubicInterpolation<scalartype_>::unicubicInterpolation(covafill<scalartype>* 
 						 vectortype maxCoord)
   : ncubicInterpolation<scalartype_>(minCoord,maxCoord),
     alpha(makeAlpha(cf,minCoord,maxCoord))
-{};
+{}
 
 
 
@@ -173,7 +173,7 @@ typename unicubicInterpolation<scalartype_>::vectortype unicubicInterpolation<sc
     // Derivative of second variable
   }
   return newval;
-};
+}
 
 
 #endif

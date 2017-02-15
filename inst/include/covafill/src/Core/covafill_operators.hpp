@@ -120,7 +120,7 @@ typename covafill<scalartype_>::vectortype covafill<scalartype_>::operator()(vec
   if(returnAll)
     return beta;
   return beta.segment(0,1+dim*(p>0));
-};
+}
 
 template<typename scalartype_>
 typename covafill<scalartype_>::vectortype covafill<scalartype_>::operator()(vectortype x0, bool returnAll) const {
@@ -152,7 +152,7 @@ typename covafill<scalartype_>::vecvectype covafill<scalartype_>::operator()(vec
     vecvectype reskde(2);
     reskde(0) = kde;
     vectortype tmp(1);
-    tmp(0) = 0/0; // Not the best solution
+    tmp(0) = NAN; // Not the best solution
     reskde(1) = tmp;
     return reskde;
   }
@@ -221,7 +221,7 @@ typename covafill<scalartype_>::vecvectype covafill<scalartype_>::operator()(vec
     res(1) = cova.diagonal().segment(0,1+dim);
   }
   return res;
-};
+}
 
 
 

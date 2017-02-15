@@ -35,7 +35,7 @@ template<typename scalartype_>
 covafill<scalartype_>::covafill(matrixtype coordinates_,
 				vectortype observations_) : coordinates(coordinates_), observations(observations_), p(2), Hinv(coordinates.cols(),coordinates.cols()), detHinv(0), dim(coordinates.cols()), nobs(coordinates.rows()) {
   setH(scalartype(1.0));  
-};
+}
 
 
 template<typename scalartype_>
@@ -44,7 +44,7 @@ covafill<scalartype_>::covafill(matrixtype coordinates_,
 				      scalartype h_,
 				      int p_) : coordinates(coordinates_), observations(observations_), p(p_), Hinv(dim,dim), detHinv(0), dim(coordinates.cols()), nobs(coordinates.rows()){
   setH(h_);
-};
+}
 
 
 template<typename scalartype_>
@@ -53,13 +53,13 @@ covafill<scalartype_>::covafill(matrixtype coordinates_,
 				      vectortype h_,
 				int p_) : coordinates(coordinates_), observations(observations_), p(p_), Hinv(coordinates.cols(),coordinates.cols()), detHinv(0), dim(coordinates.cols()), nobs(coordinates.rows()) {
   setH(h_);
-};
+}
 
 
 template<typename scalartype_>
 covafill<scalartype_>::covafill(const covafill<scalartype_>& x){
   operator=(x);
-};
+}
 
 
 #endif

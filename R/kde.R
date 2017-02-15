@@ -8,14 +8,15 @@
 ##' @param p Polynomial degree to base the suggestion on
 ##' @return a vector or scalar of suggested bandwiths
 ##' @author Christoffer Moesgaard Albertsen
+##' @importFrom stats sd IQR
 ##' @export
 suggestBandwith <- function(X, p){
     d <- ifelse(is.matrix(X),ncol(X),1)
     n <- ifelse(is.matrix(X),nrow(X),length(X))
     if(d == 1){
-        bw <- 0.9 * sqrt(5) * min(sd(X), IQR(X) / 1.349) * n^(-0.2) * (max(p,0) + 1)
+        bw <- 0.9 * sqrt(5) * min(stats::sd(X), stats::IQR(X) / 1.349) * n^(-0.2) * (max(p,0) + 1)
     }else{
-        bw <- 0.9 * sqrt(5) * apply(X,2,function(x){min(sd(x),IQR(x)/1.349)})/n^(0.2) * (max(p,0) + 1)
+        bw <- 0.9 * sqrt(5) * apply(X,2,function(x){min(stats::sd(x),stats::IQR(x)/1.349)})/n^(0.2) * (max(p,0) + 1)
     }
     return(bw)
 }

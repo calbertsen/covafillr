@@ -38,7 +38,7 @@ typename covafill<scalartype_>::scalartype covafill<scalartype_>::calcNorm(vecto
   for(int i = 0; i < tmp.size(); ++i)
     ressq += tmp(i) * tmp(i);
   return sqrt(ressq);
-};
+}
 
 
 
@@ -56,7 +56,7 @@ typename covafill<scalartype_>::scalartype covafill<scalartype_>::getWeight(vect
     res = 0;
   }
   return res * detHinv;
-};
+}
 
 
 

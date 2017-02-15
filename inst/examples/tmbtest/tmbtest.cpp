@@ -1,6 +1,7 @@
 
 #include <TMB.hpp>
 #include <covafill/TMB>
+#include <map>
 
 template<class Type>
 Type objective_function<Type>::operator() ()

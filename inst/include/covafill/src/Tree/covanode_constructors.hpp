@@ -99,13 +99,13 @@ covanode<scalartype_>::covanode(matrixtype coordSplit,
     cubic = NULL;
   }
 
-};
+}
 
 
 template<typename scalartype_>
 covanode<scalartype_>::~covanode(){
   delete left;
   delete right;  
-};
+}
 
 #endif

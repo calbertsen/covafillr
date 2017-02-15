@@ -70,7 +70,7 @@ covatree<scalartype_>::covatree(scalartype minSplitSize_,
 				     cf,
 				     minCoords,
 				     maxCoords);
-};
+}
 
 
 

@@ -35,7 +35,7 @@
 */
 template<typename scalartype_>
 class covanode {
-  DEFINE_TYPES(scalartype_);
+  DEFINE_TYPES(scalartype_)
 
 public:
 

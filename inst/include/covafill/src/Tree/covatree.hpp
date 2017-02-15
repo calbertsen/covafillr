@@ -44,7 +44,7 @@
 template<typename scalartype_>
 class covatree {
 
-  DEFINE_TYPES(scalartype_);
+  DEFINE_TYPES(scalartype_)
   
 public:
 

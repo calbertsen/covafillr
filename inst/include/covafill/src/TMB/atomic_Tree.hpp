@@ -43,7 +43,7 @@ CppAD::vector<double> evalTree(CppAD::vector<double> tx, const covatree<double> 
     // The first index from the operator is the function value
     ty[0] = ct.operator()(tx)[0];
     return ty;								
-  });
+  })
 
 /*! 
  * \overload
@@ -55,7 +55,7 @@ CppAD::vector<Type> evalTree(CppAD::vector<Type> tx,const covatree<AD<Type> > &c
     // The first index from the operator is the function value
     ty[0] = CppAD::Value(ct.operator()(tx)[0]);
      return ty;								
-  };
+  }
 
 
 

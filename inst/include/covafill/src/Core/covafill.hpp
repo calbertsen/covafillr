@@ -43,7 +43,7 @@
 */
 template<typename scalartype_>
 class covafill {
-  DEFINE_TYPES(scalartype_);
+  DEFINE_TYPES(scalartype_)
 public:
   matrixtype coordinates;  /**< Coordinates/covariates of input. */
   vectortype observations; /**< Input observations. */

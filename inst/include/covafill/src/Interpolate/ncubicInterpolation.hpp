@@ -35,7 +35,7 @@
 */
 template<typename scalartype_>
 class ncubicInterpolation {
-  DEFINE_TYPES(scalartype_);
+  DEFINE_TYPES(scalartype_)
 
 
 public:
@@ -79,7 +79,7 @@ ncubicInterpolation<scalartype_>::ncubicInterpolation(vectortype minCoord_,
 {
   minChild = NULL;
   maxChild = NULL;
-};
+}
 
   template<typename scalartype_>
 ncubicInterpolation<scalartype_>::ncubicInterpolation(covafill<scalartype>* sf,
@@ -92,7 +92,7 @@ ncubicInterpolation<scalartype_>::ncubicInterpolation(covafill<scalartype>* sf,
 {
   minChild = NULL;
   maxChild = NULL;
-};
+}
 
 
 

@@ -36,7 +36,7 @@
 template<typename scalartype_>
 class tricubicInterpolation : public ncubicInterpolation<scalartype_> {
 
-  DEFINE_TYPES(scalartype_);
+  DEFINE_TYPES(scalartype_)
 
 
 public:
@@ -153,7 +153,7 @@ typename tricubicInterpolation<scalartype_>::matrixtype tricubicInterpolation<sc
       MinvEigen(i,j) = Minv[i][j];
 			      
   return MinvEigen;
-};
+}
 
 template<typename scalartype_>
 typename tricubicInterpolation<scalartype_>::vecmattype tricubicInterpolation<scalartype_>::makeAlpha(covafill<scalartype>* cf,vectortype minCoord,vectortype maxCoord) {
@@ -219,7 +219,7 @@ typename tricubicInterpolation<scalartype_>::vecmattype tricubicInterpolation<sc
   	coefs(i)(j,k) = alphaCoef(indx++);
 
   return coefs;
-};
+}
   
 
 
@@ -229,7 +229,7 @@ tricubicInterpolation<scalartype_>::tricubicInterpolation(covafill<scalartype>* 
 						 vectortype maxCoord)
   : ncubicInterpolation<scalartype_>(minCoord,maxCoord),
     alpha(makeAlpha(cf,minCoord,maxCoord))
-{};
+{}
 
 
 
@@ -266,7 +266,7 @@ typename tricubicInterpolation<scalartype_>::vectortype tricubicInterpolation<sc
 	  newval(3) += scalartype(k) * alpha(i)(j,k) * pow(t,i) * pow(u,j) * pow(v,k-1) / d(2);     
       }
   return newval;
-};
+}
 
 
 
