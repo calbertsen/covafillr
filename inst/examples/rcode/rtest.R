@@ -15,7 +15,7 @@ cf$predict(0,TRUE)
 I <- 1/(1*(1+2)*gamma(0.5)/(4*pi^0.5))
 lines(seq(-3,3,0.1),cf$predict(seq(-3,3,0.1))[,1]/I,col="red")
 
-test <- covafillr:::kde(X)
+test <- kde(X)
 lines(test[[1]][,1],test[[2]],col="blue")
 
 cf$predict(0,TRUE)

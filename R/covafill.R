@@ -7,11 +7,9 @@
 #' fn <- function(x) x ^ 4 - x ^ 2
 #' x <- runif(2000,-3,3)
 #' y <- fn(x) + rnorm(2000,0,0.1)
-#' cf <- covafill(coord = x,obs = y,h = 0.5,p = 3L)
+#' cf <- covafill(coord = x,obs = y,p = 5L)
 #' cf$getDim()
 #' cf$getDegree()
-#' cf$getBandwith()
-#' cf$setBandwith(1.0)
 #' cf$getBandwith()
 #' x0 <- seq(-1,1,0.1)
 #' y0 <- cf$predict(x0)
@@ -22,6 +20,8 @@
 #' lines(x0, 4 * x0 ^ 3 - 2 * x0)
 #' plot(x0, y0[,3], main = "Second derivative")
 #' lines(x0, 3 * 4 * x0 ^ 2 - 2)
+#' cf$setBandwith(1.0)
+#' cf$getBandwith()
 #' 
 #' @export covafill
 #' @importFrom methods setRefClass new 
