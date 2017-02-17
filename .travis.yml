@@ -19,6 +19,11 @@ env:
   global:
     - OS=$(uname -s)
 
+matrix:
+  exclude:
+  - r: devel
+    os: osx
+
 r_check_args: --as-cran --install-args="$JAGS"
 
 apt_packages:
