@@ -13,11 +13,16 @@ os:
   - osx
 
 env:
-  #matrix:
-  #- JAGS='--configure-args="--with-jags"'
-  #- JAGS=""
+  matrix:
+  - JAGS='--configure-args="--with-jags"'
+  - JAGS=""
   global:
     - OS=$(uname -s)
+
+matrix:
+  exclude:
+  - r: devel
+    os: osx
 
 r_check_args: --as-cran --install-args="$JAGS"
 
