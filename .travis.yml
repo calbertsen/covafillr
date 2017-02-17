@@ -34,7 +34,7 @@ r_packages:
   - rjags
 
 before_install:
-  - if [ ${OS} = Darwin -a TRAVIS_R_VERSION = "devel"]; then curl -Lo /tmp/R.pkg https://r.research.att.com/mavericks/R-devel/R-devel-mavericks-signed.pkg; fi
+  - if [ ${OS} = Darwin -a TRAVIS_R_VERSION = "devel"]; then curl -Lo /tmp/R.pkg https://r.research.att.com/mavericks/R-devel/R-devel-mavericks.pkg; fi
   - if [ ${OS} = Darwin -a TRAVIS_R_VERSION = "devel"]; then echo "Installing OS X binary package for R"; fi
   - if [ ${OS} = Darwin -a TRAVIS_R_VERSION = "devel"]; then sudo installer -pkg "/tmp/R.pkg" -target /; fi
   - if [ ${OS} = Darwin -a TRAVIS_R_VERSION = "devel"]; then rm /tmp/R.pkg; fi
