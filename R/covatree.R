@@ -65,8 +65,7 @@ covatree <- setRefClass("covatree",
                                     stop("p must be 1 or greater")
 
                                 ## Create pointer
-                                ptr0 <- .Call("MakeTree",coord,obs,h,p,minLeft,
-                                              PACKAGE="covafillr")
+                                ptr0 <- .Call(C_MakeTree,coord,obs,h,p,minLeft)
 
                                 initFields(ptr = ptr0)
 
@@ -76,8 +75,7 @@ covatree <- setRefClass("covatree",
                             },
                             getDim = function(){
                                 "Get the dimension of the coordinates."
-                                return(.Call("getTreeDim",.self$ptr,
-                                              PACKAGE="covafillr"))
+                                return(.Call(C_getTreeDim,.self$ptr))
                             },
                             predict = function(coord){
                                 "Predict function value and first order derivatives with search tree approximated local polynomial regression at coord."
@@ -89,8 +87,7 @@ covatree <- setRefClass("covatree",
                                 if(dim(coord)[2] != d)
                                     stop(paste("coord must have",d,"columns."))
 
-                                val <- .Call("predictTree",.self$ptr,coord,
-                                             PACKAGE="covafillr")
+                                val <- .Call(C_predictTree,.self$ptr,coord)
 
                                 if(is.null(colnames(coord))){
                                     cnam <- 1:d

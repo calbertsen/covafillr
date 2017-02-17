@@ -16,9 +16,9 @@
         Sys.setenv("PATH"=path)
     }
     
-    library.dynam("covafillr", pkgname, libname)
+    #library.dynam("covafillr", pkgname, libname)
 }
 
 .onUnload <- function(libpath){
-    library.dynam.unload("covafillr", libpath)
+    #library.dynam.unload("covafillr", libpath)
 }
