@@ -3,6 +3,7 @@
 ```{r}
 
 ## knitr settings
+library(knitr)
 opts_knit$set(root.dir=normalizePath('./'))
 opts_chunk$set(fig.path = "./tools/README_fig/", dev='png')
 
