@@ -1,6 +1,13 @@
 covafillr: Local Polynomial Regression of State Dependent Covariates in State-Space Models
 ==========================================================================================
 
+``` r
+## knitr settings
+library(knitr)
+opts_knit$set(root.dir=normalizePath('./'))
+opts_chunk$set(fig.path = "./tools/README_fig/", dev='png')
+```
+
 Installing
 ----------
 
@@ -30,7 +37,7 @@ pkg-config --libs jags
     ## -I/usr/local/include/JAGS 
     ## -L/usr/local/lib -ljags
 
-The package will only be installed with the JAGS module if the configure argument `--with-jags` is given.
+The package will only be installed with the JAGS module if the configure argument `--with-jags` is given. Note that the package must be compiled with the same compiler as `JAGS`.
 
 On Windows, the `R` package `rjags` is used to find the paths. `covafillr` can be installed without using `rjags` by setting a system variable `JAGS_ROOT` to the folder where `JAGS` is installed, e.g., by running
 
@@ -96,10 +103,10 @@ y <- fn(x) + rnorm(2000,0,0.1)
 An object of the reference class is created by
 
 ``` r
-cf <- covafill(coord = x,obs = y,h = 10.0,p = 5L)
+cf <- covafill(coord = x,obs = y,p = 5L)
 ```
 
-where h is the bandwith and p is the polynomial degree. Information about the class can be extracted (and changed) by the following functions:
+where p is the polynomial degree. The bandwith can be set by the argument h. By default, a value is suggested by the function `suggestBandwith`. Information about the class can be extracted (and changed) by the following functions:
 
 ``` r
 cf$getDim()
@@ -117,7 +124,7 @@ cf$getDegree()
 cf$getBandwith()
 ```
 
-    ## [1] 10
+    ## [1] 15.2975
 
 ``` r
 cf$setBandwith(1.0)
@@ -150,7 +157,7 @@ plot(x0, y0[,3], main = "Second derivative")
 lines(x0, 3 * 4 * x0 ^ 2 - 2)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-13-1.png)<!-- -->
+![](./tools/README_fig/unnamed-chunk-14-1.png)
 
 #### Search tree approximation
 
@@ -181,7 +188,7 @@ methods::getRefClass('covatree')
 `covatree` has an aditional argument, `minLeft`, which is the minimum number of observations at which a sub tree will be created. Otherwise the functionality is similar.
 
 ``` r
-ct <- covatree(coord = x,obs = y,h = 10.0,p = 5L, minLeft = 50)
+ct <- covatree(coord = x,obs = y,p = 5L, minLeft = 50)
 ct$getDim()
 ```
 
@@ -199,7 +206,7 @@ plot(x0, y1[,2], main = "First derivative")
 lines(x0, 4 * x0 ^ 3 - 2 * x0)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-16-1.png)<!-- -->
+![](./tools/README_fig/unnamed-chunk-17-1.png)
 
 ### Using with Rcpp/inline
 
@@ -239,7 +246,7 @@ fun <- cxxfunction(signature(x='numeric',
 fun(c(0),matrix(x,ncol=1),y,2,1.0)
 ```
 
-    ## [1] -0.04614941  0.01605094
+    ## [1] -0.03907458 -0.01879995
 
 ### Using with TMB
 
@@ -298,28 +305,28 @@ obj <- MakeADFun(data = dat,
 obj$fn(c(3.2))
 ```
 
-    ## [1] 94.7055
+    ## [1] 94.50085
 
 ``` r
 obj$fn(c(0))
 ```
 
-    ## [1] -0.04614941
+    ## [1] -0.03907458
 
 ``` r
 obj$fn(c(-1))
 ```
 
-    ## [1] -0.04697095
+    ## [1] -0.05840993
 
 ``` r
 obj$gr()
 ```
 
-    ## outer mgc:  3.593036
+    ## outer mgc:  3.661488
 
     ##           [,1]
-    ## [1,] -3.593036
+    ## [1,] -3.661488
 
 ### Using with rjags
 
@@ -396,4 +403,4 @@ plot(x,samp$cf[,1,1])
 hist(samp$sigma)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-31-1.png)<!-- -->
+![](./tools/README_fig/unnamed-chunk-32-1.png)

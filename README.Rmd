@@ -45,7 +45,7 @@ pkg-config --cflags jags
 pkg-config --libs jags
 ```
 
-The package will only be installed with the JAGS module if the configure argument `--with-jags` is given.
+The package will only be installed with the JAGS module if the configure argument `--with-jags` is given. Note that the package must be compiled with the same compiler as `JAGS`.
 
 
 On Windows, the `R` package `rjags` is used to find the paths. `covafillr` can be installed without using `rjags` by setting a system variable `JAGS_ROOT` to the folder where `JAGS` is installed, e.g., by running
@@ -104,12 +104,13 @@ An object of the reference class is created by
 
 ```{r}
 
-cf <- covafill(coord = x,obs = y,h = 10.0,p = 5L)
+cf <- covafill(coord = x,obs = y,p = 5L)
 
 
 ```
 
-where h is the bandwith and p is the polynomial degree.
+where p is the polynomial degree.
+The bandwith can be set by the argument h. By default, a value is suggested by the function `suggestBandwith`.
 Information about the class can be extracted (and changed) by the following functions:
 
 ```{r}
@@ -159,7 +160,7 @@ methods::getRefClass('covatree')
 
 ```{r}
 
-ct <- covatree(coord = x,obs = y,h = 10.0,p = 5L, minLeft = 50)
+ct <- covatree(coord = x,obs = y,p = 5L, minLeft = 50)
 ct$getDim()
 y1 <- ct$predict(x0)
 
