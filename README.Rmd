@@ -1,5 +1,14 @@
 # covafillr: Local Polynomial Regression of State Dependent Covariates in State-Space Models
 
+```{r}
+
+## knitr settings
+opts_knit$set(root.dir=normalizePath('./'))
+opts_chunk$set(fig.path = "./tools/README_fig/", dev='png')
+
+```
+
+
 ## Installing
 
 ```{r, echo = FALSE, results='hide'}
