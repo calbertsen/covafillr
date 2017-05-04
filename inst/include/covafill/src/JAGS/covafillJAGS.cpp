@@ -95,12 +95,17 @@ namespace jags {
       // Create p
       double p = args[4][0];
 
+      int gri = 0;
+      if(args.size() > 5){
+	int gri = args[5][0];
+      }
+      
       // Create covarfill
       covafill<double> cf(coord,obs,h,p);
 
       // Calculate
       for(unsigned int i = 0; i < nrowX; ++i)
-	value[i] = cf((cVector)X.row(i))(0);      
+	value[i] = cf((cVector)X.row(i))(gri);      
     }
 
     vector<unsigned int> 
