@@ -21,7 +21,7 @@
 #' @importFrom methods setRefClass new
 #' @exportClass covatree
 covatree <- setRefClass("covatree",
-                        fields = list(ptr = "externalptr"),
+                        fields = list(ptr = "externalptr", data = "list"),
                         methods = list(
 
                             initialize = function(coord,
@@ -67,7 +67,12 @@ covatree <- setRefClass("covatree",
                                 ## Create pointer
                                 ptr0 <- .Call(C_MakeTree,coord,obs,h,p,minLeft)
 
-                                initFields(ptr = ptr0)
+                                initFields(ptr = ptr0,
+                                           data = list(coord=coord,
+                                                       obs=obs,
+                                                       h=h,
+                                                       p=p,
+                                                       minLeft=minLeft))
 
                             },
                             copy = function(shallow=FALSE){
@@ -107,7 +112,18 @@ covatree <- setRefClass("covatree",
 
                                 
                                 return(val)
+                            },
+                            show = function(){
+                                cat("\ncovatree Local Polynomial Regression Search Tree Approximation Object\n\n")
+                                cat("\nPolynomial degree:",.self$data$p,"\n")
+                                cat("\nBandwith:",.self$data$h,"\n")
+                                cat("\nSplit size:",.self$data$minLeft,"\n")
+                                cat("\nCoordinates used:\n")
+                                print(summary(.self$data$coord))
+                                cat("\nObservations used:\n")
+                                print(summary(.self$data$obs))
+                                invisible(.self$data)
                             }                            
                         )
                         )
-covatree$lock("ptr")
+covatree$lock("ptr","data")

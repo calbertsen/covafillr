@@ -34,6 +34,20 @@ extern "C" {
     return asSEXP(ptr->h);
   }
 
+  SEXP getFillObservations(SEXP sp){
+    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
+      Rf_error("The pointer must be to a covafill object");   
+    covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
+    return asSEXP(ptr->observations);
+  }
+
+  SEXP getFillCoordinates(SEXP sp){
+    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
+      Rf_error("The pointer must be to a covafill object");   
+    covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
+    return asSEXP(ptr->coordinates);
+  }
+
   SEXP setFillBandwith(SEXP sp, SEXP h){
     
     if(R_ExternalPtrTag(sp) != install("covafillPointer"))

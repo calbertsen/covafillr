@@ -17,6 +17,8 @@ extern "C" {
     CALLDEF(getFillDegree,1),
     CALLDEF(getFillBandwith,1),
     CALLDEF(setFillBandwith,2),
+    CALLDEF(getFillObservations,1),
+    CALLDEF(getFillCoordinates,1),
     CALLDEF(predictFill,2),
     CALLDEF(predictFillSE,2),
     CALLDEF(lnoResiduals,2),

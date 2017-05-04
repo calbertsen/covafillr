@@ -172,7 +172,21 @@ covafill <- setRefClass("covafill",
                                     warning("Additional bandwiths are ignored.")
                                 h <- rep(h,len = d)
                                 return(.Call(C_setFillBandwith,.self$ptr,h))
+                            },
+                            show = function(){
+                                cat("\ncovafill Local Polynomial Regression Object\n\n")
+                                obs <- .Call(C_getFillObservations,.self$ptr)
+                                coord <- .Call(C_getFillCoordinates,.self$ptr)
+                                bw <- .self$getBandwith()
+                                p <- .self$getDegree()
+                                cat("\nPolynomial degree:",p,"\n")
+                                cat("\nBandwith:",bw,"\n")
+                                cat("\nCoordinates used:\n")
+                                print(summary(coord))
+                                cat("\nObservations used:\n")
+                                print(summary(obs))
+                                invisible(list(h=bw,p=p,obs=obs,coord=coord))
                             }
-                            )
+                        )
                         )
 covafill$lock("ptr")
