@@ -74,7 +74,14 @@ covafill <- setRefClass("covafill",
 
                             },
                             copy = function(shallow=FALSE){
-                                stop("A covafill object can not be copied.")
+                                ##stop("A covafill object can not be copied.")
+                                if(shallow)
+                                    stop("covafill only allows non-shallow copy")
+                                obs <- .Call(C_getFillObservations,.self$ptr)
+                                coord <- .Call(C_getFillCoordinates,.self$ptr)
+                                bw <- .self$getBandwith()
+                                p <- .self$getDegree()
+                                do.call("covafill",list(h=bw,p=p,obs=obs,coord=coord))
                             },
                             predict = function(coord, se.fit=FALSE){
                                 "Predict function value and derivatives with local polynomial regression at coord. If se.fit=TRUE a list is returned with estimates and their standard deviations."

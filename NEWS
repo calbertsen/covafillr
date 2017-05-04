@@ -1,5 +1,17 @@
 Covafillr News
 
+CHANGES IN VERSION 0.4.1
+
+	NEW FEATURES:
+	    - covafill and covatree now have $copy methods for non-shallow copying
+
+	BUG FIXES:
+	    - Files needed for README.md is now included
+
+	OTHER CHANGES:
+	    - $show is now more informative for covafill and covatree reference classes
+	
+
 CHANGES IN VERSION 0.4.0
 
 	NEW FEATURES:
