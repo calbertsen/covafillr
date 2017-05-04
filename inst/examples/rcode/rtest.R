@@ -19,7 +19,7 @@ test <- kde(X)
 lines(test[[1]][,1],test[[2]],col="blue")
 
 cf$predict(0,TRUE)
-cf$predict(0,FALSE)
+cf$predict(c(-0.5,0,0.5),TRUE)
 
 
 
