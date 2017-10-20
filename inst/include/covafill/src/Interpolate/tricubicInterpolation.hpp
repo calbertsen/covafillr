@@ -170,8 +170,7 @@ typename tricubicInterpolation<scalartype_>::vecmattype tricubicInterpolation<sc
   
   vectortype d = maxCoord - minCoord;
   vectortype mult(8);
-  mult << 1, d(0), d(1), d(2),
-    d(0) * d(1), d(0) * d(2), d(1) * d(2), d(1) * d(2) * d(3);
+  mult << 1, d(0), d(1), d(2), d(0) * d(1), d(0) * d(2), d(1) * d(2), d(0) * d(1) * d(2);
   vectortype x(ncoef);
   x.setZero();
 
