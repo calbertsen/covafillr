@@ -17,5 +17,5 @@ cf$predict(0,TRUE)
 
 ggplot(aes(x=x,y=y),data=data) +
     geom_point() +
-    stat_covafill(bandwith=1,polyDegree=3L) +
-    geom_line(aes(x=x,y=y),data=data.frame(x=seq(-2,2,len=1000),y=pol(seq(-2,2,len=1000))),col="red")
+    stat_covafill(bandwith=1,polyDegree=3L)+
+geom_label(aes(x=x,y=y,label=label,hjust=0),data=data.frame(x=0,y=-25,label="ggplot(aes(x=x,y=y),data=data) +\n\tgeom_point() +\n\tstat_covafill(bandwith=1,polyDegree=3L)"))

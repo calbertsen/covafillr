@@ -1,5 +1,10 @@
 Covafillr News
 
+CHANGES IN VERSION 0.4.2
+	BUG FIXES:
+	    - Rcpp:::Rcpp.plugin.maker changed to Rcpp::Rcpp.plugin.maker
+	    - Fixed index bug in tricubic interpolation
+
 CHANGES IN VERSION 0.4.1
 
 	NEW FEATURES:

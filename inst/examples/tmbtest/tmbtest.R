@@ -2,10 +2,55 @@ library(numDeriv)
 library(TMB)
 library(covafillr)
 
-system("touch tmbtest.cpp")
 TMB::compile("tmbtest.cpp",CXXFLAGS=paste(cxxFlags(),"-std=c++14"))
 
 dyn.load(dynlib("tmbtest"))
+
+
+
+
+## Test one dim
+coord <- as.matrix(expand.grid(seq(-1,1,0.001)))
+ftrue <- function(x)sum(x^3)
+covObs <- apply(coord,1,function(x)ftrue(x) + rnorm(1,0,0.01))
+
+plot(coord,covObs)
+
+dat <- list(coord = coord,
+            covObs = covObs,
+            p = 3,
+            h = 0,
+            d = 100)
+dat$h <-  suggestBandwith(dat$coord,dat$p)
+
+obj <- MakeADFun(data = dat,
+                 parameters = list(x = c(0)),
+                 DLL = "tmbtest")
+
+fdiff <- Vectorize(function(x) obj$f(x) - x^3)
+fdiff(seq(-1,1,0.01))
+
+
+gdiff <- Vectorize(function(x) obj$gr(x) - 3*x^2)
+gdiff(seq(-1,1,0.01))
+
+cf <- covafill(dat$coord,dat$covObs,h=dat$h,p=as.integer(dat$p))
+x0 <- seq(-1,1,0.1)
+pr <- cf$predict(x0)
+
+pr[,1]-x0^3
+pr[,1]-2*x0^2
+
+
+g1 <- 3*x0^2
+g2 <- sapply(x0,obj$gr)
+g3 <- pr[,2]
+
+plot(x0,g1)
+lines(x0,g2,col="red")
+lines(x0,g3,col="blue")
+
+## Test two dim
 
 coord <- as.matrix(expand.grid(seq(-10,10,0.2),seq(-10,10,0.2)))
 ftrue <- function(x)sum(x^3)
@@ -26,6 +71,7 @@ obj$fn(c(0,0))
 obj$fn(c(0,1))
 obj$gr()
 obj$he()
+
 
 numDeriv::grad(obj$fn,c(0,1))
 numDeriv::hessian(obj$fn,c(0,1))
