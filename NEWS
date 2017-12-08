@@ -1,8 +1,6 @@
 Covafillr News
 
 CHANGES IN VERSION x.y.z
-	BUG FIXES:
-	    - suggestBandwith used n^(0.2) instead if n^(-0.2) for more than one dimension
 
 CHANGES IN VERSION 0.4.2
 	BUG FIXES:
