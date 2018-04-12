@@ -2,7 +2,7 @@
 ##' Suggest bandwith for local polynomial regression
 ##'
 ##' The bandwith is suggested coordinate wise to be
-##' \deqn{0.9 \sqrt{5} \min\left(sd(x),\frac{IQR(x)}{1.349}\right) n ^{-0.2}} (p+1)
+##' \deqn{0.9 \sqrt{5} \min\left(sd(x),\frac{IQR(x)}{1.349}\right) n ^{-\frac{1}{d+4}} (p+1)}
 ##' where p is the polynomial degree used and n is the number of coordinate points.
 ##' @param X A numeric matrix or vector of data coordinates
 ##' @param p Polynomial degree to base the suggestion on
@@ -14,9 +14,9 @@ suggestBandwith <- function(X, p){
     d <- ifelse(is.matrix(X),ncol(X),1)
     n <- ifelse(is.matrix(X),nrow(X),length(X))
     if(d == 1){
-        bw <- 0.9 * sqrt(5) * min(stats::sd(X), stats::IQR(X) / 1.349) * n^(-0.2) * (max(p,0) + 1)
+        bw <- 0.9 * sqrt(5) * min(stats::sd(X), stats::IQR(X) / 1.349) * n^(-(1/(d+4))) * (max(p,0) + 1)
     }else{
-        bw <- 0.9 * sqrt(5) * apply(X,2,function(x){min(stats::sd(x),stats::IQR(x)/1.349)}) * n^(-0.2) * (max(p,0) + 1)
+        bw <- 0.9 * sqrt(5) * apply(X,2,function(x){min(stats::sd(x),stats::IQR(x)/1.349)}) * n^(-(1/(d+4))) * (max(p,0) + 1)
     }
     return(bw)
 }
