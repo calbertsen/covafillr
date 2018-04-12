@@ -56,6 +56,8 @@ public:
 		     vectortype minCoords,
 		     vectortype maxCoords);
 
+  ~cubicInterpolation();
+
   /** \brief Returns the interpolation prediction at \a newcoord.
    */
   
@@ -63,7 +65,7 @@ public:
 
 private:
 
-
+  int d;
   ncubicInterpolation<scalartype>* nci; /**< Pointer to the n-cubic interpolation class which does all the work. */
 
 
@@ -72,8 +74,8 @@ private:
 template<typename scalartype_>
 cubicInterpolation<scalartype_>::cubicInterpolation(covafill<scalartype>* cf,
 						    vectortype minCoord,
-						    vectortype maxCoord){
-  int d = minCoord.size();
+						    vectortype maxCoord) :
+  d(minCoord.size()){
   if(d < 1){
     // Trow exception
     nci = NULL;
@@ -87,6 +89,17 @@ cubicInterpolation<scalartype_>::cubicInterpolation(covafill<scalartype>* cf,
     nci = NULL;
   }
 
+}
+
+template<typename scalartype_>
+cubicInterpolation<scalartype_>::~cubicInterpolation(){
+  if(d == 1){
+    delete (unicubicInterpolation<scalartype>*)nci;
+  }else if(d == 2){
+    delete (bicubicInterpolation<scalartype>*)nci;
+  }else if(d == 3){
+    delete (tricubicInterpolation<scalartype>*)nci;
+  }
 }
 
 template<typename scalartype_>

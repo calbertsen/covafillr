@@ -64,7 +64,8 @@ covatree<scalartype_>::covatree(scalartype minSplitSize_,
 				    covafill<scalartype>* cf){
   vectortype minCoords = cf->coordinates.colwise().minCoeff();
   vectortype maxCoords = cf->coordinates.colwise().maxCoeff();
- 
+  if(minSplitSize_ <= 1)
+    throw std::invalid_argument( "minSplitSize must be larger than one" );
   root = new covanode<scalartype_>(cf->coordinates,
 				     minSplitSize_,
 				     cf,

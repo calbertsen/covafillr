@@ -47,6 +47,7 @@ public:
 		      vectortype minCoord,
 		      vectortype maxCoord);
 
+  ~unicubicInterpolation();
   /** \brief Calculates the interpolation prediction at \a newcoord.
    */
   virtual vectortype operator()(vectortype newcoord);
@@ -94,7 +95,7 @@ typename unicubicInterpolation<scalartype_>::matrixtype unicubicInterpolation<sc
   for(int i = 0; i < 4; ++i)
     for(int j = 0; j < 4; ++j)
       MinvEigen(i,j) = Minv[i][j];
-			      
+
   return MinvEigen;
 }
 
@@ -133,7 +134,7 @@ typename unicubicInterpolation<scalartype_>::matrixtype unicubicInterpolation<sc
     for(int i = 0; i < 4; ++i)
       coefs(i,j) = alphaCoef(indx++);
 
-  return coefs;
+  return Minv;
 }
   
 
@@ -146,6 +147,9 @@ unicubicInterpolation<scalartype_>::unicubicInterpolation(covafill<scalartype>* 
     alpha(makeAlpha(cf,minCoord,maxCoord))
 {}
 
+template<typename scalartype_>
+unicubicInterpolation<scalartype_>::~unicubicInterpolation(){
+};
 
 
 template<typename scalartype_>

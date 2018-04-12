@@ -1,5 +1,21 @@
 
+#define CHECK_FILL_POINTER(name)		\
+  if(R_ExternalPtrTag(name) != install("covafillPointer")) \
+    Rf_error("The pointer must be to a covafill object"); \
+  if(!R_ExternalPtrAddr(name)) \
+    Rf_error("The pointer address is not valid");
+
 extern "C" {
+
+  static void finalizeFill(SEXP ptr){
+    warning("Finalizing covafill");
+    if(!R_ExternalPtrAddr(ptr))
+      return;
+    warning("Deleting covafill");
+    delete (covafill<double>*)R_ExternalPtrAddr(ptr);
+    R_ClearExternalPtr(ptr);    
+  }
+  
   SEXP MakeFill(SEXP coord,SEXP obs,SEXP h,SEXP p){
     covafill<double>* cfp = new covafill<double>(asMatrix(coord),
 						       asVector(obs),
@@ -10,48 +26,44 @@ extern "C" {
       return R_NilValue;
     }
     SEXP val = R_MakeExternalPtr(cfp, install("covafillPointer"), R_NilValue);
+    PROTECT(val);
+    R_RegisterCFinalizerEx(val, finalizeFill, TRUE);
+    UNPROTECT(1);
     return val;
   }
 
   SEXP getFillDim(SEXP sp){
-    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
-      Rf_error("The pointer must be to a covafill object");   
+    CHECK_FILL_POINTER(sp);
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
     return asSEXP(ptr->getDim());
   }
 
   SEXP getFillDegree(SEXP sp){
-    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
-      Rf_error("The pointer must be to a covafill object");   
+    CHECK_FILL_POINTER(sp);
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
     return asSEXP(ptr->p);
   }
 
   SEXP getFillBandwith(SEXP sp){
-    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
-      Rf_error("The pointer must be to a covafill object");   
+    CHECK_FILL_POINTER(sp);
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
     return asSEXP(ptr->h);
   }
 
   SEXP getFillObservations(SEXP sp){
-    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
-      Rf_error("The pointer must be to a covafill object");   
+    CHECK_FILL_POINTER(sp);
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
     return asSEXP(ptr->observations);
   }
 
   SEXP getFillCoordinates(SEXP sp){
-    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
-      Rf_error("The pointer must be to a covafill object");   
+    CHECK_FILL_POINTER(sp);
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
     return asSEXP(ptr->coordinates);
   }
 
   SEXP setFillBandwith(SEXP sp, SEXP h){
-    
-    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
-      Rf_error("The pointer must be to a covafill object");   
+    CHECK_FILL_POINTER(sp);
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
     if(LENGTH(h) == 1){
       ptr->setH(asDouble(h));
@@ -63,8 +75,7 @@ extern "C" {
   }
 
   SEXP predictFill(SEXP sp, SEXP x){
-    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
-      Rf_error("The pointer must be to a covafill object");   
+    CHECK_FILL_POINTER(sp);
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
 
     if(isMatrix(x)){
@@ -90,11 +101,8 @@ extern "C" {
 
 
   SEXP predictFillSE(SEXP sp, SEXP x){
-    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
-      Rf_error("The pointer must be to a covafill object");   
+    CHECK_FILL_POINTER(sp);   
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
-
- 
     
     if(isMatrix(x)){
       MatrixXd x0 = asMatrix(x);
@@ -135,10 +143,9 @@ extern "C" {
 
 
   SEXP lnoResiduals(SEXP sp, SEXP excludeRadius){
+    CHECK_FILL_POINTER(sp);
     if(!(isNumeric(excludeRadius) && LENGTH(excludeRadius) == 1))
       Rf_error("Exclude radius must be a scalar");
-    if(R_ExternalPtrTag(sp) != install("covafillPointer"))
-      Rf_error("The pointer must be to a covafill object");
     covafill<double>* ptr=(covafill<double>*)R_ExternalPtrAddr(sp);
 
     double er = asDouble(excludeRadius);

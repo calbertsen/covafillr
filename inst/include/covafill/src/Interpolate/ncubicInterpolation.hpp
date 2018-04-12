@@ -46,6 +46,7 @@ public:
   ncubicInterpolation(covafill<scalartype>* cf,
 		      vectortype minCoord_,
 		      vectortype maxCoord_);
+  ~ncubicInterpolation();
 
   /** \brief Calculates the interpolation prediction at \a newcoord.
    */
@@ -65,10 +66,7 @@ private:
   ncubicInterpolation<scalartype>* minChild;
   ncubicInterpolation<scalartype>* maxChild;
 
-
-
 };
-
 
 template<typename scalartype_>
 ncubicInterpolation<scalartype_>::ncubicInterpolation(vectortype minCoord_,
@@ -79,6 +77,12 @@ ncubicInterpolation<scalartype_>::ncubicInterpolation(vectortype minCoord_,
 {
   minChild = NULL;
   maxChild = NULL;
+}
+
+template<typename scalartype_>
+ncubicInterpolation<scalartype_>::~ncubicInterpolation(){
+  delete minChild;
+  delete maxChild;
 }
 
   template<typename scalartype_>

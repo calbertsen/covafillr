@@ -16,7 +16,7 @@ a vector or scalar of suggested bandwiths
 }
 \description{
 The bandwith is suggested coordinate wise to be
-\deqn{0.9 \sqrt{5} \min\left(sd(x),\frac{IQR(x)}{1.349}\right) n ^{-0.2}} (p+1)
+\deqn{0.9 \sqrt{5} \min\left(sd(x),\frac{IQR(x)}{1.349}\right) n ^{-\frac{1}{d+4}} (p+1)}
 where p is the polynomial degree used and n is the number of coordinate points.
 }
 \author{

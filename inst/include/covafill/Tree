@@ -31,6 +31,8 @@
 #define _COVAFILL_TREE_
 
 // Dependencies
+#include <stdexcept>
+#include <iostream>
 #include <Eigen/Core>
 #include <Eigen/Sparse>
 #include <covafill/Core>
