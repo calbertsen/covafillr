@@ -23,7 +23,7 @@ r_check_args: --as-cran --install-args="$JAGS"
 
 install:
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install jags; else brew install jags; fi
-  - R -e 'install.packages(c("RcppEigen","TMB","inline","rjags"),dependencies = c("Depends", "Imports", "LinkingTo", "Enhances"))'
+  - R -e 'install.packages(c("roxygen2","RcppEigen","TMB","inline","rjags"),dependencies = c("Depends", "Imports", "LinkingTo", "Enhances"))'
 
 script:
   - make check

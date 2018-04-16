@@ -28,12 +28,7 @@ install: doc build
 	$(R) CMD INSTALL covafillr_${VERSION}.tar.gz
 
 test:
-	# @echo "\033[0;32mRunning tests\033[0;0m"
-	# @$(eval SCRIPTS := $(shell find tests -name script.R))
-	# @for scrpt in ${SCRIPTS} ; do \
-	# 	echo "\033[1;33mRunning $$scrpt\033[0;0m"; \
-	# 	$(R) --slave -f $$scrpt ;\
-	# done
+	@echo "\033[0;32mNo tests\033[0;0m"
 
 clean: 
 	@echo "\033[0;32mRemoving Rhistory files cleaning directory\033[0;0m"
