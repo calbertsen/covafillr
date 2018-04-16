@@ -1,7 +1,6 @@
 language: r
 
 sudo: required
-cache: packages
 
 r:
   - oldrel
@@ -19,10 +18,6 @@ env:
   global:
     - OS=$(uname -s)
 
-matrix:
-  exclude:
-  - r: devel
-    os: osx
 
 r_check_args: --as-cran --install-args="$JAGS"
 
@@ -39,15 +34,16 @@ r_packages:
   - rjags
 
 
-after_failure:
-  - if [ ${OS} = Darwin ]; then cat /Users/travis/build/calbertsen/covafillr/covafillr.Rcheck/00check.log; fi
-  - if [ ${OS} = Darwin ]; then cat /Users/travis/build/calbertsen/covafillr/covafillr.Rcheck/00install.out; fi
-  - if [ ${OS} != Darwin ]; then cat /home/travis/build/calbertsen/covafillr/covafillr.Rcheck/00check.log; fi
-  - if [ ${OS} != Darwin ]; then cat /home/travis/build/calbertsen/covafillr/covafillr.Rcheck/00install.out; fi
-  - ./travis-tool.sh dump_logs
+script:
+  - make check
+  - make install
+  - make test
+
 
 after_success:
-  - if [ ${OS} = Darwin ]; then cat /Users/travis/build/calbertsen/covafillr/covafillr.Rcheck/00check.log; fi
-  - if [ ${OS} = Darwin ]; then cat /Users/travis/build/calbertsen/covafillr/covafillr.Rcheck/00install.out; fi
-  - if [ ${OS} != Darwin ]; then cat /home/travis/build/calbertsen/covafillr/covafillr.Rcheck/00check.log; fi
-  - if [ ${OS} != Darwin ]; then cat /home/travis/build/calbertsen/covafillr/covafillr.Rcheck/00install.out; fi
+  - cat multiStockassessment.Rcheck/00check.log
+  - cat multiStockassessment.Rcheck/00install.out
+
+after_failure:
+  - cat multiStockassessment.Rcheck/00check.log
+  - cat multiStockassessment.Rcheck/00install.out
