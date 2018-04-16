@@ -10,14 +10,13 @@ BugReports: https://github.com/calbertsen/covafillr/issues
 URL: https://github.com/calbertsen/covafillr
 Depends: R (>= 3.0.0)
 Imports: methods,
-	 stats,
-LinkingTo: RcppEigen,
+	 stats
+LinkingTo: RcppEigen
 Suggests: TMB,
 	  rjags,
 	  inline,
-	  ggplot2,
+	  ggplot2
 License: BSD_2_clause + file LICENSE
 LazyData: true
 Biarch: true
 NeedsCompilation: yes
-RoxygenNote: 6.0.1
