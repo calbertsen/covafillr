@@ -5,7 +5,7 @@ all: doc build check install test readme
 doc:
 	@echo "\033[0;32mUpdating documentation\033[0;0m"
 	rm -f covafillr/src/*.so
-	$(R) -q -e 'roxygen2::roxygenize("covafillr")'
+	$(R) -q -e 'devtools::document("covafillr")'
 
 readme:
 	@echo "\033[0;32mCreating README\033[0;0m"
