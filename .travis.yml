@@ -21,18 +21,9 @@ env:
 
 r_check_args: --as-cran --install-args="$JAGS"
 
-apt_packages:
-  - jags
-
-brew_packages:
-  - jags
-
-r_packages:
-  - RcppEigen
-  - TMB
-  - inline
-  - rjags
-
+install:
+  - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install jags; else brew install jags; fi
+  - R -e 'install.packages(c("RcppEigen","TMB","inline","rjags"),dependencies = c("Depends", "Imports", "LinkingTo", "Enhances"))'
 
 script:
   - make check
@@ -41,9 +32,9 @@ script:
 
 
 after_success:
-  - cat multiStockassessment.Rcheck/00check.log
-  - cat multiStockassessment.Rcheck/00install.out
+  - cat covafillr.Rcheck/00check.log
+  - cat covafillr.Rcheck/00install.out
 
 after_failure:
-  - cat multiStockassessment.Rcheck/00check.log
-  - cat multiStockassessment.Rcheck/00install.out
+  - cat covafillr.Rcheck/00check.log
+  - cat covafillr.Rcheck/00install.out
