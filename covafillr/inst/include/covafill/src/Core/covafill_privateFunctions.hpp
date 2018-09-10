@@ -49,12 +49,10 @@ typename covafill<scalartype_>::scalartype covafill<scalartype_>::getWeight(vect
   
   scalartype_ sqnorm = (Hinv * (x0 - x1).matrix()).squaredNorm();
   scalartype_ res;
-  
-  if(sqnorm <= 1){
-    res = 1.0 - sqnorm;
-  }else{
-    res = 0;
-  }
+
+  scalartype a = 1.0 - sqnorm;
+  scalartype b = 0.0;
+  scalartype res = 0.5 * (a + b + abs(a-b));
   return res * detHinv;
 }
 
