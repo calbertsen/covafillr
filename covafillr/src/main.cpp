@@ -1,3 +1,7 @@
+#define EIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS
+
+#define R_NO_REMAP
+
 #include <Rinternals.h>
 
 #include <covafill/Core>

@@ -45,7 +45,7 @@ public:
 		      vectortype minCoord,
 		      vectortype maxCoord);
 
-  ~bicubicInterpolation();
+  virtual ~bicubicInterpolation();
 
   /** \brief Calculates the interpolation prediction at \a newcoord.
    */
@@ -163,7 +163,7 @@ bicubicInterpolation<scalartype_>::bicubicInterpolation(covafill<scalartype>* cf
 
 template<typename scalartype_>
 bicubicInterpolation<scalartype_>::~bicubicInterpolation(){
-};
+}
 
 template<typename scalartype_>
 typename bicubicInterpolation<scalartype_>::vectortype bicubicInterpolation<scalartype_>::operator()(vectortype newcoord) {

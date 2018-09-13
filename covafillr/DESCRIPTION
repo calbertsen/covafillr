@@ -1,7 +1,7 @@
 Package: covafillr
 Title: Local Polynomial Regression of State Dependent Covariates in State-Space Models
-Version: 0.4.2-00056
-Date: 2018-04-12
+Version: 0.4.3
+Date: 2018-09-13
 Authors@R: person(c("Christoffer","Moesgaard"), "Albertsen",
 	   email = "cmoe@aqua.dtu.dk", role = c("aut", "cre"),
 	   comment = c(ORCID = "0000-0003-0088-4363"))

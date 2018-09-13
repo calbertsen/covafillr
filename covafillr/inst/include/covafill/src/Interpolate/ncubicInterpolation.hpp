@@ -46,7 +46,6 @@ public:
   ncubicInterpolation(covafill<scalartype>* cf,
 		      vectortype minCoord_,
 		      vectortype maxCoord_);
-  ~ncubicInterpolation();
 
   /** \brief Calculates the interpolation prediction at \a newcoord.
    */
@@ -60,6 +59,7 @@ protected:
   int dim; /**< Dimension of coordinates, i.e., the n in n-cubic. */
   vectortype minCoord; /**< Minimum coordinates of boundary box. */
   vectortype maxCoord; /**< maximum coordinates of boundary box. */
+  virtual ~ncubicInterpolation();
 
 private:
 
@@ -67,6 +67,7 @@ private:
   ncubicInterpolation<scalartype>* maxChild;
 
 };
+
 
 template<typename scalartype_>
 ncubicInterpolation<scalartype_>::ncubicInterpolation(vectortype minCoord_,

@@ -1,6 +1,12 @@
 Covafillr News
 
-CHANGES IN VERSION x.y.z
+CHANGES IN VERSION x.y.z	
+	BUG FIXED:
+	    - Fixed memory leak
+	    - Fixed pedantic warnings
+	OTHER CHANGES
+	    - covafill no longer has parameter dependent if statements
+	    - covafill/TMB now uses a Gaussian kernel
 
 CHANGES IN VERSION 0.4.2
 	BUG FIXES:

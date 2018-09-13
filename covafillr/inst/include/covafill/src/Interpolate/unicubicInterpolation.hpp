@@ -47,7 +47,7 @@ public:
 		      vectortype minCoord,
 		      vectortype maxCoord);
 
-  ~unicubicInterpolation();
+  virtual ~unicubicInterpolation();
   /** \brief Calculates the interpolation prediction at \a newcoord.
    */
   virtual vectortype operator()(vectortype newcoord);
@@ -149,7 +149,7 @@ unicubicInterpolation<scalartype_>::unicubicInterpolation(covafill<scalartype>* 
 
 template<typename scalartype_>
 unicubicInterpolation<scalartype_>::~unicubicInterpolation(){
-};
+}
 
 
 template<typename scalartype_>

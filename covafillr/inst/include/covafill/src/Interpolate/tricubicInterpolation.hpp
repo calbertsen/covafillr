@@ -47,7 +47,7 @@ public:
   tricubicInterpolation(covafill<scalartype>* cf,
 			vectortype minCoord,
 			vectortype maxCoord);
-  ~tricubicInterpolation();
+  virtual ~tricubicInterpolation();
 
   /** \brief Calculates the interpolation prediction at \a newcoord.
    */
@@ -233,7 +233,7 @@ tricubicInterpolation<scalartype_>::tricubicInterpolation(covafill<scalartype>* 
 
 template<typename scalartype_>
 tricubicInterpolation<scalartype_>::~tricubicInterpolation(){
-};
+}
 
 
 template<typename scalartype_>
