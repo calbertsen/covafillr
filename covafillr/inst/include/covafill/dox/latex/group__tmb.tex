@@ -1,0 +1,67 @@
+\hypertarget{group__tmb}{}\subsection{T\+M\+B module}
+\label{group__tmb}\index{T\+M\+B module@{T\+M\+B module}}
+\subsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classatomicEvalFill}{atomic\+Eval\+Fill$<$ Type $>$}
+\begin{DoxyCompactList}\small\item\em Cpp\+A\+D atomic class to use estimated derivatives in automatic differentiation. See Cpp\+A\+D\+::atomic\+\_\+base for further documentation. \end{DoxyCompactList}\item 
+class \hyperlink{classatomicEvalTree}{atomic\+Eval\+Tree$<$ Type $>$}
+\begin{DoxyCompactList}\small\item\em Cpp\+A\+D atomic class to use estimated derivatives in automatic differentiation. See Cpp\+A\+D\+::atomic\+\_\+base for further documentation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__tmb_ga0862de227e5abdeba2394525467bafe4}{}Cpp\+A\+D\+::vector$<$ double $>$ \hyperlink{group__tmb_ga0862de227e5abdeba2394525467bafe4}{eval\+Fill} (Cpp\+A\+D\+::vector$<$ double $>$ tx, const \hyperlink{classcovafill}{covafill}$<$ double $>$ \&cf) C\+S\+K\+I\+P(\label{group__tmb_ga0862de227e5abdeba2394525467bafe4}
+
+\begin{DoxyCompactList}\small\item\em Evaluates a covafill object, {\itshape cf}, at the coordinates {\itshape tx}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Type $>$ }\\Cpp\+A\+D\+::vector$<$ Type $>$ \hyperlink{group__tmb_ga832a30ea46b9b7ef9237e1b2afb515ed}{eval\+Fill} (Cpp\+A\+D\+::vector$<$ Type $>$ tx, const \hyperlink{classcovafill}{covafill}$<$ A\+D$<$ Type $>$ $>$ \&cf)
+\item 
+{\footnotesize template$<$class Type $>$ }\\Cpp\+A\+D\+::vector$<$ A\+D$<$ Type $>$ $>$ \hyperlink{group__tmb_ga8de4c7f2e9aadad8f6ed8d5cd70ce215}{eval\+Fill} (Cpp\+A\+D\+::vector$<$ A\+D$<$ Type $>$ $>$ tx, \hyperlink{classcovafill}{covafill}$<$ A\+D$<$ Type $>$ $>$ cf)
+\item 
+\hypertarget{group__tmb_ga2d45496af4f9bbb2895ef0a9adb0ff34}{}Cpp\+A\+D\+::vector$<$ double $>$ \hyperlink{group__tmb_ga2d45496af4f9bbb2895ef0a9adb0ff34}{eval\+Tree} (Cpp\+A\+D\+::vector$<$ double $>$ tx, const \hyperlink{classcovatree}{covatree}$<$ double $>$ \&ct) C\+S\+K\+I\+P(\label{group__tmb_ga2d45496af4f9bbb2895ef0a9adb0ff34}
+
+\begin{DoxyCompactList}\small\item\em Evaluates a covatree object, {\itshape ct}, at the coordinates {\itshape tx}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Type $>$ }\\Cpp\+A\+D\+::vector$<$ Type $>$ \hyperlink{group__tmb_gad534509dc8a9a30772926696b2e9b1b1}{eval\+Tree} (Cpp\+A\+D\+::vector$<$ Type $>$ tx, const \hyperlink{classcovatree}{covatree}$<$ A\+D$<$ Type $>$ $>$ \&ct)
+\item 
+{\footnotesize template$<$class Type $>$ }\\Cpp\+A\+D\+::vector$<$ A\+D$<$ Type $>$ $>$ \hyperlink{group__tmb_ga074884f7432feb68f12ee89984882a29}{eval\+Tree} (Cpp\+A\+D\+::vector$<$ A\+D$<$ Type $>$ $>$ tx, \hyperlink{classcovatree}{covatree}$<$ A\+D$<$ Type $>$ $>$ ct)
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+The T\+M\+B module of covafill provides functions to evaluate a covafill or covatree object from a T\+M\+B model such that the estimated gradients are used in the automatic differentiation. \begin{DoxyVerb}#include <covafill/TMB>
+\end{DoxyVerb}
+ 
+
+\subsubsection{Function Documentation}
+\hypertarget{group__tmb_ga832a30ea46b9b7ef9237e1b2afb515ed}{}\index{T\+M\+B module@{T\+M\+B module}!eval\+Fill@{eval\+Fill}}
+\index{eval\+Fill@{eval\+Fill}!T\+M\+B module@{T\+M\+B module}}
+\paragraph[{eval\+Fill}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Type $>$ Cpp\+A\+D\+::vector$<$Type$>$ eval\+Fill (
+\begin{DoxyParamCaption}
+\item[{Cpp\+A\+D\+::vector$<$ Type $>$}]{tx, }
+\item[{const {\bf covafill}$<$ A\+D$<$ Type $>$ $>$ \&}]{cf}
+\end{DoxyParamCaption}
+)}\label{group__tmb_ga832a30ea46b9b7ef9237e1b2afb515ed}
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \hypertarget{group__tmb_ga8de4c7f2e9aadad8f6ed8d5cd70ce215}{}\index{T\+M\+B module@{T\+M\+B module}!eval\+Fill@{eval\+Fill}}
+\index{eval\+Fill@{eval\+Fill}!T\+M\+B module@{T\+M\+B module}}
+\paragraph[{eval\+Fill}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Type $>$ Cpp\+A\+D\+::vector$<$A\+D$<$Type $>$ $>$ eval\+Fill (
+\begin{DoxyParamCaption}
+\item[{Cpp\+A\+D\+::vector$<$ A\+D$<$ Type $>$ $>$}]{tx, }
+\item[{{\bf covafill}$<$ A\+D$<$ Type $>$ $>$}]{cf}
+\end{DoxyParamCaption}
+)}\label{group__tmb_ga8de4c7f2e9aadad8f6ed8d5cd70ce215}
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \hypertarget{group__tmb_gad534509dc8a9a30772926696b2e9b1b1}{}\index{T\+M\+B module@{T\+M\+B module}!eval\+Tree@{eval\+Tree}}
+\index{eval\+Tree@{eval\+Tree}!T\+M\+B module@{T\+M\+B module}}
+\paragraph[{eval\+Tree}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Type $>$ Cpp\+A\+D\+::vector$<$Type$>$ eval\+Tree (
+\begin{DoxyParamCaption}
+\item[{Cpp\+A\+D\+::vector$<$ Type $>$}]{tx, }
+\item[{const {\bf covatree}$<$ A\+D$<$ Type $>$ $>$ \&}]{ct}
+\end{DoxyParamCaption}
+)}\label{group__tmb_gad534509dc8a9a30772926696b2e9b1b1}
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \hypertarget{group__tmb_ga074884f7432feb68f12ee89984882a29}{}\index{T\+M\+B module@{T\+M\+B module}!eval\+Tree@{eval\+Tree}}
+\index{eval\+Tree@{eval\+Tree}!T\+M\+B module@{T\+M\+B module}}
+\paragraph[{eval\+Tree}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Type $>$ Cpp\+A\+D\+::vector$<$A\+D$<$Type $>$ $>$ eval\+Tree (
+\begin{DoxyParamCaption}
+\item[{Cpp\+A\+D\+::vector$<$ A\+D$<$ Type $>$ $>$}]{tx, }
+\item[{{\bf covatree}$<$ A\+D$<$ Type $>$ $>$}]{ct}
+\end{DoxyParamCaption}
+)}\label{group__tmb_ga074884f7432feb68f12ee89984882a29}
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 

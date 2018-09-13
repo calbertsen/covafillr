@@ -55,8 +55,8 @@ typename covafill<scalartype_>::vectortype covafill<scalartype_>::operator()(vec
     if(calcNorm(x0,coordinates.row(i)) > excludeRadius){
       scalartype wi = getWeight(x0,coordinates.row(i));
       kde(0) += wi / nobs;
-      if(wi > 0)
-	W.insert(i,i) = wi;
+      //if(wi > 0)
+      W.insert(i,i) = wi;
     }
   }
   if(p == -1){

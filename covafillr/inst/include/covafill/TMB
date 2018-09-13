@@ -35,11 +35,12 @@
    #include <TMB.hpp>
 #endif
 
+#define USE_GAUSSIAN_KERNEL
+
 #include <ctime>
 #include <cstring>
 #include <covafill/Core>
 #include <covafill/Tree>
-
 
 #include "src/TMB/toBase.hpp"
 #include "src/TMB/toBase_covafill.hpp"

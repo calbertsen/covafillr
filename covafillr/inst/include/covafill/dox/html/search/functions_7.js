@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['operator_28_29',['operator()',['../classcovafill.html#abf579279adbd0ff452e00cd91f4ada93',1,'covafill::operator()(vectortype x0, bool returnAll=false) const '],['../classcovafill.html#a6e76b761e31f54838ef6590e36746d3b',1,'covafill::operator()(vectortype x0, scalartype excludeRadius, bool returnAll=false) const '],['../classbicubicInterpolation.html#a9b5aab51903b774190b8806f85b65a2a',1,'bicubicInterpolation::operator()()'],['../classcubicInterpolation.html#ac566e2bd2ece485f7e63689316045e59',1,'cubicInterpolation::operator()()'],['../classncubicInterpolation.html#a83cfa933656a532951dcdd97ef7f50f1',1,'ncubicInterpolation::operator()()'],['../classtricubicInterpolation.html#a8554c02565bafd34a90e3af5350e1e59',1,'tricubicInterpolation::operator()()'],['../classunicubicInterpolation.html#a9a385ca116d23bf0280dd12cc3887ac4',1,'unicubicInterpolation::operator()()'],['../classcovanode.html#a6e4ccc5051d2b52192a8cc70a0a401bb',1,'covanode::operator()()'],['../classcovatree.html#a2fd5facb6a97d7356428ef07141c6481',1,'covatree::operator()()']]],
+  ['operator_3d',['operator=',['../classcovafill.html#ad7a89edf7a67e8e8994d9a782b476d27',1,'covafill']]]
+];
