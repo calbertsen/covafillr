@@ -4,8 +4,7 @@
 \alias{kde}
 \title{Kernel Density Estimation}
 \usage{
-kde(X, bw = suggestBandwith(X, -1), npred = 100, from = min(X),
-  to = max(X))
+kde(X, bw = suggestBandwith(X, -1), npred = 100, from = min(X), to = max(X))
 }
 \arguments{
 \item{X}{A numeric matrix or vector of data coordinates}

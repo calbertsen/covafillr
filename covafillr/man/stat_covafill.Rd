@@ -4,10 +4,21 @@
 \alias{stat_covafill}
 \title{Add a covafill smoother to an (x,y) plot}
 \usage{
-stat_covafill(mapping = NULL, data = NULL, geom = "smooth",
-  position = "identity", na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, n = 50, bandwith = NULL, polyDegree = 3L,
-  level = 0.95, se = TRUE, ...)
+stat_covafill(
+  mapping = NULL,
+  data = NULL,
+  geom = "smooth",
+  position = "identity",
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  n = 50,
+  bandwith = NULL,
+  polyDegree = 3L,
+  level = 0.95,
+  se = TRUE,
+  ...
+)
 }
 \arguments{
 \item{mapping}{Set of mappings created by 'aes' from the \code{ggplot2} package. The same as \code{ggplot2::stat_smooth}.}

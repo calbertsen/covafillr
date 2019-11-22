@@ -22,7 +22,7 @@
 #' lines(x0, 3 * 4 * x0 ^ 2 - 2)
 #' cf$setBandwith(1.0)
 #' cf$getBandwith()
-#' 
+#'
 #' @export covafill
 #' @importFrom methods setRefClass new 
 #' @exportClass covafill

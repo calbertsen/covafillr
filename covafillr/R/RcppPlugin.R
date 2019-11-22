@@ -1,5 +1,5 @@
 
-
+##' @importFrom Rcpp Rcpp.plugin.maker
 inlineCxxPlugin <- Rcpp::Rcpp.plugin.maker(
     include.before = paste("#include<RcppEigen.h>",
                            "#include<covafill/Tree>",

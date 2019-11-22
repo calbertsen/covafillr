@@ -35,6 +35,8 @@ clean:
 	find . -type f -name '.Rhistory' -delete
 	@echo "\033[0;32mRemoving Rcheck directory cleaning directory\033[0;0m"
 	rm -f -r covafillr.Rcheck
+	@echo "\033[0;32mRun package cleanup\033[0;0m"
+	./covafillr/cleanup
 
 
 clean_hard:

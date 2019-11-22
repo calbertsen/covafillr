@@ -8,10 +8,8 @@
 extern "C" {
 
     static void finalizeTree(SEXP ptr){
-    Rf_warning("Finalizing covatree");
     if(!R_ExternalPtrAddr(ptr))
       return;
-    Rf_warning("Deleting covatree");
     delete (covatree<double>*)R_ExternalPtrAddr(ptr);
     R_ClearExternalPtr(ptr);    
   }
