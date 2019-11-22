@@ -47,7 +47,13 @@ typename covafill<scalartype_>::scalartype covafill<scalartype_>::calcNorm(vecto
 template<typename scalartype_>
 typename covafill<scalartype_>::scalartype covafill<scalartype_>::getWeight(vectortype x0, vectortype x1) const {
 
-  scalartype_ sqnorm = (Hinv * (x0 - x1).matrix()).squaredNorm();
+  scalartype sqnorm = (Hinv * (x0 - x1).matrix()).squaredNorm();
+  // vectortype tmp = Hinv * (x0 - x1).matrix();
+  // vectortype zero(dim);
+  // for(int i = 0; i < tmp.size(); ++i)
+  //   zero(i) = 0.0;
+  // scalartype norm = calcNorm(tmp,zero);
+  // scalartype sqnorm = norm*norm;
 
 #ifdef USE_GAUSSIAN_KERNEL
   scalartype res = exp(-0.5 * sqnorm);

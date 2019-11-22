@@ -8,10 +8,8 @@
 extern "C" {
 
   static void finalizeFill(SEXP ptr){
-    Rf_warning("Finalizing covafill");
     if(!R_ExternalPtrAddr(ptr))
       return;
-    Rf_warning("Deleting covafill");
     delete (covafill<double>*)R_ExternalPtrAddr(ptr);
     R_ClearExternalPtr(ptr);    
   }
